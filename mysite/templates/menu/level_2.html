@@ -1,0 +1,21 @@
+{% load menu_tags %}
+
+{% for level_2_item in sub_menu.items %}
+    
+        {% if not level_2_item.has_children_in_menu  %}  <!-- no child  -->
+
+        <li>
+            <a class="menu-link {{ level_2_item.active_class }}" href="{{ level_2_item.href }}">{{ level_2_item.text }}</a>
+        </li>
+
+        {% else %}  <!-- has child -->
+        <li class="dropdown">
+            <a href="{{ level_2_item.href }}" class="menu-link {{ level_2_item.active_class }}"> <span> {{ level_2_item.text }}</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                    {% sub_menu level_2_item %}
+                </ul>
+        </li>
+            
+        {% endif %}
+    
+{% endfor %}

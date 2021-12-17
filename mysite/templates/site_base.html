@@ -1,0 +1,262 @@
+{% load static wagtailcore_tags wagtailuserbar %}
+{% load menu_tags %}
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% wagtail_site as current_site %}
+                {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+
+        {# Global stylesheets #}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <!-- Latest compiled and minified CSS 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+        crossorigin="anonymous"> -->
+               
+        <link href=" {% static 'img/favicon.png' %} " rel="icon">
+        <link href=" {% static 'img/apple-touch-icon.png' %} " rel="apple-touch-icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href=" {% static 'vendor/aos/aos.css' %} " rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+ 
+        <!-- 
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href=" {% static 'vendor/bootstrap-icons/bootstrap-icons.css' %} " rel="stylesheet">
+        -->
+
+        <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        <!-- ======= Header ======= -->
+        <header id="header" class=" d-flex align-items-center">
+            <div class="container d-flex align-items-center justify-content-between">
+                    
+                <div class="logo">
+                  <!--  <h1 class="text-light"><a href="index.html">Serenity</a></h1>
+                     Uncomment below if you prefer to use an image logo -->
+                    <a href="/blog"><img src="{% static 'img/logo/logo-full.svg' %}" alt="" class="img-fluid"></a> 
+                </div>
+
+                <nav id="navbar" class="navbar">
+                    <div class="navbar-links"> 
+                        <ul>
+                            <!-- put the menulinks thingy here --> 
+                            {% main_menu max_levels=3 template="menu/main_menu.html" sub_menu_templates="menu/level_2.html, menu/level_3.html" %}                           
+                        </ul>
+                    </div>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+                </nav><!-- .navbar -->
+
+            </div>
+        </header><!-- End Header -->
+
+
+        {% block content %} {% endblock %}
+
+        {% block footer%}
+
+            <!-- ======= Footer ======= -->
+            <footer id="footer">
+                
+
+                <div class="container">
+                    
+                    <div class="copyright">
+                        <div class="footer-logo"> 
+                            <a href="/home"><img src="{% static 'img/logo/logo-square-cr.png' %}" alt="" class="img-fluid"></a> 
+                        </div>
+                        &copy; Copyright <strong><span>Wentors</span></strong> 2021. <br/>
+                        <a> About </a> | <a> Contact </a> <br/> <a href="#"  data-toggle="modal" data-target="#disclaimerModalLong"> <span class="footer-disclaimer-link"> Disclaimer </span>  </a> 
+                    </div>
+                    
+                </div>
+            </footer><!-- End Footer -->
+
+
+        {% endblock footer%}
+
+            
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- dislaimer section -->
+        <div class="modal fade disclaimer " id="disclaimerModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Disclaimer</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <div class="modal-body">
+                    <div class="disclaimer">
+                    <div class="last-updated">Last updated: August 10, 2020</div>
+
+                    <div class="header">Interpretation and Definitions</div>
+                    <div class="sub-header">Interpretation</div>
+
+                    The words of which the initial letter is capitalized have meanings defined under the following conditions.
+                    The following definitions shall have the same meaning regardless of whether they appear in singular or in
+                    plural.
+
+                    <div class="sub-header"> Definitions</div>
+                    For the purposes of this Disclaimer:
+                    <ul>
+                        <li>
+                        Company (referred to as either "the Company", "We", "Us" or "Our" in this Disclaimer) refers to Wentors,
+                        Lagos. Service refers to the Website.
+                        </li>
+                        <li>
+                        You, means the individual accessing the Service, or the company, or other legal entity on behalf of which
+                        such individual is accessing or using the Service, as applicable.
+                        </li>
+                        <li>Website refers to Wentors, accessible from www.wentors.com</li>
+                    </ul>
+
+                    <div class="header">Disclaimer</div>
+                    The information contained on the Service is for general information purposes only.
+                    The Company assumes no responsibility for errors or omissions in the contents of the Service.
+                    In no event shall the Company be liable for any special, direct, indirect, consequential, or incidental damages or
+                    any damages whatsoever, whether in an action of contract, negligence or other tort, arising out of or in
+                    connection with the use of the Service or the contents of the Service. The Company reserves the right to make
+                    additions, deletions, or modifications to the contents on the Service at any time without prior notice. This
+                    Disclaimer has been created with the help of the Disclaimer Generator.
+                    The Company does not warrant that the Service is free of viruses or other harmful components.
+
+                    <div class="header">External Links Disclaimer</div>
+                    The Service may contain links to external websites that are not provided or maintained by or in any way affiliated
+                    with the Company.
+                    Please note that the Company does not guarantee the accuracy, relevance, timeliness, or completeness of any
+                    information on these external websites.
+
+                    <div class="header"> Errors and Omissions Disclaimer</div>
+                    The information given by the Service is for general guidance on matters of interest only. Even if the Company
+                    takes every precaution to insure that the content of the Service is both current and accurate, errors can occur.
+                    Plus, given the changing nature of laws, rules and regulations, there may be delays, omissions or inaccuracies in
+                    the information contained on the Service.
+                    The Company is not responsible for any errors or omissions, or for the results obtained from the use of this
+                    information.
+
+                    <div class="header"> Fair Use Disclaimer</div>
+                    The Company may use copyrighted material which has not always been specifically authorized by the copyright owner.
+                    The Company is making such material available for criticism, comment, news reporting, teaching, scholarship, or
+                    research.
+                    The Company believes this constitutes a "fair use" of any such copyrighted material as provided for in section 107
+                    of the United States Copyright law.
+                    If You wish to use copyrighted material from the Service for your own purposes that go beyond fair use, You must
+                    obtain permission from the copyright owner.
+
+                    <div class="header">Views Expressed Disclaimer</div>
+                    The Service may contain views and opinions which are those of the authors and do not necessarily reflect the
+                    official policy or position of any other author, agency, organization, employer or company, including the Company.
+                    Comments published by users are their sole responsibility and the users will take full responsibility, liability
+                    and blame for any libel or litigation that results from something written in or as a direct result of something
+                    written in a comment. The Company is not liable for any comment published by users and reserve the right to delete
+                    any comment for any reason whatsoever.
+
+                    <div class="header">No Responsibility Disclaimer</div>
+                    The information on the Service is provided with the understanding that the Company is not herein engaged in
+                    rendering legal, accounting, tax, or other professional advice and services. As such, it should not be used as a
+                    substitute for consultation with professional accounting, tax, legal or other competent advisers.
+                    In no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential
+                    damages whatsoever arising out of or in connection with your access or use or inability to access or use the
+                    Service.
+
+                    <div class="header">"Use at Your Own Risk" Disclaimer</div>
+                    All information in the Service is provided "as is", with no guarantee of completeness, accuracy, timeliness or of
+                    the results obtained from the use of this information, and without warranty of any kind, express or implied,
+                    including, but not limited to warranties of performance, merchantability and fitness for a particular purpose.
+                    The Company will not be liable to You or anyone else for any decision made or action taken in reliance on the
+                    information given by the Service or for any consequential, special or similar damages, even if advised of the
+                    possibility of such damages.
+
+
+                    <div class="header">Contact Us</div>
+                    If you have any questions about this Disclaimer, You can contact Us:
+
+                    <ul>
+                        <li>By email: mail@wentors.com</li>
+                        <li>Instagram: @wentors_</li>
+                        <li> Twitter: @Wentors_</li>
+                        <li> Linkedin: Wentors</li>
+                        <li> Facebook: Wentors</li>
+                    </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- //end  -->
+
+
+        {# Global javascript #}
+
+        <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        
+  <!--  
+      <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+       Vendor JS Files 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+    crossorigin="anonymous"></script>-->
+
+  <script src="{% static 'vendor/purecounter/purecounter.js' %} "></script>
+  <script src="{% static 'vendor/aos/aos.js' %} "></script>
+  <script src=" {% static 'vendor/glightbox/js/glightbox.min.js' %} "></script>
+  <script src=" {% static 'vendor/isotope-layout/isotope.pkgd.min.js' %} "></script>
+  <script src=" {% static 'vendor/swiper/swiper-bundle.min.js' %} "></script>
+  <script src=" {% static 'vendor/waypoints/noframework.waypoints.js' %} "></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %} "></script>
+
+  <!-- Template Main JS File -->
+  <script src=" {% static 'js/main.js' %} "></script>
+
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>
