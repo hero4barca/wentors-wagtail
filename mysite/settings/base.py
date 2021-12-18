@@ -21,13 +21,13 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 
-# Application definition
+# Application definition 'home',
 
 INSTALLED_APPS = [
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
     'site_app',
-    'home',
+    
     'search',
 
     'wagtail.contrib.forms',
