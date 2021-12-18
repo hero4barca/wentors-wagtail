@@ -86,9 +86,9 @@ class IndexPage (Page):
     )
 
     # //=====Header carousel end=======
-    video_section_title = models.CharField(max_length=250, null=True)
+    video_section_title = models.CharField(null=True, max_length=250, blank=True)
     video_section_text = RichTextField(blank= True )
-    video_url = models.CharField(null=True, max_length=250)
+    video_url = models.CharField(null=True, max_length=250, blank=True)
     video_thumbnail_img = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -96,7 +96,53 @@ class IndexPage (Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    # //================ Mid page ================
+    mid_section_title = models.CharField(max_length=250, blank=True)
+    mid_section_text = RichTextField(blank=True) 
+
+    # // =============== Content rows ======================
+
+    first_row_title = models.CharField(blank=True, max_length=250)
+    first_row_text = RichTextField(blank=True)
+    first_row_img = models.ForeignKey(
+                    'wagtailimages.Image',
+                    null=True,
+                    blank=True,
+                    on_delete=models.SET_NULL,
+                    related_name='+'
+                )
+
+    second_row_title = models.CharField(blank=True, max_length=250)
+    second_row_text = RichTextField(blank=True)
+    second_row_img = models.ForeignKey(
+                    'wagtailimages.Image',
+                    null=True,
+                    blank=True,
+                    on_delete=models.SET_NULL,
+                    related_name='+'
+                )
+
+    third_row_title = models.CharField(blank=True, max_length=250)
+    third_row_text = RichTextField(blank=True)
+    third_row_img = models.ForeignKey(
+                    'wagtailimages.Image',
+                    null=True,
+                    blank=True,
+                    on_delete=models.SET_NULL,
+                    related_name='+'
+                )
     
+    fourth_row_title = models.CharField(blank=True, max_length=250)
+    fourth_row_text = RichTextField(blank=True)
+    fourth_row_img = models.ForeignKey(
+                    'wagtailimages.Image',
+                    null=True,
+                    blank=True,
+                    on_delete=models.SET_NULL,
+                    related_name='+'
+                )
+
 
     content_panels = Page.content_panels + [
         FieldPanel ('first_slide_h1'),
@@ -136,6 +182,22 @@ class IndexPage (Page):
         FieldPanel('video_section_text', classname="full"),
         FieldPanel('video_url', classname="full"),
         ImageChooserPanel('video_thumbnail_img'),
+
+        FieldPanel ('first_row_title'),
+        FieldPanel ('first_row_text'),
+        ImageChooserPanel('first_row_img'),
+
+        FieldPanel ('second_row_title'),
+        FieldPanel ('second_row_text'),
+        ImageChooserPanel('second_row_img'),
+
+        FieldPanel ('third_row_title'),
+        FieldPanel ('third_row_text'),
+        ImageChooserPanel('third_row_img'),
+
+        FieldPanel ('fourth_row_title'),
+        FieldPanel ('fourth_row_text'),
+        ImageChooserPanel('fourth_row_img'),
 
 
     ]
