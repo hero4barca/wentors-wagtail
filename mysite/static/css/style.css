@@ -35,6 +35,11 @@
 
 /*===== header carousel ======= */  
 
+
+#headerCarousel .carousel-item.default-bg-img{
+  background-image: url('../img/hero-bg.jpg'); /* default background*/
+}
+
 #headerCarousel .carousel-caption
  {
   top: 45%;
