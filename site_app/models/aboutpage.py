@@ -77,6 +77,32 @@ class AboutPage(Page):
         related_name='+'
     )
 
+    # //=====Header carousel end=======
+
+
+    # // about-video section
+    video_section_title = models.CharField(null=True, max_length=250, blank=True)
+    video_section_text = RichTextField(blank= True )
+    video_url = models.CharField(null=True, max_length=250, blank=True)
+    video_thumbnail_img = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    # //Call to action
+    call_to_action = models.BooleanField( default=True)
+    CTA_title = models.CharField(max_length=250, default="CTA Title")
+    CTA_text = RichTextField( default="Call to action text here...")
+    CTA_button1_text = models.CharField (max_length=25,blank=True)
+    CTA_button1_link = models.CharField (max_length=250, default="#")
+    CTA_button2_text = models.CharField (max_length=25, blank=True)
+    CTA_button2_link = models.CharField (max_length=250, default="#")
+
+
+
 
 
     content_panels = Page.content_panels + [
@@ -113,4 +139,16 @@ class AboutPage(Page):
         FieldPanel ('fifth_slide_button_link'),
         ImageChooserPanel('fifth_slide_img'),
 
+        FieldPanel('video_section_title', classname="full"),
+        FieldPanel('video_section_text', classname="full"),
+        FieldPanel('video_url', classname="full"),
+        ImageChooserPanel('video_thumbnail_img'),
+
+        FieldPanel('call_to_action'),
+        FieldPanel ('CTA_title', classname="full"),
+        FieldPanel ('CTA_text', classname="full"),
+        FieldPanel ('CTA_button1_text', classname="full" ),
+        FieldPanel ('CTA_button1_link',  ),
+        FieldPanel ('CTA_button2_text', classname="full" ),
+        FieldPanel ('CTA_button2_link',  ),
             ]

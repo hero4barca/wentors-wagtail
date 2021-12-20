@@ -80,6 +80,8 @@ class IndexPage (Page):
     )
 
     # //=====Header carousel end=======
+
+    # // about-video section
     video_section_title = models.CharField(null=True, max_length=250, blank=True)
     video_section_text = RichTextField(blank= True )
     video_url = models.CharField(null=True, max_length=250, blank=True)

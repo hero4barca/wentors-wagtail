@@ -1,6 +1,15 @@
 /*--------------------------------------------------------------
 # Wentors index template style
 --------------------------------------------------------------*/
+/*=======About ===========*/
+
+.skills .content h3{
+  line-height: 1.1 !important;
+}
+
+.skills .progress {
+  line-height: initial !important;
+}
 
 /*=================== disclaimer ===================*/
 .footer-disclaimer-link{
@@ -671,7 +680,10 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  background: #86b03c;
+  /**background: #86b03c , 6852a3 405043 ;
+  footer: #50404D;
+  from wentors menu-active: 84716b */
+  background: #84716B;
   padding: 50px 0;
 }
 .cta h3 {
@@ -1319,9 +1331,12 @@ section {
 /*--------------------------------------------------------------
 # Team
 --------------------------------------------------------------*/
+
 .team {
-  background: #fff;
+  background: #f9fbf4; /*   background: #fff;  */
+  padding-top: 60px;
 }
+
 .team .member {
   margin-bottom: 20px;
   overflow: hidden;
