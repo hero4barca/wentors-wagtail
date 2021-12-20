@@ -2,6 +2,16 @@
 # Wentors index template style
 --------------------------------------------------------------*/
 /*=======About ===========*/
+ .features{
+  padding-top: 60px;
+}
+
+
+.team {
+  background: #f9fbf4; /*   background: #fff;  */
+  padding-top: 60px;
+}
+
 
 .skills .content h3{
   line-height: 1.1 !important;
@@ -1332,10 +1342,6 @@ section {
 # Team
 --------------------------------------------------------------*/
 
-.team {
-  background: #f9fbf4; /*   background: #fff;  */
-  padding-top: 60px;
-}
 
 .team .member {
   margin-bottom: 20px;

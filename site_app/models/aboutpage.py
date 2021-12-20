@@ -92,6 +92,19 @@ class AboutPage(Page):
         related_name='+'
     )
 
+    
+    # // about tiles with icons
+    # // first row
+    excellence_title = models.CharField(max_length= 50, default="Excellence")
+    excellence_text = RichTextField( blank=True)
+    compassion_title = models.CharField(max_length= 50, default="Compassion")
+    compassion_text = RichTextField( blank=True)
+
+    #second_row = models.BooleanField
+
+
+    
+
     # //Call to action
     call_to_action = models.BooleanField( default=True)
     CTA_title = models.CharField(max_length=250, default="CTA Title")
@@ -100,6 +113,8 @@ class AboutPage(Page):
     CTA_button1_link = models.CharField (max_length=250, default="#")
     CTA_button2_text = models.CharField (max_length=25, blank=True)
     CTA_button2_link = models.CharField (max_length=250, default="#")
+
+    
 
 
 
@@ -144,6 +159,12 @@ class AboutPage(Page):
         FieldPanel('video_url', classname="full"),
         ImageChooserPanel('video_thumbnail_img'),
 
+        FieldPanel('excellence_title'),
+        FieldPanel('excellence_text'),
+        FieldPanel('compassion_title'),
+        FieldPanel('compassion_text'),
+
+
         FieldPanel('call_to_action'),
         FieldPanel ('CTA_title', classname="full"),
         FieldPanel ('CTA_text', classname="full"),
@@ -151,4 +172,6 @@ class AboutPage(Page):
         FieldPanel ('CTA_button1_link',  ),
         FieldPanel ('CTA_button2_text', classname="full" ),
         FieldPanel ('CTA_button2_link',  ),
+            
+            
             ]
