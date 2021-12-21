@@ -247,7 +247,7 @@
           <h2> Goals </h2>  
           <p>
             {% if not page.goals_title_text == "" %}
-                {{ page.goals_title_text}}
+                {{ page.goals_title_text|richtext}}
             {% else %}
                 Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
             {% endif %}
@@ -270,7 +270,7 @@
                 <h5 class="card-title"><a href="">{{ page.goals_card1_title }} </a></h5>
                 <p class="card-text">
                 {% if not  page.goals_card1_text == "" %}
-                  {{ page.goals_card1_text }}
+                  {{ page.goals_card1_text|richtext }}
                 {% else %}
                   Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
                 {% endif %}
@@ -294,7 +294,7 @@
                 <h5 class="card-title"><a href="">{{ page.goals_card2_title }} </a></h5>
                 <p class="card-text">
                 {% if not  page.goals_card2_text == "" %}
-                  {{ page.goals_card2_text }}
+                  {{ page.goals_card2_text|richtext }}
                 {% else %}
                   Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
                 {% endif %}
@@ -319,7 +319,7 @@
                 <h5 class="card-title"><a href="">{{ page.goals_card3_title }} </a></h5>
                 <p class="card-text">
                 {% if not  page.goals_card3_text == "" %}
-                  {{ page.goals_card3_text }}
+                  {{ page.goals_card3_text|richtext }}
                 {% else %}
                   Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
                 {% endif %}
@@ -343,7 +343,7 @@
                 <h5 class="card-title"><a href="">{{ page.goals_card4_title }} </a></h5>
                 <p class="card-text">
                 {% if not  page.goals_card4_text == "" %}
-                  {{ page.goals_card4_text }}
+                  {{ page.goals_card4_text|richtext }}
                 {% else %}
                   Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
                 {% endif %}
@@ -363,25 +363,48 @@
     <div class="container">
 
       <div class="section-title" data-aos="fade-up">
-        <h2>Our Skills</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <h2>What We Do</h2>
+        <p>
+          {% if not page.expertise_top_text == "" %}
+            {{ page.expertise_top_text|richtext }}
+          Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate.
+           Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+          {% endif %}
+          </p>
       </div>
 
       <div class="row">
         <div class="col-lg-6" data-aos="fade-right">
-          <img src=" {% static 'img/skills-img.jpg' %} " class="img-fluid" alt="">
+          {% if page.expertise_img %}  
+                  {% image page.expertise_img original %}
+              {% else %}        
+              <img src=" {% static 'img/skills-img.jpg' %} " class="img-fluid" alt="">
+              {% endif %}
         </div>
-        <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>Voluptatem dignissimos provident quasi corporis voluptates</h3>
-          <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-          </p>
-          <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-          </p>
 
+        <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <h3>
+            {% if not page.expertise_right_title == ""  %}
+              {{ page.expertise_right_title }}
+            {% else %}
+              Voluptatem dignissimos provident quasi corporis voluptates
+            {% endif %}
+          </h3>
+
+          {% if not page.expertise_right_text == "" %}
+            <div class="fst-italic">   {{ page.expertise_right_text }}</div>
+          {% else %}
+            <p class="fst-italic">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+            <p>
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+            </p>
+           {% endif %} 
+
+           <!-- keep or remove, static or dynamic ? -->
           <div class="skills-content">
 
             <div class="progress">

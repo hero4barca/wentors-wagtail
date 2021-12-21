@@ -165,6 +165,18 @@ class AboutPage(Page):
         related_name='+'
     )
 
+    # //Section:  What We Do (Expertise)
+    expertise_img = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    expertise_top_text = RichTextField(blank=True)
+    expertise_right_title = RichTextField(blank=True)
+    expertise_right_text = RichTextField(blank=True)
+
 
 
 
@@ -252,7 +264,7 @@ class AboutPage(Page):
         # // ================== Goals section====================
         
         FieldPanel('goals_title_text', classname="full"),
-        
+
         # card 1
         FieldPanel('goals_card1_title'),
         FieldPanel('goals_card1_text', classname="full"),
@@ -272,9 +284,22 @@ class AboutPage(Page):
         FieldPanel('goals_card4_title'),
         FieldPanel('goals_card4_text', classname="full"),
         ImageChooserPanel('goals_card4_img'),
-        
+
+        # // ================== Expertise section====================
+
+        ImageChooserPanel('expertise_img'),
+        FieldPanel('expertise_top_text', classname="full"),
+        FieldPanel('expertise_right_title', classname="full"),
+        FieldPanel('expertise_right_text', classname="full"),
+
+
             ]
 
 AboutPage._meta.get_field('ati_second_row').help_text = "Show/hide the second row of the iconed tiles"
 AboutPage._meta.get_field('ati_third_row').help_text = "Show/hide the second row of the iconed tiles"
 #AboutPage._meta.get_field('').help_text = ""
+
+#@TODO
+# Rrefactoring field names -> make sense and convensions -> update in templates
+# Help_text for all appropriate field names 
+# RichTextfield instead of Charfield where appropriate
