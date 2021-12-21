@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import BooleanField
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
@@ -177,8 +178,18 @@ class AboutPage(Page):
     expertise_right_title = RichTextField(blank=True)
     expertise_right_text = RichTextField(blank=True)
 
+    expertise_skill_progress_bars = BooleanField(default=True)
+    skill_1_name = models.CharField(max_length=50, blank=True, default='Skill 1')
+    skill_1_progress_value = models.IntegerField(default=100)
+    skill_2_name = models.CharField(max_length=50, blank=True, default='Skill 1')
+    skill_2_progress_value = models.IntegerField(default=80)
+    skill_3_name = models.CharField(max_length=50, blank=True, default='Skill 1')
+    skill_3_progress_value = models.IntegerField(default=70)
+    skill_4_name = models.CharField(max_length=50, blank=True, default='Skill 1')
+    skill_4_progress_value = models.IntegerField(default=60)
 
-
+    # Section: Sponsor and partnets
+    #snp_top_text = RichTextField(blank=True)
 
 
     content_panels = Page.content_panels + [
@@ -292,6 +303,15 @@ class AboutPage(Page):
         FieldPanel('expertise_right_title', classname="full"),
         FieldPanel('expertise_right_text', classname="full"),
 
+        FieldPanel('expertise_skill_progress_bars'),
+        FieldPanel('skill_1_name'),
+        FieldPanel('skill_1_progress_value'),
+        FieldPanel('skill_2_name'),
+        FieldPanel('skill_2_progress_value'),
+        FieldPanel('skill_3_name'),
+        FieldPanel('skill_3_progress_value'),
+        FieldPanel('skill_4_name'),
+        FieldPanel('skill_4_progress_value'),
 
             ]
 
