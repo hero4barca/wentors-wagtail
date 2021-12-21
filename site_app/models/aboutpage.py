@@ -93,14 +93,24 @@ class AboutPage(Page):
     )
 
     
-    # // about tiles with icons
+    # // ATI : About Tiles with Icons
     # // first row
     excellence_title = models.CharField(max_length= 50, default="Excellence")
     excellence_text = RichTextField( blank=True)
     compassion_title = models.CharField(max_length= 50, default="Compassion")
     compassion_text = RichTextField( blank=True)
 
-    #second_row = models.BooleanField
+    ati_second_row = models.BooleanField(default=True)
+    ati_tile3_title = models.CharField(max_length= 50, default="Tile 3")
+    ati_tile3_text = RichTextField( blank=True)
+    ati_tile4_title = models.CharField(max_length= 50, default="Tile 4")
+    ati_tile4_text = RichTextField( blank=True)
+
+    ati_third_row = models.BooleanField(default=False)
+    ati_tile5_title = models.CharField(max_length= 50, default="Tile 5")
+    ati_tile5_text = RichTextField( blank=True)
+    ati_tile6_title = models.CharField(max_length= 50, default="Tile 6")
+    ati_tile6_text = RichTextField( blank=True)
 
 
     
@@ -160,9 +170,21 @@ class AboutPage(Page):
         ImageChooserPanel('video_thumbnail_img'),
 
         FieldPanel('excellence_title'),
-        FieldPanel('excellence_text'),
+        FieldPanel('excellence_text',  classname="full"),
         FieldPanel('compassion_title'),
-        FieldPanel('compassion_text'),
+        FieldPanel('compassion_text',  classname="full"),
+
+        FieldPanel('ati_second_row'),
+        FieldPanel('ati_tile3_title'),
+        FieldPanel('ati_tile3_text',  classname="full"),
+        FieldPanel('ati_tile4_title'),
+        FieldPanel('ati_tile4_text',  classname="full"),
+
+        FieldPanel('ati_third_row'),
+        FieldPanel('ati_tile5_title'),
+        FieldPanel('ati_tile5_text',  classname="full"),
+        FieldPanel('ati_tile6_title'),
+        FieldPanel('ati_tile6_text',  classname="full"),
 
 
         FieldPanel('call_to_action'),
@@ -171,7 +193,10 @@ class AboutPage(Page):
         FieldPanel ('CTA_button1_text', classname="full" ),
         FieldPanel ('CTA_button1_link',  ),
         FieldPanel ('CTA_button2_text', classname="full" ),
-        FieldPanel ('CTA_button2_link',  ),
-            
+        FieldPanel ('CTA_button2_link',  ),            
             
             ]
+
+AboutPage._meta.get_field('ati_second_row').help_text = "Show/hide the second row of the iconed tiles"
+AboutPage._meta.get_field('ati_third_row').help_text = "Show/hide the second row of the iconed tiles"
+#AboutPage._meta.get_field('').help_text = ""
