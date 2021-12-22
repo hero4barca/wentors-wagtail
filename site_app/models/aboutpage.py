@@ -1,5 +1,8 @@
 from django.db import models
 from django.db.models.fields import BooleanField
+from wagtail.core.blocks.base import Block
+from wagtail.core.blocks.field_block import RichTextBlock
+from wagtail.core.blocks.stream_block import StreamBlock
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
@@ -128,46 +131,23 @@ class AboutPage(Page):
 
     # //Goals section
     goals_title_text = RichTextField( blank=True)
+    
+    class GoalsCardBlock(blocks.StructBlock):
+        title = blocks.CharBlock(default="skill")
+        text = RichTextBlock()
+        img = ImageChooserBlock(required=False)
 
-    goals_card1_title = models.CharField( max_length=25, default="Our Mission" )
-    goals_card1_text = RichTextField( blank=True)
-    goals_card1_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+       
+    
+    goals_cards = StreamField([
+        ('goals', blocks.ListBlock( GoalsCardBlock(), max_num=4 ) )
+    ],
+    block_counts={
+        'goals': { 'max_num': 1}, 
+            },
+    null=True)
 
-    goals_card2_title = models.CharField( max_length=25, default="Our Plan" )
-    goals_card2_text = RichTextField( blank=True)
-    goals_card2_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    goals_card3_title = models.CharField( max_length=25, default="Our Vission" )
-    goals_card3_text = RichTextField( blank=True)
-    goals_card3_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    goals_card4_title = models.CharField( max_length=25, default="Our Plan" )
-    goals_card4_text = RichTextField( blank=True)
-    goals_card4_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+    
 
     # //Section:  What We Do (Expertise)
     expertise_img = models.ForeignKey(
@@ -181,15 +161,22 @@ class AboutPage(Page):
     expertise_right_title = RichTextField(blank=True)
     expertise_right_text = RichTextField(blank=True)
 
-    expertise_skill_progress_bars = BooleanField(default=True)
-    skill_1_name = models.CharField(max_length=50, blank=True, default='Skill 1')
-    skill_1_progress_value = models.IntegerField(default=100)
-    skill_2_name = models.CharField(max_length=50, blank=True, default='Skill 2')
-    skill_2_progress_value = models.IntegerField(default=80)
-    skill_3_name = models.CharField(max_length=50, blank=True, default='Skill 3')
-    skill_3_progress_value = models.IntegerField(default=70)
-    skill_4_name = models.CharField(max_length=50, blank=True, default='Skill 5')
-    skill_4_progress_value = models.IntegerField(default=60)
+    class SkillProgressBlock(blocks.StructBlock):
+        skill = blocks.CharBlock(default="skill")
+        value = blocks.IntegerBlock(default=100)
+
+    
+    expertise_progress_bars = BooleanField(default=True)
+    skills_and_progress = StreamField([
+        ('progress', blocks.ListBlock( SkillProgressBlock(), max_num=4 ) )
+    ],
+    block_counts={
+        'progress': { 'max_num': 1}, 
+            },
+    null=True,
+     )
+
+
 
     # Section: Sponsor and partnets
     snp_section = BooleanField(default=True)
@@ -301,28 +288,9 @@ class AboutPage(Page):
         FieldPanel ('CTA_button2_link',  ),            
 
         # // ================== Goals section====================
-        
+                
         FieldPanel('goals_title_text', classname="full"),
-
-        # card 1
-        FieldPanel('goals_card1_title'),
-        FieldPanel('goals_card1_text', classname="full"),
-        ImageChooserPanel('goals_card1_img'),
-
-        # card 2
-        FieldPanel('goals_card2_title'),
-        FieldPanel('goals_card2_text', classname="full"),
-        ImageChooserPanel('goals_card2_img'),
-
-        # card 3
-        FieldPanel('goals_card3_title'),
-        FieldPanel('goals_card3_text', classname="full"),
-        ImageChooserPanel('goals_card3_img'),
-
-        # card 4
-        FieldPanel('goals_card4_title'),
-        FieldPanel('goals_card4_text', classname="full"),
-        ImageChooserPanel('goals_card4_img'),
+        StreamFieldPanel('goals_cards'),
 
         # // ================== Expertise section====================
 
@@ -331,15 +299,9 @@ class AboutPage(Page):
         FieldPanel('expertise_right_title', classname="full"),
         FieldPanel('expertise_right_text', classname="full"),
 
-        FieldPanel('expertise_skill_progress_bars'),
-        FieldPanel('skill_1_name'),
-        FieldPanel('skill_1_progress_value'),
-        FieldPanel('skill_2_name'),
-        FieldPanel('skill_2_progress_value'),
-        FieldPanel('skill_3_name'),
-        FieldPanel('skill_3_progress_value'),
-        FieldPanel('skill_4_name'),
-        FieldPanel('skill_4_progress_value'),
+        FieldPanel('expertise_progress_bars'),
+        StreamFieldPanel('skills_and_progress'),
+
 
         # // ================ Partners and Sponsors ===================
 

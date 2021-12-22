@@ -256,6 +256,38 @@
 
         <div class="row">
 
+          {% for block in page.goals_cards %}
+            {% if block.block_type == "goals" %}
+              {% for card in block.value %}
+                  <div class="col-md-6 d-flex align-items-stretch {% cycle '' 'mt-4 mt-md-0' 'mt-4' 'mt-4' %}" 
+                  data-aos="fade-up" data-aos-delay="{% cycle '0' '0' '100' '100' %}">
+                    {% if card.img %}
+                    {% image card.img original as card_img %}
+                    <div class="card" style="background-image: url('{{card_img.url}} ');">
+        
+                    {% else %}
+                    <div class="card" style="background-image: url('{% static "img/features-1.jpg " %}');">
+        
+                    {% endif %}
+                      <div class="card-body">
+                        <h5 class="card-title"><a href="">{{ card.title }} </a></h5>
+                        <p class="card-text">
+                        {% if not card.text == "" %}
+                          {{ card.text|richtext }}
+                        {% else %}
+                          Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
+                        {% endif %}
+                        </p>
+                        <!--<div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div> -->
+                      </div>
+                    </div>
+                  </div>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+
+         
+           {% comment %}       
           <!-- first card-->
           <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
             {% if page.goals_card1_img %}
@@ -306,7 +338,7 @@
           </div>
 
           <!-- third card -->
-          <div class="col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-md-6 d-flex align-items-stretch mt-4 " data-aos="fade-up" data-aos-delay="100">
             {% if page.goals_card3_img %}
              {% image page.goals_card3_img original as goals_card3_img %}
              <div class="card" style="background-image: url('{{goals_card3_img.url}} ');">
@@ -352,8 +384,9 @@
               </div>
             </div>
           </div>
-
+          {% endcomment %}
         </div>
+        
 
       </div>
     </section><!-- End Features Section --> 
@@ -405,36 +438,21 @@
            {% endif %} 
 
            <!-- keep or remove, static or dynamic ? -->
-          {% if page.expertise_skill_progress_bars  %} 
+          {% if page.expertise_progress_bars  %} 
               <div class="skills-content">
 
-                <div class="progress">
-                  <span class="skill"> {{page.skill_1_name}} <i class="val">{{page.skill_1_progress_value}}%</i></span>
-                  <div class="progress-bar-wrap">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{page.skill_1_progress_value}}" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-
-                <div class="progress">
-                  <span class="skill">{{page.skill_2_name}} <i class="val">{{page.skill_2_progress_value}}%</i></span>
-                  <div class="progress-bar-wrap">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{page.skill_2_progress_value}}" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-
-                <div class="progress">
-                  <span class="skill">{{page.skill_3_name}} <i class="val">{{page.skill_3_progress_value}}%</i></span>
-                  <div class="progress-bar-wrap">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{page.skill_3_progress_value}}" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-
-                <div class="progress">
-                  <span class="skill">{{page.skill_4_name}} <i class="val">{{page.skill_4_progress_value}}%</i></span>
-                  <div class="progress-bar-wrap">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{page.skill_4_progress_value}}" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
+                {% for block in page.skills_and_progress %}
+                  {% if block.block_type == "progress"  %}
+                    {% for progress in block.value %}
+                    <div class="progress">
+                      <span class="skill"> {{progress.skill}} <i class="val">{{progress.value}}%</i></span>
+                      <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{progress.value}}" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    {% endfor %}                    
+                  {% endif %}                  
+                {% endfor %}
 
               </div>
           {% endif %}
@@ -512,7 +530,7 @@
                 
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                 
-                  <div class="member" data-aos="fade-up" data-aos-delay="{% cycle '0' '100' '200' %}">
+                  <div class="member" data-aos="fade-up" data-aos-delay="{% cycle '' '100' '200' %}">
                     <div class="member-img">
                       
                       {% image member.photo original as member_image %}
