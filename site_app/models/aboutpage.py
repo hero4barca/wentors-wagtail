@@ -11,6 +11,9 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
+# project imports here
+from .blocks import ButtonBlock
+
 
 class AboutPage(Page):
     # ========= Header Carousel ===============
@@ -121,13 +124,20 @@ class AboutPage(Page):
         
 
     # //Call to action
+    
     call_to_action = models.BooleanField( default=True)
-    CTA_title = models.CharField(max_length=250, default="CTA Title")
-    CTA_text = RichTextField( default="Call to action text here...")
-    CTA_button1_text = models.CharField (max_length=25,blank=True)
-    CTA_button1_link = models.CharField (max_length=250, default="#")
-    CTA_button2_text = models.CharField (max_length=25, blank=True)
-    CTA_button2_link = models.CharField (max_length=250, default="#")
+    cta_title = models.CharField(max_length=250, default="CTA Title")
+    cta_text = RichTextField( blank=True)
+        
+    cta_buttons = StreamField([
+        ('buttons', blocks.ListBlock( ButtonBlock(), max_num=2 ) )
+    ],
+    null = True,
+    block_counts={
+        'buttons': { 'max_num': 1}, 
+            }
+    )
+
 
     # //Goals section
     goals_title_text = RichTextField( blank=True)
@@ -280,12 +290,11 @@ class AboutPage(Page):
 
         # // =============== call to action section ======================
         FieldPanel('call_to_action'),
-        FieldPanel ('CTA_title', classname="full"),
-        FieldPanel ('CTA_text', classname="full"),
-        FieldPanel ('CTA_button1_text', classname="full" ),
-        FieldPanel ('CTA_button1_link',  ),
-        FieldPanel ('CTA_button2_text', classname="full" ),
-        FieldPanel ('CTA_button2_link',  ),            
+        FieldPanel ('cta_title', classname="full"),
+        FieldPanel ('cta_text', classname="full"),
+        StreamFieldPanel('cta_buttons'),
+
+                   
 
         # // ================== Goals section====================
                 

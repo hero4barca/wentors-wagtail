@@ -223,8 +223,33 @@
         <div class="container" data-aos="fade-in">
   
           <div class="text-center">
-            <h3>Call To Action</h3>
-            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h3>
+              {% if page.cta_title %}
+                {{page.cta_title}}
+              {% else %}
+                Call To Action
+              {% endif %}
+            </h3>
+            <p> 
+              {% if not page.cta_text == "" %}
+                  {{page.cta_text|richtext}}
+              {% else %}
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, 
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+               {% endif %} 
+
+            </p>
+
+            {% for block in page.cta_buttons %}
+                {% if block.block_type == "buttons" %}
+                    {% for button in block.value %}
+                    <a class="cta-btn" href="{{ button.link }}"> {{ button.text}}</a>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+            {% comment %}
             {% if not page.CTA_button1_text == ""  %}
             <a class="cta-btn" href="{{ page.CTA_button1_link }}"> {{ page.CTA_button1_text}}</a>
             {% endif %}
@@ -232,6 +257,8 @@
             {% if not page.CTA_button2_text == ""  %}
             <a class="cta-btn" href="{{ page.CTA_button2_link }}"> {{ page.CTA_button2_text}}</a>
             {% endif %}
+
+            {% endcomment %}
           </div>
   
         </div>
