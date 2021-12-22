@@ -445,160 +445,105 @@
     </div>
   </section><!-- End Our Skills Section -->
 
-    <!-- ======= Our Clients Section ======= -->
+  {% if page.snp_section %}  
+  <!-- ======= Our Clients Section ======= -->
     <section id="clients" class="clients">
       <div class="container" data-aos="fade-up">
   
         <div class="section-title">
           <h2>Sponsors and Partners</h2>
           <p>
-            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. 
-            Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+            {% if page.snp_top_text %}
+              {{ page.snp_top_text}}
+            {% else %}
+              Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. 
+              Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+            {% endif %}
           </p>
         </div>
+
+        {% for block in page.snp_logo_images %}
+
+          {% if block.block_type ==  "logos" %}
+            {% if block.value|length_is:"1" %}
+              {% for img in block.value %}
+                <div class="d-flex justify-content-center"> 
+                  {% image img original as logo_image %}
+                  <img src=" {{ logo_image.url }} " class="img-fluid" alt="">
+                </div>
+              {% endfor %}  
+            {% elif block.value|length > 1 %}
+              <div class="clients-slider swiper">
+                <div class="swiper-wrapper align-items-center"> 
+                  {% for img in block.value %}
+                    <div class="swiper-slide">
+                      {% image img original as logo_image %}
+                      <img src=" {{ logo_image.url }} " class="img-fluid" alt="">
+                    </div>
+                  {% endfor%}
+                </div>
+              </div>
+            {% endif %}            
+          {% endif  %}
+
+        {% endfor %}
         
-        <!-- at leaste two images must be uploaded to for this slider to work -->
-        <div class="clients-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src=" {% static 'img/clients/client-1.png' %} " class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src=" {% static 'img/clients/client-2.png' %} " class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src=" {% static 'img/clients/client-3.png' %}" class="img-fluid" alt=""></div> 
-            <div class="swiper-slide"><img src=" {% static 'img/clients/client-4.png' %} " class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src=" {% static 'img/clients/client-5.png' %} " class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src=" {% static 'img/clients/client-6.png' %} " class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src=" {% static 'img/clients/client-7.png' %} " class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src=" {%static 'img/clients/client-8.png' %} " class="img-fluid" alt=""></div>
-              
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-  
+      
       </div>
     </section><!-- End Our Clients Section -->
+  {% endif %}
 
    <!-- ======= Team Section ======= -->
    <section id="team" class="team section-bg">
     <div class="container">
       <div class="section-title">
         <h2>Our Team</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <p>
+          Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+        </p>
       </div>
       <div class="row">
 
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="member" data-aos="fade-up">
-            <div class="member-img">
-              <img src=" {% static 'img/team/team-1.jpg' %} " class="img-fluid" alt="">
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info">
-              <h4>Walter White</h4>
-              <span>Chief Executive Officer</span>
-              <p>Animi est delectus alias quam repellendus nihil nobis dolor. Est sapiente occaecati et dolore. Omnis aut ut nesciunt explicabo qui. Eius nam deleniti ut omnis repudiandae perferendis qui. Neque non quidem sit sed pariatur quia modi ea occaecati. Incidunt ea non est corporis in.</p>
-            </div>
-          </div>
-        </div>
+    
+        {% for block in page.team_members %}
+          {% if block.block_type == 'members' %}             
+            
+            {% for member in block.value %}           
+                
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                
+                  <div class="member" data-aos="fade-up" data-aos-delay="{% cycle '0' '100' '200' %}">
+                    <div class="member-img">
+                      
+                      {% image member.photo original as member_image %}
+                      <img src=" {{ member_image.url }} " class="img-fluid" alt="">
+                      <div class="social">
+                        <a href="{{member.twitter_link}}"><i class="bi bi-twitter"></i></a>
+                        <!-- 
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>-->
+                        <a href="{{member.linkedin_link}}"><i class="bi bi-linkedin"></i></a>
+                      </div>
+                    </div>
+                    <div class="member-info">
+                      <h4>{{member.firstname}} {{member.surname}} </h4>
+                      <span>{{ member.position}}</span>
+                      <p>
+                        {% if member.biography %}
+                          {{ member.biography }}
+                        {% else %}
+                          Animi est delectus alias quam repellendus nihil nobis dolor. Est sapiente occaecati et dolore. Omnis aut ut nesciunt explicabo qui. Eius nam deleniti ut omnis repudiandae perferendis qui. Neque non quidem sit sed pariatur quia modi ea occaecati. Incidunt ea non est corporis in.
+                        {% endif %}
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="member" data-aos="fade-up" data-aos-delay="100">
-            <div class="member-img">
-              <img src=" {% static 'img/team/team-2.jpg' %} " class="img-fluid" alt="">
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info">
-              <h4>Sarah Jhonson</h4>
-              <span>Product Manager</span>
-              <p>Aspernatur iste esse aliquam enim et corporis. Molestiae voluptatem aut eligendi quis aut. Libero vel amet voluptatem eos rerum non doloremque. Dolores eum non.</p>
-            </div>
-          </div>
-        </div>
+            {% endfor %}            
 
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="member" data-aos="fade-up" data-aos-delay="200">
-            <div class="member-img">
-              <img src=" {% static 'img/team/team-3.jpg' %} " class="img-fluid" alt="">
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info">
-              <h4>William Anderson</h4>
-              <span>CTO</span>
-              <p>Ut enim possimus nihil cupiditate beatae. Veniam facere quae non qui necessitatibus rerum eos vero. Maxime sit sunt quo dolor autem est qui quaerat aliquid. Tenetur possimus qui enim.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="member" data-aos="fade-up">
-            <div class="member-img">
-              <img src=" {% static 'img/team/team-4.jpg' %} " class="img-fluid" alt="">
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info">
-              <h4>Amanda Jepson</h4>
-              <span>Accountant</span>
-              <p>Sint qui cupiditate. Asperiores fugit impedit aspernatur et mollitia. Molestiae qui placeat labore assumenda id qui nesciunt quo reprehenderit. Rem dolores similique quis soluta culpa enim quia ratione ea.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="member" data-aos="fade-up" data-aos-delay="100">
-            <div class="member-img">
-              <img src=" {% static 'img/team/team-5.jpg' %} " class="img-fluid" alt="">
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info">
-              <h4>Niall Katz</h4>
-              <span>Marketing</span>
-              <p>Aut ex esse explicabo quia harum ea accusamus excepturi. Temporibus at quia quisquam veritatis impedit. Porro laborum voluptatum sed necessitatibus a saepe. Deserunt laborum quasi consequatur voluptatum iusto sint qui fuga vel. Enim eveniet sed quibusdam rerum in. Non dicta architecto consequatur quo praesentium nesciunt.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-          <div class="member" data-aos="fade-up" data-aos-delay="200">
-            <div class="member-img">
-              <img src=" {% static 'img/team/team-6.jpg' %} " class="img-fluid" alt="">
-              <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info">
-              <h4>Demi Lewis</h4>
-              <span>Financing</span>
-              <p>Amet labore numquam corrupti est. Nostrum amet voluptas consectetur dolor voluptatem architecto distinctio consequuntur eligendi. Quam impedit enim aut nesciunt aut dicta quam exercitationem. Reprehenderit exercitationem magnam. Ullam similique ut voluptas totam nobis porro accusamus nulla omnis.</p>
-            </div>
-          </div>
-        </div>
-
+          {% endif %} 
+        {% endfor %}
+      
       </div>
 
     </div>

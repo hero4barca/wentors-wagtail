@@ -1,10 +1,13 @@
 from django.db import models
 from django.db.models.fields import BooleanField
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.images.models import Image
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.core import blocks
+from wagtail.images.blocks import ImageChooserBlock
+
 
 class AboutPage(Page):
     # ========= Header Carousel ===============
@@ -181,19 +184,44 @@ class AboutPage(Page):
     expertise_skill_progress_bars = BooleanField(default=True)
     skill_1_name = models.CharField(max_length=50, blank=True, default='Skill 1')
     skill_1_progress_value = models.IntegerField(default=100)
-    skill_2_name = models.CharField(max_length=50, blank=True, default='Skill 1')
+    skill_2_name = models.CharField(max_length=50, blank=True, default='Skill 2')
     skill_2_progress_value = models.IntegerField(default=80)
-    skill_3_name = models.CharField(max_length=50, blank=True, default='Skill 1')
+    skill_3_name = models.CharField(max_length=50, blank=True, default='Skill 3')
     skill_3_progress_value = models.IntegerField(default=70)
-    skill_4_name = models.CharField(max_length=50, blank=True, default='Skill 1')
+    skill_4_name = models.CharField(max_length=50, blank=True, default='Skill 5')
     skill_4_progress_value = models.IntegerField(default=60)
 
     # Section: Sponsor and partnets
-    #snp_top_text = RichTextField(blank=True)
+    snp_section = BooleanField(default=True)
+    snp_top_text = RichTextField(blank=True)
+    snp_logo_images = StreamField([
+        ('logos', blocks.ListBlock(ImageChooserBlock())),
+    ],
+    null=True)
+
+
+    # Section: Team members
+    class TeamMemberBlock (blocks.StructBlock):
+        firstname = blocks.CharBlock(default="firstname")
+        surname = blocks.CharBlock(default="lastname")
+        photo = ImageChooserBlock(required=False)
+        biography = blocks.RichTextBlock(default="short bio here")
+        position =  blocks.CharBlock(default="team member position here")
+        linkedin_link =  blocks.CharBlock(required=False)
+        twitter_link =  blocks.CharBlock(required=False)
+
+        class Meta:
+            icon = 'user'
+    
+    team_top_text = RichTextField(blank=True)
+    team_members = StreamField([
+        ('members', blocks.ListBlock( TeamMemberBlock() ) )
+    ],
+    null=True)
+        
 
 
     content_panels = Page.content_panels + [
-
 
         #// slider section
 
@@ -313,6 +341,17 @@ class AboutPage(Page):
         FieldPanel('skill_4_name'),
         FieldPanel('skill_4_progress_value'),
 
+        # // ================ Partners and Sponsors ===================
+
+        FieldPanel('snp_section'),
+        FieldPanel('snp_top_text', classname="full"),
+        StreamFieldPanel('snp_logo_images'),
+
+        
+        # // ===================== Team ===========================
+        FieldPanel('team_top_text'),
+        StreamFieldPanel('team_members'),
+
             ]
 
 AboutPage._meta.get_field('ati_second_row').help_text = "Show/hide the second row of the iconed tiles"
@@ -320,6 +359,6 @@ AboutPage._meta.get_field('ati_third_row').help_text = "Show/hide the second row
 #AboutPage._meta.get_field('').help_text = ""
 
 #@TODO
-# Rrefactoring field names -> make sense and convensions -> update in templates
+# Refactoring field names -> make sense and convensions -> update in templates
 # Help_text for all appropriate field names 
 # RichTextfield instead of Charfield where appropriate
