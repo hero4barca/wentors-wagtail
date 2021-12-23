@@ -13,19 +13,12 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 # project imports here
-from .blocks import ButtonBlock
+from .custom_blocks import ButtonBlock, CarouselSlideBlock
 
 
 class AboutPage(Page):
 
-    # ========= Header Carousel ===============
-    #  
-    # first slide of top image carousel
-    class CarouselSlideBlock (StructBlock):
-        title = blocks.CharBlock(max_length=64)
-        text = blocks.CharBlock(max_length=250)
-        slider_image = ImageChooserBlock()
-        button = ButtonBlock( max_num=1)
+    # ========= Header Carousel ===============  
 
         
     carousel_slides = StreamField([
