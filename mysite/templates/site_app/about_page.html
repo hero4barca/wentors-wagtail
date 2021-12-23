@@ -68,150 +68,46 @@
           </div>
         </div>
 
-        {% comment about-section-video %}
-         About section video commented out
-         <div class="row">
-          <div class="col-lg-6 video-box align-self-baseline position-relative">
-            
-            <!-- page.video_url -->
-
-            {% if page.video_url %}
-            <iframe width="540" height="405"
-              src="{{ page.video_url }}">
-            </iframe>
-            {% elif page.video_thumbnail_img %}
-                {% image page.video_thumbnail_img original %} 
-            {% else%}
-              <img src=" {%static 'img/about.jpg' %} " class="img-fluid" alt="">
-            {% endif %}
-            
-          </div>
-
-          <div class="col-lg-6 pt-3 pt-lg-0 content">
-             {% if page.video_section_title  %} 
-            <h3> {{ page.video_section_title}} </h3>
-            {% else %}
-            <h3>Video section title appears here. .....Bla Bla Bla</h3>
-            {% endif %}
-
-            {%  if page.video_section_text %}
-              <div class="fst-italic"> 
-                {{ page.video_section_text|richtext }}
-              </div>
-            {% else %}            
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bx bx-check-double"></i> Voluptate repellendus pariatur reprehenderit corporis sint.</li>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
-            {% endif %} 
-          </div>
-         </div>
-        {% endcomment %}
-        
         <div class="row services">
 
-          <div class="col-md-6">
-            <div class="icon-box" data-aos="fade-up">
-              <div class="icon"><i class="bi bi-check2-all" style="color: #41cf2e; "></i></div>
-              <h4 class="title"><a href="">{{page.excellence_title}} </a></h4>
-              
-              <p class="description"> 
-                {% if not  page.excellence_text == "" %}
-                  {{ page.excellence_text }}
-                {% else %}
-                Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident 
-                {% endif %}
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="icon-box" data-aos="fade-up">
-              <div class="icon"><i class="bi bi-heart" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href=""> {{page.compassion_title}} </a></h4>
-              <p class="description">
-                {% if not  page.compassion_text == "" %}
-                  {{ page.compassion_text }}
-                {% else %}
-                Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
-                
-                {% endif%}
-              </div>
-          </div>
+          {% for block in page.values_rows %}
+              {% if block.block_type == "values" %}
+                  {% for row in block.value %}
+
+                  <div class="col-md-6">
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay=" {% cycle '0' '0' '100' '100' '200' '200' %} ">
+                      <div class="icon"><i class="bi {{row.left_card_icon_class}}" style="color: {{row.left_card_icon_color_hex}};"></i></div>
+                      <h4 class="title"><a href=""> {{row.left_card_title}} </a></h4>
+                      <p class="description">
+
+                        {% if not  row.left_card_text == "" %}
+                          {{ row.left_card_text }}
+                        {% else %}
+                        Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
         
-        {% if page.ati_second_row %}
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-card-checklist" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="">{{page.ati_tile3_title }} </a></h4>
-              <p class="description">
-                {% if not page.ati_tile3_text == "" %}
-                  {{ page.ati_tile3_text}}
-                {% else %}
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-                {% endif %}
-              </p>
-            </div>
-          </div>
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-binoculars" style="color: #e9bf06;"></i></div>
-              <h4 class="title"><a href="">{{page.ati_tile4_title }}</a></h4>
-              <p class="description">
-              {% if not page.ati_tile3_text == "" %}
-              {{ page.ati_tile3_text}}
-              {% else %}
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                        {% endif %}
+                      </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay=" {% cycle '0' '0' '100' '100' '200' '200' %} ">
+                      <div class="icon"><i class="bi {{row.right_card_icon_class}}" style="color: {{row.right_card_icon_color_hex}};"></i></div>
+                      <h4 class="title"><a href=""> {{row.right_card_title}} </a></h4>
+                      <p class="description">
+
+                        {% if not  row.right_card_text == "" %}
+                          {{ row.right_card_text}}
+                        {% else %}
+                        Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+        
+                        {% endif %}
+                      </div>
+                  </div>
+
+                  {% endfor %}
               {% endif %}
-              </p>
-            </div>
-          </div>
-        {% endif %}
-
-        {% if page.ati_third_row %}
+          {% endfor %}
           
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-globe" style="color: #d6ff22;"></i></div>
-              <h4 class="title"><a href=""> {{page.ati_tile5_title}} </a></h4>
-              <p class="description">
-                {% if not page.ati_tile5_text == "" %}
-                   {{ page.ati_tile5_text }}
-                {% else  %}
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-
-                {% endif %}
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bi bi-clock" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a href="">  {{ page.ati_tile6_title }} </a></h4>
-              <p class="description">
-                {% if not page.ati_tile6_text == "" %}
-                   {{ page.ati_tile6_text }}
-                {% else  %}
-                Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi
-
-                {% endif %}
-              </p>
-            </div>          
-          </div>
-
-        {% endif %}
-
         </div>
         
       </div>
@@ -219,49 +115,39 @@
 
     <!-- ======= Cta Section ======= -->
     {% if page.call_to_action %}
-    <section id="cta" class="cta">
-        <div class="container" data-aos="fade-in">
-  
-          <div class="text-center">
-            <h3>
-              {% if page.cta_title %}
-                {{page.cta_title}}
-              {% else %}
-                Call To Action
-              {% endif %}
-            </h3>
-            <p> 
-              {% if not page.cta_text == "" %}
-                  {{page.cta_text|richtext}}
-              {% else %}
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, 
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-               {% endif %} 
-
-            </p>
-
-            {% for block in page.cta_buttons %}
-                {% if block.block_type == "buttons" %}
-                    {% for button in block.value %}
-                    <a class="cta-btn" href="{{ button.link }}"> {{ button.text}}</a>
-                    {% endfor %}
+      <section id="cta" class="cta">
+          <div class="container" data-aos="fade-in">
+    
+            <div class="text-center">
+              <h3>
+                {% if page.cta_title %}
+                  {{page.cta_title}}
+                {% else %}
+                  Call To Action
                 {% endif %}
-            {% endfor %}
+              </h3>
+              <p> 
+                {% if not page.cta_text == "" %}
+                    {{page.cta_text|richtext}}
+                {% else %}
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                  Excepteur sint occaecat cupidatat non proident, 
+                  sunt in culpa qui officia deserunt mollit anim id est laborum.
+                {% endif %} 
 
-            {% comment %}
-            {% if not page.CTA_button1_text == ""  %}
-            <a class="cta-btn" href="{{ page.CTA_button1_link }}"> {{ page.CTA_button1_text}}</a>
-            {% endif %}
+              </p>
 
-            {% if not page.CTA_button2_text == ""  %}
-            <a class="cta-btn" href="{{ page.CTA_button2_link }}"> {{ page.CTA_button2_text}}</a>
-            {% endif %}
+              {% for block in page.cta_buttons %}
+                  {% if block.block_type == "buttons" %}
+                      {% for button in block.value %}
+                      <a class="cta-btn" href="{{ button.link }}"> {{ button.text}}</a>
+                      {% endfor %}
+                  {% endif %}
+              {% endfor %}
 
-            {% endcomment %}
+            </div>
+    
           </div>
-  
-        </div>
       </section><!-- End Cta Section -->
     {% endif %}
 
@@ -313,105 +199,6 @@
             {% endif %}
           {% endfor %}
 
-         
-           {% comment %}       
-          <!-- first card-->
-          <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-            {% if page.goals_card1_img %}
-             {% image page.goals_card1_img original as goals_card1_img %}
-             <div class="card" style="background-image: url('{{goals_card1_img.url}} ');">
-
-            {% else %}
-            <div class="card" style="background-image: url('{% static "img/features-1.jpg " %}');">
-
-            {% endif %}
-              <div class="card-body">
-                <h5 class="card-title"><a href="">{{ page.goals_card1_title }} </a></h5>
-                <p class="card-text">
-                {% if not  page.goals_card1_text == "" %}
-                  {{ page.goals_card1_text|richtext }}
-                {% else %}
-                  Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
-                {% endif %}
-                </p>
-                <!--<div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div> -->
-              </div>
-            </div>
-          </div>
-          
-          <!-- second card -->
-          <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up">
-            {% if page.goals_card2_img %}
-             {% image page.goals_card2_img original as goals_card2_img %}
-             <div class="card" style="background-image: url('{{goals_card2_img.url}} ');">
-
-            {% else %}
-            <div class="card" style="background-image: url('{% static "img/features-2.jpg " %}');">
-
-            {% endif %}
-              <div class="card-body">
-                <h5 class="card-title"><a href="">{{ page.goals_card2_title }} </a></h5>
-                <p class="card-text">
-                {% if not  page.goals_card2_text == "" %}
-                  {{ page.goals_card2_text|richtext }}
-                {% else %}
-                  Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
-                {% endif %}
-                </p>
-                <!--<div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div> -->
-              </div>
-            </div>
-
-          </div>
-
-          <!-- third card -->
-          <div class="col-md-6 d-flex align-items-stretch mt-4 " data-aos="fade-up" data-aos-delay="100">
-            {% if page.goals_card3_img %}
-             {% image page.goals_card3_img original as goals_card3_img %}
-             <div class="card" style="background-image: url('{{goals_card3_img.url}} ');">
-
-            {% else %}
-            <div class="card" style="background-image: url('{% static "img/features-3.jpg " %}');">
-
-            {% endif %}
-              <div class="card-body">
-                <h5 class="card-title"><a href="">{{ page.goals_card3_title }} </a></h5>
-                <p class="card-text">
-                {% if not  page.goals_card3_text == "" %}
-                  {{ page.goals_card3_text|richtext }}
-                {% else %}
-                  Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
-                {% endif %}
-                </p>                 
-                <!--<div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div> -->
-              </div>
-            </div>
-          </div>
-
-          <!-- fourth card -->
-          <div class="col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="100">
-            {% if page.goals_card4_img %}
-             {% image page.goals_card4_img original as goals_card4_img %}
-             <div class="card" style="background-image: url('{{goals_card4_img.url}} ');">
-
-            {% else %}
-            <div class="card" style="background-image: url('{% static "img/features-4.jpg " %}');">
-
-            {% endif %}
-              <div class="card-body">
-                <h5 class="card-title"><a href="">{{ page.goals_card4_title }} </a></h5>
-                <p class="card-text">
-                {% if not  page.goals_card4_text == "" %}
-                  {{ page.goals_card4_text|richtext }}
-                {% else %}
-                  Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.
-                {% endif %}
-                </p>  
-                <!--<div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div> -->
-              </div>
-            </div>
-          </div>
-          {% endcomment %}
         </div>
         
 

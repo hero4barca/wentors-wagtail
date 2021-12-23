@@ -3,6 +3,7 @@ from django.db.models.fields import BooleanField
 from wagtail.core.blocks.base import Block
 from wagtail.core.blocks.field_block import RichTextBlock
 from wagtail.core.blocks.stream_block import StreamBlock
+from wagtail.core.blocks.struct_block import StructBlock
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
@@ -16,79 +17,27 @@ from .blocks import ButtonBlock
 
 
 class AboutPage(Page):
+
     # ========= Header Carousel ===============
     #  
-    # first slide of top image carousel 
-    first_slide_h1 = models.CharField(max_length=50, default='Main Text Here' )
-    first_slide_h2 = models.CharField(max_length=250, default='More text here...one sentence')
-    first_slide_button_text = models.CharField(max_length=20, default='Click')
-    first_slide_button_link = models.CharField(max_length=250, default='/')
-    first_slide_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+    # first slide of top image carousel
+    class CarouselSlideBlock (StructBlock):
+        title = blocks.CharBlock(max_length=64)
+        text = blocks.CharBlock(max_length=250)
+        slider_image = ImageChooserBlock()
+        button = ButtonBlock( max_num=1)
 
-    # second slide of top image carousel
-    second_slide_h1 = models.CharField(max_length=50, default='Main Text Here' )
-    second_slide_h2 = models.CharField(max_length=250,  default='More text here...one sentence' )
-    second_slide_button_text = models.CharField(max_length=20, default='Click' )
-    second_slide_button_link = models.CharField(max_length=250, default='/' )
-    second_slide_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    # third slide of top image carousel - optional
-    third_slide = models.BooleanField(default=False)
-    third_slide_h1 = models.CharField(max_length=50, default='Main Text Here' )
-    third_slide_h2 = models.CharField(max_length=250,  default='More text here...one sentence' )
-    third_slide_button_text = models.CharField(max_length=20, default='Click' )
-    third_slide_button_link = models.CharField(max_length=250, default='/' )
-    third_slide_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    # fourth slide of top image carousel - optional
-    fourth_slide = models.BooleanField(default=False)
-    fourth_slide_h1 = models.CharField(max_length=50, default='Main Text Here' )
-    fourth_slide_h2 = models.CharField(max_length=250,  default='More text here...one sentence' )
-    fourth_slide_button_text = models.CharField(max_length=20, default='Click' )
-    fourth_slide_button_link = models.CharField(max_length=250, default='/' )
-    fourth_slide_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-
-    # fifth slide of top image carousel - optional
-    fifth_slide = models.BooleanField(default=False)
-    fifth_slide_h1 = models.CharField(max_length=50, default='Main Text Here' )
-    fifth_slide_h2 = models.CharField(max_length=250,  default='More text here...one sentence' )
-    fifth_slide_button_text = models.CharField(max_length=20, default='Click' )
-    fifth_slide_button_link = models.CharField(max_length=250, default='/' )
-    fifth_slide_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
+        
+    carousel_slides = StreamField([
+        ('slides', blocks.ListBlock( CarouselSlideBlock(), min_num=1 ) )
+            ],
+            null=True,
+            block_counts={
+                    'slides': { 'max_num': 1}, 
+                            }
+            )
 
     # //=====Header carousel end=======
-
 
     # // about-video section
     video_section_title = models.CharField(null=True, max_length=250, blank=True)
@@ -105,41 +54,46 @@ class AboutPage(Page):
     
     # // ATI : About Tiles with Icons
     # // first row
-    excellence_title = models.CharField(max_length= 50, default="Excellence")
-    excellence_text = RichTextField( blank=True)
-    compassion_title = models.CharField(max_length= 50, default="Compassion")
-    compassion_text = RichTextField( blank=True)
 
-    ati_second_row = models.BooleanField(default=True)
-    ati_tile3_title = models.CharField(max_length= 50, default="Tile 3")
-    ati_tile3_text = RichTextField( blank=True)
-    ati_tile4_title = models.CharField(max_length= 50, default="Tile 4")
-    ati_tile4_text = RichTextField( blank=True)
+    class IconCardBlock (blocks.StructBlock):
 
-    ati_third_row = models.BooleanField(default=False)
-    ati_tile5_title = models.CharField(max_length= 50, default="Tile 5")
-    ati_tile5_text = RichTextField( blank=True)
-    ati_tile6_title = models.CharField(max_length= 50, default="Tile 6")
-    ati_tile6_text = RichTextField( blank=True)
+        left_card_title = blocks.CharBlock(default="Value")
+        left_card_text = blocks.CharBlock(default="Brief description of satated value here" )
+        left_card_icon_class = blocks.CharBlock(default="bi-123")
+        left_card_icon_color_hex = blocks.CharBlock(default="#41cf2e")
+
+        right_card_title = blocks.CharBlock(default="Value")
+        right_card_text = blocks.CharBlock(default="Brief description of stated value here")
+        right_card_icon_class = blocks.CharBlock(default="bi-123")
+        right_card_icon_color_hex = blocks.CharBlock(default="#41cf2e")
+    
+    values_rows = StreamField([
+                ('values', blocks.ListBlock( IconCardBlock(), max_num=3 ) )
+            ],
+            null=True,
+            block_counts={
+                'values': { 'max_num': 1}, 
+                    }
+            )
+
         
 
-    # //Call to action
-    
+    # //Section: Call to action    
     call_to_action = models.BooleanField( default=True)
     cta_title = models.CharField(max_length=250, default="CTA Title")
     cta_text = RichTextField( blank=True)
         
     cta_buttons = StreamField([
-        ('buttons', blocks.ListBlock( ButtonBlock(), max_num=2 ) )
-    ],
-    null = True,
-    block_counts={
-        'buttons': { 'max_num': 1}, 
-            }
-    )
+                ('buttons', blocks.ListBlock( ButtonBlock(), max_num=2 ) )
+            ],
+            null = True,
+            block_counts={
+                'buttons': { 'max_num': 1}, 
+                    }
+            )
 
 
-    # //Goals section
+    # //Section: Goals 
     goals_title_text = RichTextField( blank=True)
     
     class GoalsCardBlock(blocks.StructBlock):
@@ -150,12 +104,12 @@ class AboutPage(Page):
        
     
     goals_cards = StreamField([
-        ('goals', blocks.ListBlock( GoalsCardBlock(), max_num=4 ) )
-    ],
-    block_counts={
-        'goals': { 'max_num': 1}, 
-            },
-    null=True)
+                ('goals', blocks.ListBlock( GoalsCardBlock(), max_num=4 ) )
+                    ],
+                block_counts={
+                        'goals': { 'max_num': 1}, 
+                            },
+                null=True)
 
     
 
@@ -178,13 +132,13 @@ class AboutPage(Page):
     
     expertise_progress_bars = BooleanField(default=True)
     skills_and_progress = StreamField([
-        ('progress', blocks.ListBlock( SkillProgressBlock(), max_num=4 ) )
-    ],
-    block_counts={
-        'progress': { 'max_num': 1}, 
-            },
-    null=True,
-     )
+                ('progress', blocks.ListBlock( SkillProgressBlock(), max_num=4 ) )
+                        ],
+                    block_counts={
+                            'progress': { 'max_num': 1}, 
+                                },
+                    null=True,
+                        )
 
 
 
@@ -212,9 +166,9 @@ class AboutPage(Page):
     
     team_top_text = RichTextField(blank=True)
     team_members = StreamField([
-        ('members', blocks.ListBlock( TeamMemberBlock() ) )
-    ],
-    null=True)
+                ('members', blocks.ListBlock( TeamMemberBlock() ) )
+                        ],
+                        null=True)
         
 
 
@@ -222,43 +176,8 @@ class AboutPage(Page):
 
         #// slider section
 
-        # // slide 1
-        FieldPanel ('first_slide_h1'),
-        FieldPanel ('first_slide_h2', classname="full"),
-        FieldPanel ('first_slide_button_text'),
-        FieldPanel ('first_slide_button_link'),
-        ImageChooserPanel('first_slide_img'),
+        StreamFieldPanel('carousel_slides'),
 
-        # // slide 2
-        FieldPanel ('second_slide_h1'),
-        FieldPanel ('second_slide_h2', classname="full"),
-        FieldPanel ('second_slide_button_text'),
-        FieldPanel ('second_slide_button_link'),
-        ImageChooserPanel('second_slide_img'),
-
-        # // slide 3
-        FieldPanel('third_slide'),
-        FieldPanel ('third_slide_h1'),
-        FieldPanel ('third_slide_h2', classname="full"),
-        FieldPanel ('third_slide_button_text'),
-        FieldPanel ('third_slide_button_link'),
-        ImageChooserPanel('third_slide_img'),
-
-        #  // slide 4
-        FieldPanel('fourth_slide'),
-        FieldPanel ('fourth_slide_h1'),
-        FieldPanel ('fourth_slide_h2', classname="full"),
-        FieldPanel ('fourth_slide_button_text'),
-        FieldPanel ('fourth_slide_button_link'),
-        ImageChooserPanel('fourth_slide_img'),
-
-        # slide 5
-        FieldPanel('fifth_slide'),
-        FieldPanel ('fifth_slide_h1'),
-        FieldPanel ('fifth_slide_h2', classname="full"),
-        FieldPanel ('fifth_slide_button_text'),
-        FieldPanel ('fifth_slide_button_link'),
-        ImageChooserPanel('fifth_slide_img'),
 
         # // ============== about section - video  ===============
         FieldPanel('video_section_title', classname="full"),
@@ -266,35 +185,15 @@ class AboutPage(Page):
         FieldPanel('video_url', classname="full"),
         ImageChooserPanel('video_thumbnail_img'),
 
-        # // ============== about section - iconed tiles ===================
+        #  iconed tiles 
+        StreamFieldPanel('values_rows'),
         
-        # // first row
-        FieldPanel('excellence_title'),
-        FieldPanel('excellence_text',  classname="full"),
-        FieldPanel('compassion_title'),
-        FieldPanel('compassion_text',  classname="full"),
-
-        # // second row
-        FieldPanel('ati_second_row'),
-        FieldPanel('ati_tile3_title'),
-        FieldPanel('ati_tile3_text',  classname="full"),
-        FieldPanel('ati_tile4_title'),
-        FieldPanel('ati_tile4_text',  classname="full"),
-
-        # // third row
-        FieldPanel('ati_third_row'),
-        FieldPanel('ati_tile5_title'),
-        FieldPanel('ati_tile5_text',  classname="full"),
-        FieldPanel('ati_tile6_title'),
-        FieldPanel('ati_tile6_text',  classname="full"),
 
         # // =============== call to action section ======================
         FieldPanel('call_to_action'),
         FieldPanel ('cta_title', classname="full"),
         FieldPanel ('cta_text', classname="full"),
-        StreamFieldPanel('cta_buttons'),
-
-                   
+        StreamFieldPanel('cta_buttons'),                   
 
         # // ================== Goals section====================
                 
@@ -325,8 +224,8 @@ class AboutPage(Page):
 
             ]
 
-AboutPage._meta.get_field('ati_second_row').help_text = "Show/hide the second row of the iconed tiles"
-AboutPage._meta.get_field('ati_third_row').help_text = "Show/hide the second row of the iconed tiles"
+#AboutPage._meta.get_field('ati_second_row').help_text = "Show/hide the second row of the iconed tiles"
+#AboutPage._meta.get_field('ati_third_row').help_text = "Show/hide the second row of the iconed tiles"
 #AboutPage._meta.get_field('').help_text = ""
 
 #@TODO
