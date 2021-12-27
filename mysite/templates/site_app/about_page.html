@@ -223,7 +223,9 @@
       <div class="row">
         <div class="col-lg-6" data-aos="fade-right">
           {% if page.expertise_img %}  
-                  {% image page.expertise_img original %}
+                  {% image page.expertise_img original as img %}
+                  <img src=" {{ img.url}} " class="img-fluid" alt="">
+
               {% else %}        
               <img src=" {% static 'img/skills-img.jpg' %} " class="img-fluid" alt="">
               {% endif %}

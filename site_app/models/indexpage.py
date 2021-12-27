@@ -7,6 +7,7 @@ from wagtail.images.models import Image
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.core.blocks.field_block import RichTextBlock
 
 # project imports here
 from .custom_blocks import ButtonBlock, CarouselSlideBlock
@@ -46,70 +47,46 @@ class IndexPage (Page):
 
     # // =============== Content rows ======================
 
-    first_row_title = models.CharField(blank=True, max_length=250)
-    first_row_text = RichTextField(blank=True)
-    first_row_img = models.ForeignKey(
-                    'wagtailimages.Image',
-                    null=True,
-                    blank=True,
-                    on_delete=models.SET_NULL,
-                    related_name='+'
-                )
+    class RowBlock(blocks.StructBlock):
+        title = blocks.CharBlock(default="Title Here")
+        text = RichTextBlock(blank=True)
+        img = ImageChooserBlock(required=False)
+        button = ButtonBlock()
 
-    second_row_title = models.CharField(blank=True, max_length=250)
-    second_row_text = RichTextField(blank=True)
-    second_row_img = models.ForeignKey(
-                    'wagtailimages.Image',
-                    null=True,
-                    blank=True,
-                    on_delete=models.SET_NULL,
-                    related_name='+'
-                )
+    work_process_rows = StreamField([
+        ('rows', blocks.ListBlock( RowBlock(), max_num=4, min_num=1  ) )
+            ],
+            null=True,
+                    block_counts={
+                        'rows': { 'max_num': 1, 'min_num': 1}, 
+                            }
+    )
 
-    third_row_title = models.CharField(blank=True, max_length=250)
-    third_row_text = RichTextField(blank=True)
-    third_row_img = models.ForeignKey(
-                    'wagtailimages.Image',
-                    null=True,
-                    blank=True,
-                    on_delete=models.SET_NULL,
-                    related_name='+'
-                )
     
-    fourth_row_title = models.CharField(blank=True, max_length=250)
-    fourth_row_text = RichTextField(blank=True)
-    fourth_row_img = models.ForeignKey(
-                    'wagtailimages.Image',
-                    null=True,
-                    blank=True,
-                    on_delete=models.SET_NULL,
-                    related_name='+'
-                )
 
+   
+
+    
+    
+    
 
     content_panels = Page.content_panels + [
 
         # // ========== top carousel ===============
         StreamFieldPanel('carousel_slides'),
 
+        # // =========== about-video section ============
         FieldPanel('video_section_title', classname="full"),
         FieldPanel('video_section_text', classname="full"),
         FieldPanel('video_url', classname="full"),
         ImageChooserPanel('video_thumbnail_img'),
 
-        FieldPanel ('first_row_title'),
-        FieldPanel ('first_row_text'),
-        ImageChooserPanel('first_row_img'),
+        # // =========== mid section ============
+        FieldPanel('mid_section_title'),
+        FieldPanel('mid_section_text'),
 
-        FieldPanel ('second_row_title'),
-        FieldPanel ('second_row_text'),
-        ImageChooserPanel('second_row_img'),
 
-        FieldPanel ('third_row_title'),
-        FieldPanel ('third_row_text'),
-        ImageChooserPanel('third_row_img'),
-
-        FieldPanel ('fourth_row_title'),
-        FieldPanel ('fourth_row_text'),
-        ImageChooserPanel('fourth_row_img'),
+    # // =========== work process============ 
+        StreamFieldPanel('work_process_rows'),
+       
     ]

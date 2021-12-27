@@ -3,6 +3,7 @@
 {% load wagtailcore_tags %}
 {% load static %}
 {% load wagtailimages_tags %}
+{% load wagtailembeds_tags %}
 
 {% block body_class %}template-indexpage{% endblock %}
 
@@ -75,10 +76,14 @@
             <!-- page.video_url -->
             <!-- change this to embed video tag -->
             {% if page.video_url %}
-            
-            <iframe width="540" height="405"
-              src="{{ page.video_url }}">
-            </iframe>
+
+            <!-- Must us eembed url for any service
+            -->   
+              <iframe width="540" height="405"
+                src="{{ page.video_url}}">
+              </iframe>
+
+             
 
             {% elif page.video_thumbnail_img %}
                 {% image page.video_thumbnail_img original %} 
@@ -144,11 +149,79 @@
 
         </div>
 
+
+        {% for block in page.work_process_rows %}
+            {% if block.block_type == "rows"  %}
+                {% for row in block.value %}
+                    <div class="row content">
+
+                      {% if forloop.counter == 1 or forloop.counter == 3 %}
+                        <div class="col-md-5" data-aos="fade-right">
+                      {% else %}
+                        <div class="col-md-5 order-1 order-md-2" data-aos="fade-left"> 
+                      {% endif %}
+            
+                          {% if row.img %}  
+                              {% image row.img original as  first_img %}
+                              <img src=" {{ first_img.url }} " class="img-fluid" alt=""> 
+            
+                          {% else %}        
+                        <img src=" {% static 'img/work-process-1.png' %} " class="img-fluid" alt=""> 
+                        {% endif %}
+            
+                      </div>
+
+                      {% if forloop.counter == 1  %} 
+                          <div class="col-md-7 pt-4" data-aos="fade-left">
+
+                      {% elif forloop.counter == 3 %}
+                          <div class="col-md-7 pt-5" data-aos="fade-left">
+                      
+                      {% else %}
+                          <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+                      {% endif %}
+
+                        {% if row.title %}
+                          <h3> {{ row.title}} </h3>
+                        {% else %}
+                        <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                        {% endif %}
+            
+                        {% if row.text %}
+                          <div class="fst-italic"> 
+                            {{ row.text|richtext}}
+                            
+                          </div>
+                        {% else %}
+                            <p class="fst-italic">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                              magna aliqua.
+                            </p>
+                            <ul>
+                              <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                              <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                            </ul>
+                        {% endif %}
+                        
+                        {% if row.button  %}
+                        <a href="{{ row.button.link }}" class="cta-btn">{{ row.button.text }}</a>
+                        {% endif %}
+
+                      </div>
+                    </div> 
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        
+        {% comment %} 
         <div class="row content">
           <div class="col-md-5" data-aos="fade-right">
 
+
               {% if page.first_row_img %}  
-                  {% image page.first_row_img original %}
+                  {% image page.first_row_img original as  first_img %}
+                  <img src=" {{ first_img.url }} " class="img-fluid" alt=""> 
+
               {% else %}        
              <img src=" {% static 'img/work-process-1.png' %} " class="img-fluid" alt=""> 
              {% endif %}
@@ -186,7 +259,9 @@
           <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
 
               {% if page.second_row_img %}  
-                  {% image page.second_row_img original %}
+                  {% image page.second_row_img original as second_img %}
+                  <img src=" {{ second_img.url }} " class="img-fluid" alt="">
+
               {% else %}        
               <img src=" {% static 'img/work-process-2.png' %} " class="img-fluid" alt="">
               {% endif %}
@@ -224,7 +299,9 @@
           <div class="col-md-5" data-aos="fade-right">
 
               {% if page.third_row_img %}  
-                  {% image page.third_row_img original %}
+                  {% image page.third_row_img original as third_img %}
+                  <img src=" {{ third_img.url }} " class="img-fluid" alt="">
+
               {% else %}        
               <img src=" {% static 'img/work-process-3.png' %} " class="img-fluid" alt="">
               {% endif %}
@@ -256,8 +333,11 @@
 
         <div class="row content">
           <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+
               {% if page.fourth_row_img %}  
-                  {% image page.fourth_row_img original %}
+                  {% image page.fourth_row_img original as fourth_img %}
+                  <img src=" {{ fourth_img.url }} " class="img-fluid" alt="">
+
               {% else %}        
               <img src=" {% static 'img/work-process-4.png' %} " class="img-fluid" alt="">
               {% endif %}
@@ -289,6 +369,8 @@
               {% endif %}
           </div>
         </div>
+
+        {% endcomment %}
 
       </div>
     </section><!-- End Work Process Section -->
