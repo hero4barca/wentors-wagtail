@@ -64,12 +64,7 @@ class IndexPage (Page):
 
     
 
-   
-
     
-    
-    
-
     content_panels = Page.content_panels + [
 
         # // ========== top carousel ===============

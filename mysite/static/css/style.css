@@ -1,7 +1,61 @@
 /*--------------------------------------------------------------
 # Wentors index template style
 --------------------------------------------------------------*/
+/* contact page */
 
+
+.links {
+  margin-top: 2rem;
+  
+}
+.links .link {
+  width: 30%;
+  margin: 1.5rem auto;
+  /* color: $primary-color; )*/
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  
+}
+
+.links .link span img{
+  width: 2.5rem;
+    margin-right: 2rem;
+}
+
+.links .link span a {
+  text-decoration: none;
+    color: #565e49 !important;
+
+}
+
+.links .link span a:hover {
+    color: #94c045 !important;
+
+}
+
+
+
+@media only screen and (max-device-width: 768px) {
+  .contact-us-image {
+    background-position: center;
+  }
+
+  .links .link {
+      width: 80%;
+    }
+  
+}
+
+
+.purple-top {
+  background: #84716B;
+}
+
+.purple-top p{
+  font-size: medium !important;
+}
+/* contact page end */
 /*======= Home ===========*/
 .dark-row{
   background: #f9fbf4; /*   background: #fff;  */
@@ -500,7 +554,7 @@ section {
 }
 .breadcrumbs .breadcrumb-hero {
   text-align: center;
-  background: #94c045;
+  /*background: #94c045; */
   padding: 20px 0;
   color: #fff;
 }
