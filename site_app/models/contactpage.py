@@ -12,7 +12,7 @@ from wagtail.images.blocks import ImageChooserBlock
 
 class ContactPage(Page):
     
-    top_text = RichTextField( default="Reach us via email or with any of the social media handles below" )
+    top_text = RichTextField( default="We would love the heard form you. Reach us via email or any of our social media handles displayed below" )
 
     class ContactInfoBlock(blocks.StructBlock):
 
