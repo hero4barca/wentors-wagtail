@@ -1,9 +1,12 @@
+from typing_extensions import Required
 from django.db import models
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
 from django.utils.translation import gettext_lazy as _
+from wagtail.images.blocks import ImageChooserBlock
+
 
 
 
@@ -13,22 +16,19 @@ class ContactPage(Page):
 
     class ContactInfoBlock(blocks.StructBlock):
 
-        class ContactPlatform(models.TextChoices):
-            EMAIL = 'email', _('email')
-            SOCIAL_MEDIA = 'social_media', _('social_media')
+        class ContactTypeBlock(blocks.ChoiceBlock):
+            choices = [
+                ('email', 'email'),
+                ('social media', 'social media'),
+                ('other', 'other'),
+            ]
 
-        type = models.CharField(max_length=30, 
-                                    choices=ContactPlatform.choices, 
-                                    default=ContactPlatform.SOCIAL_MEDIA)
-        address_or_link = models.CharField(max_length=50)
-        handle = models.CharField(max_length=50)
-        img = models.ForeignKey(
-                'wagtailimages.Image',
-                null=True,
-                blank=True,
-                on_delete=models.SET_NULL,
-                related_name='+'
-            )
+        type = ContactTypeBlock()
+        address_or_link = blocks.CharBlock()
+        handle = blocks.CharBlock(required=False)
+        img = ImageChooserBlock(required=False)
+
+        
 
     contact_info = StreamField([ 
         ('contacts', blocks.ListBlock( ContactInfoBlock(), min_num=2 ))
@@ -40,8 +40,10 @@ class ContactPage(Page):
             )
 
 
+
+
     content_panels = Page.content_panels + [
 
             FieldPanel('top_text', classname="full"),
-            StreamFieldPanel('contact_info')
+            StreamFieldPanel('contact_info'),
         ]
