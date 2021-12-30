@@ -7,6 +7,9 @@
 
 {% block body_class %}template-coursedetailpage {% endblock %}
 
+{% block js_onload %}collapse(){% endblock %}
+
+
 {% block content %}
 
 {% for block in page.top_header %}
@@ -35,74 +38,42 @@
     <div class="container">
 
       <div class="section-title" data-aos="fade-up">
-        <h2>Courses Detail</h2>
+        <h2> {{page.course_title}} </h2>
         <p>
         
-          {% if not page.courses_top_text == "" %}
-            {{ page.courses_top_text|richtext }}
-          {% else %}
-          Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate.
-          Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
-        
-          {% endif %}
           </p>
       </div>
 
-      <div class="row">
-        <div class="col-lg-6" data-aos="fade-right">
-          {% if page.expertise_img %}  
-                  {% image page.expertise_img original as img %}
-                  <img src=" {{ img.url}} " class="img-fluid" alt="">
+      <div class="row justify-content-center">
+         
 
-              {% else %}        
-              <img src=" {% static 'img/skills-img.jpg' %} " class="img-fluid" alt="">
-              {% endif %}
-        </div>
+            <div class="col-lg-10 pt-4 pt-lg-0 content " data-aos="fade-left">
+                {{ page.course_details_section|richtext }}
 
-        <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>
-            Course List
-          </h3>
-          <ol class="courses-list"> 
-            {% for course_page in page.get_children %}
-                <li> <a href="{% pageurl course_page %}"> {{course_page.specific.course_title}} - {{course_page.specific.course_type}} </a></li>
-            {% endfor%}
-          </ol>
-          {% comment %}
-          {% for block in page.courses_list %}
-            {% if block.block_type == "courses" %}
-                {% for course in block.value %}
-                  <ol class="courses-list">
-                    <li> <a href=" {{course.page_link}} ">  {{course.course_name}} - {{course.course_type}} </a></li>
-                  </ol>
-                {% endfor %}
+            </div>
+
+            <div class="col-lg-10 pt-4  course-pay" data-aos="fade-right">
+                <h4> Price: {{page.course_price}} </h4>
+                <a class="btn-action" href=" {{page.course_payment_link}} "> Pay Now</a> <br/> 
+                <span class="bank-transfer-link" >pay by bank transfer? <a target="_blank" href="/"> see details </a></span>
+
+            </div>
+
+            {% if not page.overview_and_benefits == "" %}
+                <div class="col-lg-10 pt-4  course-pay" data-aos="fade-right">
+                    {{ page.overview_and_benefits|richtext }}
+                </div>
             {% endif %}
-          {% endfor %}
-          {% endcomment %}
-          
-           <!-- keep or remove, static or dynamic ? -->
-          {% comment %}
-          {% if page.expertise_progress_bars  %} 
-              <div class="skills-content">
 
-                {% for block in page.skills_and_progress %}
-                  {% if block.block_type == "progress"  %}
-                    {% for progress in block.value %}
-                    <div class="progress">
-                      <span class="skill"> {{progress.skill}} <i class="val">{{progress.value}}%</i></span>
-                      <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="{{progress.value}}" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
+            {% if not page.detailed_curriculum == "" %}
+                <div class="courses-content-collapsible"> 
+                    <button type="button" class="collapsible">Show detailed curriculum</button>
+                    <div class="collapse-content">
+                        {{page.detailed_curriculum|richtext }}
                     </div>
-                    {% endfor %}                    
-                  {% endif %}                  
-                {% endfor %}
+                </div>
+            {% endif %}
 
-              </div>
-          {% endif %}
-          {% endcomment %}
-
-        </div>
       </div>
 
     </div>
@@ -112,4 +83,27 @@
 
 
 
+{% endblock %}
+
+{% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+    <script>
+      function collapse() {
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                this.classList.toggle("collapse-active");
+                var content = this.nextElementSibling;     
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+                });
+            }
+            }
+    </script>
+        
 {% endblock %}

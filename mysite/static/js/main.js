@@ -262,35 +262,7 @@
   });
 
 
-  /* ===========more JS ============== */
-
-  /**
-  * Add active class to current menu link
-  * var menuItems = document.querySelectorAll('.navbar-links a');
-
-
-   // Loop through the buttons and add the active class to the current/clicked button
-   for (var i = 0; i < menuItems.length; i++) {
-     menuItems[i].addEventListener("click", function() {
-       var current = document.getElementsByClassName("active");
-        // If there's no active class
-      if (current.length > 0) {
-        //current[0].className = current[0].className.replace(" active", "");
-        current[0].classList.remove("active");
-
-      }
-      //alert(current[0].classList)
-
-      // this.className += " active";
-       this.classList.add("active")
-        alert(this.classList)
-     });
-   }
-  */ 
-
-   
-
-
+ 
 
 })()
 

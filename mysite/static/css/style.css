@@ -1,7 +1,96 @@
 /*--------------------------------------------------------------
 # Wentors index template style
 --------------------------------------------------------------*/
+.btn-action {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 10px;
+  border: 2px solid #94c045;
+  text-transform: uppercase;
+  color: #fff;
+}
+/* courses detail page */
 
+
+/* *start collapaseable */
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #ccc; /* #eee*/
+  color:#444444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 4px;
+  
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.collapse-active, .collapsible:hover {
+  background-color: rgb(196, 188, 188);
+}
+
+/**add icon */
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #444444;
+  float: right;
+  margin-left: 5px;
+}
+
+.collapse-active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+/* Style the collapsible content. Note: hidden by default */
+.collapse-content {
+  padding: 0 18px;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  border-top-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-size: 15px;
+  /*display: none;*/
+ 
+  max-height: 0;
+  transition: max-height 0.2s ease-out;  
+  
+}
+
+
+.collapse-content ol li {
+
+  font-size: 14px;
+}
+
+.collapse-content ul li {
+  font-size:  13px;
+}
+
+.collapse-content h6{
+  font-size: 15px;
+  font-weight: 300;
+}
+
+
+/* collapsible end */
+
+ .course-pay{
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-left: 15px ;
+}
 /* courses main page */
 
 .courses-list{
