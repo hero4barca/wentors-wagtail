@@ -1,10 +1,8 @@
-from typing_extensions import Required
 from django.db import models
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.core import blocks
 from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField, StreamField
-from django.utils.translation import gettext_lazy as _
 from wagtail.images.blocks import ImageChooserBlock
 
 

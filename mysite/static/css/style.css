@@ -1,8 +1,26 @@
 /*--------------------------------------------------------------
 # Wentors index template style
 --------------------------------------------------------------*/
-/* contact page */
 
+/* courses main page */
+
+.courses-list{
+  padding-left: 0.5;
+}
+
+.courses-list li{
+  font-size: 1.2rem !important;
+}
+.courses-list li a {
+  color: #444444 !important;
+}
+
+.courses-list li a:hover{
+  text-decoration: underline;
+}
+
+
+/* contact page */
 
 .links {
   margin-top: 2rem;

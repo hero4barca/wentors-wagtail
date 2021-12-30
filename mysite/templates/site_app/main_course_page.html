@@ -1,0 +1,109 @@
+{% extends "site_base.html" %}
+
+{% load wagtailcore_tags %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailembeds_tags %}
+
+{% block body_class %}template-coursesindexpage {% endblock %}
+
+{% block content %}
+
+{% for block in page.top_header %}
+    {% if block.block_type == "header" %}
+        {% image block.value.header_image original as img %}
+        <section id="hero" style="background-image: url(' {{ img.url }} '); background-position: top; ">
+            <div class="hero-container" data-aos="fade-up">
+                
+                {% if block.value.h1_text %}
+                    <h1> {{ block.value.h1_text }} </h1>
+                {% endif %}
+
+                {% if block.value.h2_text %}
+                    <h2> {{ block.value.h2_text }} </h2>
+                {% endif %}
+
+            </div>
+        </section><!-- End Hero -->        
+    {% endif %}
+{% endfor %}
+
+<main id="main">
+
+    <!-- ======= Our Skills Section ======= -->
+  <section id="skills" class="skills section-bg">
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>Courses</h2>
+        <p>
+        
+          {% if not page.courses_top_text == "" %}
+            {{ page.courses_top_text|richtext }}
+          {% else %}
+          Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate.
+          Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+        
+          {% endif %}
+          </p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right">
+          {% if page.expertise_img %}  
+                  {% image page.expertise_img original as img %}
+                  <img src=" {{ img.url}} " class="img-fluid" alt="">
+
+              {% else %}        
+              <img src=" {% static 'img/skills-img.jpg' %} " class="img-fluid" alt="">
+              {% endif %}
+        </div>
+
+        <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <h3>
+            Course List
+          </h3>
+
+          {% for block in page.courses_list %}
+            {% if block.block_type == "courses" %}
+                {% for course in block.value %}
+                  <ol class="courses-list">
+                    <li> <a href=" {{course.page_link}} ">  {{course.course_name}} - {{course.course_type}} </a></li>
+                  </ol>
+                {% endfor %}
+            {% endif %}
+          {% endfor %}
+
+           <!-- keep or remove, static or dynamic ? -->
+          {% comment %}
+          {% if page.expertise_progress_bars  %} 
+              <div class="skills-content">
+
+                {% for block in page.skills_and_progress %}
+                  {% if block.block_type == "progress"  %}
+                    {% for progress in block.value %}
+                    <div class="progress">
+                      <span class="skill"> {{progress.skill}} <i class="val">{{progress.value}}%</i></span>
+                      <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{progress.value}}" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    {% endfor %}                    
+                  {% endif %}                  
+                {% endfor %}
+
+              </div>
+          {% endif %}
+          {% endcomment %}
+
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Our Skills Section -->
+
+</main>
+
+
+
+{% endblock %}
