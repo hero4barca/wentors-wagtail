@@ -64,37 +64,12 @@
             Course List
           </h3>
 
-          {% for block in page.courses_list %}
-            {% if block.block_type == "courses" %}
-                {% for course in block.value %}
-                  <ol class="courses-list">
-                    <li> <a href=" {{course.page_link}} ">  {{course.course_name}} - {{course.course_type}} </a></li>
-                  </ol>
-                {% endfor %}
-            {% endif %}
-          {% endfor %}
-
-           <!-- keep or remove, static or dynamic ? -->
-          {% comment %}
-          {% if page.expertise_progress_bars  %} 
-              <div class="skills-content">
-
-                {% for block in page.skills_and_progress %}
-                  {% if block.block_type == "progress"  %}
-                    {% for progress in block.value %}
-                    <div class="progress">
-                      <span class="skill"> {{progress.skill}} <i class="val">{{progress.value}}%</i></span>
-                      <div class="progress-bar-wrap">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="{{progress.value}}" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                    {% endfor %}                    
-                  {% endif %}                  
-                {% endfor %}
-
-              </div>
-          {% endif %}
-          {% endcomment %}
+          <ol class="courses-list"> 
+            {% for course_page in page.get_children %}
+                <li> <a href="{% pageurl course_page %}"> {{course_page.specific.course_title}} - {{course_page.specific.course_type}} </a></li>
+            {% endfor%}
+          </ol>
+          
 
         </div>
       </div>
