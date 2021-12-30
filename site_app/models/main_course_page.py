@@ -33,39 +33,13 @@ class MainCoursePage(Page):
                     )
     courses_top_text = RichTextField(blank=True)
 
-    # struct for course details
-    class CourseDetailBlock(blocks.StructBlock):
-
-        course_name = blocks.CharBlock()
-        page_link = blocks.CharBlock( default='#')
-
-        # choice class for course type
-        class CourseTypeBlock(blocks.ChoiceBlock):
-            choices = [
-                ('taught course', 'taught course'),
-                ('masterclass', 'masterclass'),
-            ]
-        
-        course_type = CourseTypeBlock()
-
-    # declare course list
-
-    courses_list = StreamField([
-       
-       ('courses', blocks.ListBlock( CourseDetailBlock() ) ) 
-            ],
-            null=True,
-                    block_counts={
-                                'courses': { 'max_num': 1, 'min_num': 1}, 
-                                    })   
-
+   
 
 
     content_panels = Page.content_panels + [
 
             StreamFieldPanel('top_header'),
             FieldPanel('courses_top_text', classname="full"),
-            StreamFieldPanel('courses_list'),
             ImageChooserPanel('courses_image'),
 
         ]
