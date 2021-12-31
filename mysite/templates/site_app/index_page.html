@@ -74,16 +74,12 @@
           <div class="col-lg-6 video-box align-self-baseline position-relative">
             
             <!-- page.video_url -->
-            <!-- change this to embed video tag -->
+            <!-- must be embed url for any video service -->
             {% if page.video_url %}
-
-            <!-- Must us eembed url for any service
-            -->   
+  
               <iframe width="540" height="405"
                 src="{{ page.video_url}}">
-              </iframe>
-
-             
+              </iframe>            
 
             {% elif page.video_thumbnail_img %}
                 {% image page.video_thumbnail_img original %} 

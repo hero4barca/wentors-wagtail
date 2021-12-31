@@ -1,5 +1,8 @@
 /*--------------------------------------------------------------
 # Wentors index template style
+#c9dfa2
+#d4e5b4
+#deecc7
 --------------------------------------------------------------*/
 .btn-action {
   font-family: "Raleway", sans-serif;
@@ -13,14 +16,40 @@
   margin: 10px;
   border: 2px solid #94c045;
   text-transform: uppercase;
-  color: #fff;
+  color: #94c045 ;/*#fff;*/
+  background-color:#d4e5b4 ;
 }
+.btn-action a:hover{
+  background-color: #deecc7;
+}
+
 /* courses detail page */
 
+.about-facilitator{
+  margin-top: 20px;
+}
 
-/* *start collapaseable */
+.bio-img{
+  /*height: 55%;
+  width: 55%;*/
+  margin: auto;
+  
+  align-self: center;
+}
 
-/* Style the button that is used to open and close the collapsible content */
+.bio-img-div{
+  width: 100%;
+  align-content: center!important;
+  text-align: center;
+}
+
+.courses-content-collapsible{
+  margin-top: 10px;
+}
+
+
+/* *start collapaseable 
+ Style the button that is used to open and close the collapsible content */
 .collapsible {
   background-color: #ccc; /* #eee*/
   color:#444444;
@@ -69,27 +98,14 @@
 }
 
 
-.collapse-content ol li {
-
-  font-size: 14px;
-}
-
-.collapse-content ul li {
-  font-size:  13px;
-}
-
-.collapse-content h6{
-  font-size: 15px;
-  font-weight: 300;
-}
-
-
 /* collapsible end */
 
  .course-pay{
   margin-top: 10px;
   padding-top: 10px;
   padding-left: 15px ;
+  background-color:#f1f1f1 ; /*#ccc ;*/
+  border-radius: 3px;
 }
 /* courses main page */
 

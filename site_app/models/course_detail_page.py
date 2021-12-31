@@ -43,12 +43,21 @@ class CourseDetailPage(Page):
     overview_and_benefits = RichTextField(blank=True)
     detailed_curriculum = RichTextField(blank=True)
 
+    class AboutFacilitatorBlock(blocks.StructBlock):
+
+        heading = blocks.CharBlock(form_classname="full title")
+        paragraph = blocks.RichTextBlock()
+        images = blocks.ListBlock(ImageChooserBlock(), max_num=2)
+        
+
     about_facilitator = StreamField([
-        ('heading', blocks.CharBlock(form_classname="full title")),
-        ('paragraph', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
+        ('facilitator', AboutFacilitatorBlock() )      
                 ],
-              null=True, blank=True 
+              null=True,
+              blank=True,
+              block_counts={
+                        'facilitator': { 'max_num': 1}, 
+                            } 
                 )
 
     content_panels = Page.content_panels + [
