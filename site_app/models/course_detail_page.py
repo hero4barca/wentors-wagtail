@@ -18,7 +18,8 @@ class CourseDetailPage(Page):
     top_header = StreamField([
         ('header', HeaderTopBlock())
             ],
-            null=False,
+            null=True,
+            blank=True,
             block_counts={
                             'header': { 'max_num': 1, 'min_num':0 }, # header image is optional
                                     })

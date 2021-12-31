@@ -11,25 +11,26 @@
 
 
 {% block content %}
+    {% if page.top_header %}
+        {% for block in page.top_header %}
+            {% if block.block_type == "header" %}
+                {% image block.value.header_image original as img %}
+                <section id="hero" style="background-image: url(' {{ img.url }} '); background-position: top; ">
+                    <div class="hero-container" data-aos="fade-up">
+                        
+                        {% if block.value.h1_text %}
+                            <h1> {{ block.value.h1_text }} </h1>
+                        {% endif %}
 
-{% for block in page.top_header %}
-    {% if block.block_type == "header" %}
-        {% image block.value.header_image original as img %}
-        <section id="hero" style="background-image: url(' {{ img.url }} '); background-position: top; ">
-            <div class="hero-container" data-aos="fade-up">
-                
-                {% if block.value.h1_text %}
-                    <h1> {{ block.value.h1_text }} </h1>
-                {% endif %}
+                        {% if block.value.h2_text %}
+                            <h2> {{ block.value.h2_text }} </h2>
+                        {% endif %}
 
-                {% if block.value.h2_text %}
-                    <h2> {{ block.value.h2_text }} </h2>
-                {% endif %}
-
-            </div>
-        </section><!-- End Hero -->        
+                    </div>
+                </section><!-- End Hero -->        
+            {% endif %}
+        {% endfor %}
     {% endif %}
-{% endfor %}
 
 <main id="main">
 
