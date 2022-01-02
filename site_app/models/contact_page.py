@@ -34,7 +34,8 @@ class ContactPage(Page):
             null=True,
             block_counts={
                         'contacts': { 'max_num': 1, 'min_num': 1}, 
-                            }
+                            },
+            help_text="provide email and various social media contact info"
             )
 
 

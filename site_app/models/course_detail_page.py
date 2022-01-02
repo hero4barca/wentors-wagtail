@@ -22,7 +22,8 @@ class CourseDetailPage(Page):
             blank=True,
             block_counts={
                             'header': { 'max_num': 1, 'min_num':0 }, # header image is optional
-                                    })
+                                    },
+                                help_text="optional: provide image header block for course")
 
 
     course_title =  models.CharField(default="Course Title Here",
@@ -37,9 +38,10 @@ class CourseDetailPage(Page):
         
     course_type = models.CharField(choices=COURSE_TYPE_CHOICES, max_length=20)
 
-    course_details_section = RichTextField(default="Provide detailed course description here")
+    course_details_section = RichTextField(default="Provide detailed course description here",
+                                            help_text="provide detailed course description here")
     course_price = models.DecimalField(decimal_places=2, default=0.0, max_digits=9, max_length=10)
-    course_payment_link = URLField(blank=True)
+    course_payment_link = URLField(blank=True, help_text="link to the course payment page")
 
     overview_and_benefits = RichTextField(blank=True)
     detailed_curriculum = RichTextField(blank=True)
@@ -58,7 +60,8 @@ class CourseDetailPage(Page):
               blank=True,
               block_counts={
                         'facilitator': { 'max_num': 1}, 
-                            } 
+                            },
+                help_text="more details about facilitator" 
                 )
 
     content_panels = Page.content_panels + [

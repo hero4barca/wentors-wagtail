@@ -10,7 +10,8 @@ from wagtail.core.models import Page
 class BankDetailsPage(Page):
     
     bank_details_text = RichTextField(blank=False, 
-                                        default="Wentors bank account details here")
+                                        default="Wentors bank account details here",
+                                        help_text="detail on how to make payment via bank transfer")
 
 
     content_panels = Page.content_panels + [

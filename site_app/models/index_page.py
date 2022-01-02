@@ -24,26 +24,31 @@ class IndexPage (Page):
             null=True,
             block_counts={
                     'slides': { 'max_num': 1}, 
-                            }
+                            },
+            help_text="for top header carousel"
             )
 
     # //=====Header carousel end=======
 
     # // about-video section
-    video_section_title = models.CharField(null=True, max_length=250, blank=True)
-    video_section_text = RichTextField(blank= True )
-    video_url = models.CharField(null=True, max_length=250, blank=True)
-    video_thumbnail_img = models.ForeignKey(
+    video_section_title = models.CharField(null=True, max_length=250, blank=True,
+                                help_text="title for video section")
+    video_section_text = RichTextField(blank= True,
+                                     help_text="text with more about info beside video")
+    video_url = models.CharField(null=True, max_length=250, blank=True, help_text="embed url for video")
+    video_thumbnail_img = models.ForeignKey( 
         'wagtailimages.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        help_text="image to replace video if preferred"
     )
 
     # //================ Mid page ================
-    mid_section_title = models.CharField(max_length=250, blank=True)
-    mid_section_text = RichTextField(blank=True) 
+    mid_section_title = models.CharField(max_length=250, blank=True, 
+                                            help_text="title for page mid-section")
+    mid_section_text = RichTextField(blank=True, help_text="text for page mid-section") 
 
     # // =============== Content rows ======================
 
@@ -59,7 +64,8 @@ class IndexPage (Page):
             null=True,
                     block_counts={
                         'rows': { 'max_num': 1, 'min_num': 1}, 
-                            }
+                            },
+                        help_text="defines rows of paragraphs and images for home page"                  
     )
 
     

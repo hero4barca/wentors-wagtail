@@ -31,7 +31,8 @@ class MainCoursePage(Page):
                         on_delete=models.SET_NULL,
                         related_name='+'
                     )
-    courses_top_text = RichTextField(blank=True)
+    courses_top_text = RichTextField(blank=True,
+                            help_text="general description for courses provided" )
 
    
 

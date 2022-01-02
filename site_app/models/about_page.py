@@ -27,21 +27,25 @@ class AboutPage(Page):
             null=True,
             block_counts={
                     'slides': { 'max_num': 1}, 
-                            }
+                            },
+            help_text="for top header image carousel"
             )
 
     # //=====Header carousel end=======
 
     # // about-video section
-    video_section_title = models.CharField(null=True, max_length=250, blank=True)
-    video_section_text = RichTextField(blank= True )
-    video_url = models.CharField(null=True, max_length=250, blank=True)
+    video_section_title = models.CharField(null=True, max_length=250, blank=True,
+                                        help_text="title text for video section")
+    video_section_text = RichTextField(blank= True, help_text="main paragraph providing more about info - beside the video" )
+    video_url = models.CharField(null=True, max_length=250, blank=True, 
+                                        help_text="embed url for video to be displayed if any")
     video_thumbnail_img = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        related_name='+'
+        related_name='+',
+        help_text="image to be displayed instead of video if preferred "
     )
 
     
@@ -66,15 +70,16 @@ class AboutPage(Page):
             null=True,
             block_counts={
                 'values': { 'max_num': 1}, 
-                    }
+                    },
+             help_text="Provide a value (e.g. excellence), short phrase description, icon (with preferred color) in pairs"       
             )
 
         
 
     # //Section: Call to action    
-    call_to_action = models.BooleanField( default=True)
+    call_to_action = models.BooleanField( default=True, help_text="Display or remove 'Call To Action' section")
     cta_title = models.CharField(max_length=250, default="CTA Title")
-    cta_text = RichTextField( blank=True)
+    cta_text = RichTextField( blank=True, help_text=" 'CAll To Action' text ")
         
     cta_buttons = StreamField([
                 ('buttons', blocks.ListBlock( ButtonBlock(), max_num=2 ) )
@@ -82,16 +87,17 @@ class AboutPage(Page):
             null = True,
             block_counts={
                 'buttons': { 'max_num': 1}, 
-                    }
+                    },
+            help_text="Buttons for 'CAll To Action' section "
             )
 
 
     # //Section: Goals 
-    goals_title_text = RichTextField( blank=True)
+    goals_title_text = RichTextField( blank=True, help_text="This text is displayed as  title for the goals/vision section")
     
     class GoalsCardBlock(blocks.StructBlock):
-        title = blocks.CharBlock(default="skill")
-        text = RichTextBlock()
+        title = blocks.CharBlock(default="goal", help_text="specific goal" )
+        text = RichTextBlock(help_text="text description of specified goal")
         img = ImageChooserBlock(required=False)
 
        
@@ -102,7 +108,8 @@ class AboutPage(Page):
                 block_counts={
                         'goals': { 'max_num': 1}, 
                             },
-                null=True)
+                null=True,
+                help_text="goals/mission section")
 
     
 
@@ -136,12 +143,17 @@ class AboutPage(Page):
 
 
     # Section: Sponsor and partnets
-    snp_section = BooleanField(default=True)
-    snp_top_text = RichTextField(blank=True)
+    snp_section = BooleanField(default=True, help_text="enable/disable Sponsors and Partners section")
+    snp_top_text = RichTextField(blank=True, help_text="Text ob top of sponsors/partners logos ")
     snp_logo_images = StreamField([
         ('logos', blocks.ListBlock(ImageChooserBlock())),
-    ],
-    null=True)
+                ],
+                null=True,
+                block_counts={
+                    'logos': { 'max_num': 1}
+                                            },
+                help_text="logos of partners and sponsors"
+                )
 
 
     # Section: Team members
@@ -151,8 +163,8 @@ class AboutPage(Page):
         photo = ImageChooserBlock(required=False)
         biography = blocks.RichTextBlock(default="short bio here")
         position =  blocks.CharBlock(default="team member position here")
-        linkedin_link =  blocks.CharBlock(required=False)
-        twitter_link =  blocks.CharBlock(required=False)
+        linkedin_link =  blocks.CharBlock(required=False, help_text="member LinkedIn profile link")
+        twitter_link =  blocks.CharBlock(required=False, help_text="member twitter profile link")
 
         class Meta:
             icon = 'user'
@@ -161,7 +173,11 @@ class AboutPage(Page):
     team_members = StreamField([
                 ('members', blocks.ListBlock( TeamMemberBlock() ) )
                         ],
-                        null=True)
+                        null=True,
+                        block_counts={
+                                'members': { 'max_num': 1}, 
+                                    },
+                        help_text="Team members pics and bios"            )
         
 
 

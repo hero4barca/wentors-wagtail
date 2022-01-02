@@ -10,7 +10,7 @@ class ButtonBlock(blocks.StructBlock):
 
 # first slide of top image carousel
 class CarouselSlideBlock (StructBlock):
-        title = blocks.CharBlock(max_length=64)
-        text = blocks.CharBlock(max_length=250)
+        title = blocks.CharBlock(max_length=64, help_text="slide title - h1 text")
+        text = blocks.CharBlock(max_length=250,  help_text="slide text - h2 text")
         slider_image = ImageChooserBlock()
         button = ButtonBlock( max_num=1)
