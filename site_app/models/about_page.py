@@ -222,6 +222,7 @@ class AboutPage(Page):
 #AboutPage._meta.get_field('').help_text = ""
 
 #@TODO
-# Refactoring field names -> make sense and convensions -> update in templates
-# Help_text for all appropriate field names 
-# RichTextfield instead of Charfield where appropriate
+# maxcount to allstream fields
+# helptext to all model fields
+# heroku deploy
+

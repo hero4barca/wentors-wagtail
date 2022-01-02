@@ -1,0 +1,49 @@
+{% extends "site_base.html" %}
+
+{% load wagtailcore_tags %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailembeds_tags %}
+
+{% block body_class %}template-bankdetailspage {% endblock %}
+
+
+
+
+{% block content %}
+    
+<main id="main">
+
+    <!-- ======= Our Skills Section ======= -->
+  <section id="skills" class="skills section-bg">
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2> Account Details For Bank Transfer </h2>
+        
+      </div>
+
+      <div class="row justify-content-center">
+         
+
+            <div class="col-lg-10 pt-4 pt-lg-0 bank-details-content " data-aos="fade-left">
+                {{ page.bank_details_text|richtext }}
+
+            </div>
+
+
+           
+
+           
+
+            
+      </div>
+
+    </div>
+  </section><!-- End Our Skills Section -->
+
+</main>
+
+
+
+{% endblock %}

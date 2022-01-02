@@ -140,7 +140,7 @@
               {% for block in page.cta_buttons %}
                   {% if block.block_type == "buttons" %}
                       {% for button in block.value %}
-                      <a class="about-cta-btn" href="{{ button.link }}"> {{ button.text}}</a>
+                      <a class="cta-btn" href="{{ button.link }}"> {{ button.text}}</a>
                       {% endfor %}
                   {% endif %}
               {% endfor %}
