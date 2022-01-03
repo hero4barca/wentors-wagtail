@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+# Import statement for djnago-heroku
+import django_heroku
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -171,7 +174,11 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+BASE_URL = 'https://wentors.com'
 
 #default auto field settings
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
+# activate djnago-heroku
+django_heroku.settings(locals())
