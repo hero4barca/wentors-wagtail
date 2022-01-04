@@ -175,4 +175,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # activate djnago-heroku
-#django_heroku.settings(locals())
+django_heroku.settings(locals())
