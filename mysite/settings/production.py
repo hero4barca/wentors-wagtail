@@ -19,14 +19,15 @@ ALLOWED_HOSTS = ['*']
 # set to use postgre backend in production
 
 
+DATABASES['default'] = dj_database_url.parse(os.environ.get("DATABASE_URL"),
+                             conn_max_age=600)
+# DATABASES = {
+#      'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'mysite_db',
+#                   }
+#               }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myiste_db',
-    }
-}
-DATABASES['default'] = dj_database_url.config()
 
 try:
     from .local import *
