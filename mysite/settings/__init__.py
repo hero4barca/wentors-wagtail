@@ -1,4 +1,4 @@
-if os.environ.get("ENV_NAME") == 'Production':
+if os.environ.get("ENV_NAME") == 'production':
     from .production import *
 else:
     from .dev import *
