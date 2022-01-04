@@ -19,7 +19,7 @@ ALLOWED_HOSTS = ['*']
 # set to use postgre backend in production
 
 DATABASES=[]
-DATABASES['default'] = dj_database_url.parse( os.environ.get("DATABASE_URL"),
+DATABASES['default'] = dj_database_url.config( default=os.environ.get("DATABASE_URL"),
                              conn_max_age=600)
 # DATABASES = {
 #      'default': {
