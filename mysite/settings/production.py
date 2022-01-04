@@ -18,8 +18,8 @@ ALLOWED_HOSTS = ['*']
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # set to use postgre backend in production
 
-DATABASES=[]
-DATABASES['default'] = dj_database_url.config( default=os.environ.get("DATABASE_URL"),
+DATABASES={}
+DATABASES['default'] = dj_database_url.parse( default=os.environ.get("DATABASE_URL"),
                              conn_max_age=600)
 # DATABASES = {
 #      'default': {
