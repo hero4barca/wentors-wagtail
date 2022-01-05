@@ -15,6 +15,7 @@ import os
 
 # Import statement for djnago-heroku
 import django_heroku
+import dj_database_url
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -173,6 +174,16 @@ BASE_URL = 'https://wentors.com'
 #default auto field settings
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-
-# activate djnago-heroku
+if os.environ.get("ENV_NAME") == 'production':
+    DATABASES['default'] = dj_database_url.parse( os.environ.get("DATABASE_URL"),
+                                                 conn_max_age=600)    
+else:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+# activate django-heroku
 django_heroku.settings(locals())
+
