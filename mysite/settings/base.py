@@ -174,6 +174,11 @@ BASE_URL = 'https://wentors.com'
 #default auto field settings
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
+
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# set to use postgre backend in production
+DATABASES = {}
 if os.environ.get("ENV_NAME") == 'production':
     DATABASES['default'] = dj_database_url.parse( os.environ.get("DATABASE_URL"),
                                                  conn_max_age=600)    
@@ -184,6 +189,8 @@ else:
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
 # activate django-heroku
 django_heroku.settings(locals())
 
