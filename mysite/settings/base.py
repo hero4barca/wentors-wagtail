@@ -28,6 +28,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition 'home',
 
 INSTALLED_APPS = [
+    'storages', # storage backend
     'wagtail.contrib.modeladmin',
     'wagtailmenus',
     'site_app',
