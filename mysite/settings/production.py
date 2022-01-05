@@ -26,14 +26,5 @@ except ImportError:
 
 
 
-# DATABASES = {
-#      'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'mysite_db',
-#                   }
-#   
-#             }
-
-
 DATABASES['default'] = dj_database_url.parse( os.environ.get("DATABASE_URL"),
                                                  conn_max_age=600)
