@@ -146,10 +146,10 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-if not os.environ.get("ENV_NAME") == 'production':
 
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Wagtail settings
