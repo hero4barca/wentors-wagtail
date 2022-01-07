@@ -1,6 +1,8 @@
 from .base import *
-import dj_database_url
-import django_heroku
+
+
+import dj_database_url # postgre db_url
+import django_heroku # heroku deployment
 
 
 # turn debug to false in production
