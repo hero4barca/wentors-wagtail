@@ -1,8 +1,15 @@
 from .base import *
 import dj_database_url
+import django_heroku
+
 
 # turn debug to false in production
 DEBUG = False
+
+# installed apps for prod only
+INSTALLED_APPS += [
+
+]
 
 # read secret key from environment variable
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY") 
@@ -19,6 +26,14 @@ try:
     from .local import *
 except ImportError:
     pass
+
+
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# set to use postgre backend in production
+DATABASES['default'] = dj_database_url.parse( os.environ.get("DATABASE_URL"),
+                                                 conn_max_age=600) 
+
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
@@ -43,3 +58,7 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
 DEFAULT_FILE_STORAGE = 'mysite.settings.aws_file_storage.MediaStorage'
 
+
+
+# activate django-heroku
+django_heroku.settings(locals())
