@@ -6,7 +6,7 @@ import django_heroku # heroku deployment
 
 
 # turn debug to false in production
-DEBUG = True
+DEBUG = False
 
 # installed apps for prod only
 INSTALLED_APPS += [
@@ -58,7 +58,7 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 
 MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-DEFAULT_FILE_STORAGE = 'mysite.settings.aws_file_storage.MediaStorage'
+DEFAULT_FILE_STORAGE = 'wentors_site.settings.aws_file_storage.MediaStorage'
 
 
 
