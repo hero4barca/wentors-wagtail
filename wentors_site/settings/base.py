@@ -150,7 +150,7 @@ MEDIA_URL = '/media/'
 
 
 # Wagtail settings
-WAGTAIL_SITE_NAME = "mysite"
+WAGTAIL_SITE_NAME = "Wentors Site"
 
 # Search
 # https://docs.wagtail.io/en/stable/topics/search/backends.html
