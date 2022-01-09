@@ -4,22 +4,24 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 image: python:3.7.12
+
 pipelines:
-default:
-- step:
-name: Build
-script:
-- git archive --format=tar.gz master -o wentors_site.tar.gz
-artifacts:
-- wentors_site.tar.gz
-- step:
-name: Deploy to staging
-deployment: staging
-caches:
-- pip
-script:
-- pipe: atlassian/heroku-deploy:0.1.1
-variables:
-HEROKU_API_KEY: $HEROKU_API_KEY
-HEROKU_APP_NAME: $HEROKU_APP_NAME
-ZIP_FILE: wentors_site.tar.gz
+  default:          
+    - step:
+        name: Build
+        script:
+          - git archive --format=tar.gz master -o wentors_site.tar.gz
+        artifacts:
+          - wentors_site.tar.gz
+      
+    - step:
+        name: Deploy to staging
+        deployment: staging
+        caches:
+          - pip
+        script:
+          - pipe: atlassian/heroku-deploy:0.1.1
+            variables:
+              HEROKU_API_KEY: $HEROKU_API_KEY
+              HEROKU_APP_NAME: $HEROKU_APP_NAME
+              ZIP_FILE: wentors_site.tar.gz
