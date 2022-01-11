@@ -1,0 +1,11 @@
+
+{% if menu_items|length > 0 %}
+    <br/>
+    {% for item in menu_items %}
+    <a class="footer-menu-item" href="{{item.href}}"> {{item.text}} </a> 
+
+    {% if not item == menu_items|last %}
+        |
+    {% endif %}
+    {% endfor %}
+{% endif %}

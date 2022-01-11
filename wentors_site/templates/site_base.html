@@ -99,8 +99,10 @@
                         <div class="footer-logo"> 
                             <a href="/"><img src="{% static 'img/logo/logo-square-cr.png' %}" alt="" class="img-fluid"></a> 
                         </div>
-                        &copy; Copyright <strong><span>Wentors</span></strong> 2021. <br/>
-                        <a> About </a> | <a> Contact </a> <br/> <a href="#"  data-toggle="modal" data-target="#disclaimerModalLong"> <span class="footer-disclaimer-link"> Disclaimer </span>  </a> 
+                        &copy; Copyright <strong><span>Wentors</span></strong> 2022.                       
+                        {% flat_menu 'footer' template="menu/flat_menu/footer/footer_menu.html"  %}
+
+                        <br/> <a href="#"  data-toggle="modal" data-target="#disclaimerModalLong"> <span class="footer-disclaimer-link"> Disclaimer </span>  </a> 
                     </div>
                     
                 </div>
