@@ -8,11 +8,11 @@ image: python:3.7.12
 pipelines:
 
   branches:
-    staging:
+    dev:
       - step:
           name: Build
           script:
-            - git archive --format=tar.gz staging -o wentors_site_staging.tar.gz
+            - git archive --format=tar.gz dev -o wentors_site_staging.tar.gz
           artifacts:
             - wentors_site_staging.tar.gz            
       - step:
