@@ -33,21 +33,6 @@ class AboutPage(Page):
 
     # //=====Header carousel end=======
 
-    # // about-video section
-    video_section_title = models.CharField(null=True, max_length=250, blank=True,
-                                        help_text="title text for video section")
-    video_section_text = RichTextField(blank= True, help_text="main paragraph providing more about info - beside the video" )
-    video_url = models.CharField(null=True, max_length=250, blank=True, 
-                                        help_text="embed url for video to be displayed if any")
-    video_thumbnail_img = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+',
-        help_text="image to be displayed instead of video if preferred "
-    )
-
     
     # // ATI : About Tiles with Icons
     # // first row
@@ -186,17 +171,7 @@ class AboutPage(Page):
         #// slider section
 
         StreamFieldPanel('carousel_slides'),
-
-
-        # // ============== about section - video  ===============
-        FieldPanel('video_section_title', classname="full"),
-        FieldPanel('video_section_text', classname="full"),
-        FieldPanel('video_url', classname="full"),
-        ImageChooserPanel('video_thumbnail_img'),
-
-        #  iconed tiles 
-        StreamFieldPanel('values_rows'),
-        
+      
 
         # // =============== call to action section ======================
         FieldPanel('call_to_action'),
