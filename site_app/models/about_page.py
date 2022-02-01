@@ -127,18 +127,23 @@ class AboutPage(Page):
 
 
 
-    # Section: Sponsor and partnets
+    # Section: Sponsor and partners
     snp_section = BooleanField(default=True, help_text="enable/disable Sponsors and Partners section")
     snp_top_text = RichTextField(blank=True, help_text="Text ob top of sponsors/partners logos ")
+
+    class SnpLogoStruct(blocks.StructBlock):
+        blocks.CharBlock( default="#", help_text="link to partner/sponsor website")
+        ImageChooserBlock(help_text="sponsor and partner logo"),
+
+   
     snp_logo_images = StreamField([
-        ('logos', blocks.ListBlock(ImageChooserBlock())),
-                ],
-                null=True,
-                block_counts={
-                    'logos': { 'max_num': 1}
-                                            },
-                help_text="logos of partners and sponsors"
-                )
+                ('logos', blocks.ListBlock( SnpLogoStruct() ) )
+                        ],
+                        null=True,
+                        block_counts={
+                                'logos': { 'max_num': 1}, 
+                                    },
+                        help_text="logos of partners and sponsors"            )
 
 
     # Section: Team members
@@ -208,12 +213,6 @@ class AboutPage(Page):
 
             ]
 
-#AboutPage._meta.get_field('ati_second_row').help_text = "Show/hide the second row of the iconed tiles"
-#AboutPage._meta.get_field('ati_third_row').help_text = "Show/hide the second row of the iconed tiles"
-#AboutPage._meta.get_field('').help_text = ""
 
-#@TODO
-# maxcount to allstream fields
-# helptext to all model fields
-# heroku deploy
 
+ 
