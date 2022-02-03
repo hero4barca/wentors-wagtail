@@ -132,8 +132,8 @@ class AboutPage(Page):
     snp_top_text = RichTextField(blank=True, help_text="Text ob top of sponsors/partners logos ")
 
     class SnpLogoStruct(blocks.StructBlock):
-        blocks.CharBlock( default="#", help_text="link to partner/sponsor website")
-        ImageChooserBlock(help_text="sponsor and partner logo"),
+       website_link = blocks.CharBlock( default="#", help_text="link to partner/sponsor website")
+       logo_img = ImageChooserBlock()
 
    
     snp_logo_images = StreamField([
