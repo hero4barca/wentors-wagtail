@@ -6,8 +6,7 @@ import django_heroku # heroku deployment
 
 
 # turn debug to false in production
-
-DEBUG = True
+DEBUG = False
 
 # installed apps for prod only
 INSTALLED_APPS += [
