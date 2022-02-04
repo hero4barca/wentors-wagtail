@@ -129,7 +129,7 @@ class AboutPage(Page):
 
     # Section: Sponsor and partners
     snp_section = BooleanField(default=True, help_text="enable/disable Sponsors and Partners section")
-    snp_top_text = RichTextField(blank=True, help_text="Text ob top of sponsors/partners logos ")
+    snp_top_text = RichTextField(blank=True, help_text="Text for top of sponsors/partners section")
 
     class SnpLogoStruct(blocks.StructBlock):
        website_link = blocks.CharBlock( default="#", help_text="link to partner/sponsor website")

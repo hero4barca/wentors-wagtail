@@ -43,6 +43,14 @@
   color: white !important;
   text-decoration: underline;
 }
+
+.home-rows-btn{
+  padding: 8px 5px !important;
+  width: 140px;
+  text-align: center;
+  font-stretch: condensed;
+}
+
 .btn-action {
   font-family: "Raleway", sans-serif;
   font-weight: 600;
@@ -57,6 +65,7 @@
   text-transform: uppercase;
   color: #94c045 ;/*#fff;*/
   background-color:#d4e5b4 ;
+  
 }
 .btn-action a:hover{
   background-color: #deecc7;

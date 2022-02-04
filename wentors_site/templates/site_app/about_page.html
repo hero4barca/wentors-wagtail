@@ -337,11 +337,15 @@
                       {% image member.photo original as member_image %}
                       <img src=" {{ member_image.url }} " class="img-fluid" alt="">
                       <div class="social">
+                      {% if member.twitter_link %}
                         <a href="{{member.twitter_link}}"><i class="bi bi-twitter"></i></a>
+                      {% endif %}
                         <!-- 
                         <a href=""><i class="bi bi-facebook"></i></a>
                         <a href=""><i class="bi bi-instagram"></i></a>-->
+                      {% if member.twitter_link %}
                         <a href="{{member.linkedin_link}}"><i class="bi bi-linkedin"></i></a>
+                      {% endif %}
                       </div>
                     </div>
                     <div class="member-info">
@@ -349,7 +353,7 @@
                       <span>{{ member.position}}</span>
                       <p>
                         {% if member.biography %}
-                          {{ member.biography }}
+                          {{ member.biography|richtext }}
                         {% else %}
                           Animi est delectus alias quam repellendus nihil nobis dolor. Est sapiente occaecati et dolore. Omnis aut ut nesciunt explicabo qui. Eius nam deleniti ut omnis repudiandae perferendis qui. Neque non quidem sit sed pariatur quia modi ea occaecati. Incidunt ea non est corporis in.
                         {% endif %}
