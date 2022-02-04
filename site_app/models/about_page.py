@@ -136,14 +136,14 @@ class AboutPage(Page):
        logo_img = ImageChooserBlock()
 
    
-    snp_logo_images = StreamField([
+    snp_details = StreamField([
                 ('logos', blocks.ListBlock( SnpLogoStruct() ) )
                         ],
                         null=True,
                         block_counts={
                                 'logos': { 'max_num': 1}, 
                                     },
-                        help_text="logos of partners and sponsors"            )
+                        help_text="logos of partners and sponsors"     )
 
 
     # Section: Team members
@@ -204,7 +204,7 @@ class AboutPage(Page):
 
         FieldPanel('snp_section'),
         FieldPanel('snp_top_text', classname="full"),
-        StreamFieldPanel('snp_logo_images'),
+        StreamFieldPanel('snp_details'),
 
         
         # // ===================== Team ===========================

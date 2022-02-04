@@ -238,7 +238,7 @@
   </section><!-- End Our Skills Section -->
 
   {% if page.snp_section %}  
-  <!-- ======= Our Clients Section ======= -->
+  <!-- ======= Our Sponsors and Partners Section ======= -->
     <section id="clients" class="clients">
       <div class="container" data-aos="fade-up">
   
@@ -254,8 +254,8 @@
           </p>
         </div>
 
-        {% for block in page.snp_logo_images %}
-
+        {% for block in page.snp_details %}
+          
           {% if block.block_type ==  "logos" %}
             {% if block.value|length_is:"1" %}
               {% for data in block.value %}
@@ -301,7 +301,7 @@
         
       
       </div>
-    </section><!-- End Our Clients Section -->
+    </section><!-- End Our Sponsors and Client Section -->
   {% endif %}
 
    <!-- ======= Team Section ======= -->
