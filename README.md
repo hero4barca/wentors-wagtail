@@ -14,3 +14,6 @@ for static files storage (stored on amazon s3):
     AWS_S3_REGION_NAME = [aws region name]
     AWS_ACCESS_KEY_ID = [asws access key id]
 
+install the dependencies - "pip install -m requirements.txt"
+initailize the db - "python manage.py migrate"
+start the django server - "python manage.py runserver"
