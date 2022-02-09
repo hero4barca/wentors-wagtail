@@ -1,8 +1,13 @@
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.core.blocks.struct_block import StructBlock
+from wagtail.core.blocks.field_block import RichTextBlock
 
 
+class ProgramSubBlock(blocks.StructBlock):
+        sub_title = blocks.CharBlock(default="Program sub-title", help_text="sub-title" )
+        text = RichTextBlock(help_text="description of specified sub-title or breakdown")
+        img = ImageChooserBlock(required=False, help_text="descriptive image/campaign image")
 
 class ButtonBlock(blocks.StructBlock):
         text = blocks.CharBlock(default="Click")
