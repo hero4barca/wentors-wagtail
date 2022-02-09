@@ -4,6 +4,64 @@
 #d4e5b4
 #deecc7
 --------------------------------------------------------------*/
+/* Program page #FAF9F6*/
+section.programs{
+  padding-top: 30px;
+}
+.programs .program-bg {
+   background-color: #f1f1f1;
+   margin-top: 30px !important;
+    margin-bottom: 50px;
+  
+    padding: 20px 0px 20px 0px;
+  
+}
+
+.row.breakdown{
+  margin-bottom: 35px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.program-breakdown-title{
+  padding-bottom: 15px;
+}
+.program-breakdown-title .title {
+  font-weight: 500;
+  font-size: 25px;
+   color: #3c4133; 
+  font-family: "Poppins", sans-serif;
+  line-height: 1.1 !important;
+  font-stretch: ultra-expanded;
+  
+}
+
+ .programs .main-description-text{
+  text-align: justify;
+}
+
+/* .program-breakdown-title{ min-width:fit-content;} */
+
+.gradient-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.gradient-underline::after {
+  background: #BDD213;
+  background: linear-gradient(to right, #7152a2 0%, #BDD213 50%, #7152a2 100%);  
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  /* margin-bottom: 5px ; */
+}
+
+/* End*/
+
 
 /* handle about video responsively */
 @media (min-width: 992px) { 
@@ -33,7 +91,7 @@
   
  }
 
-/* handle about video responsively */
+/* //End */
 
 
 .footer-menu-item {
@@ -245,11 +303,11 @@
 }
 
 
-.skills .content h3{
+.skills .content h3, .programs .content h3{
   line-height: 1.1 !important;
 }
 
-.skills .progress {
+.skills .progress, .programs .progress {
   line-height: initial !important;
 }
 
@@ -1026,39 +1084,39 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Our Skills
+# Skills, programs, 
 --------------------------------------------------------------*/
-.skills {
+.skills, .programs {
   padding-top: 60px;
 }
-.skills .content h3 {
+.skills .content h3, .programs .content h3 {
   font-weight: 700;
   font-size: 26px;
   color: #3c4133;
   font-family: "Poppins", sans-serif;
 }
-.skills .content ul {
+.skills .content ul, .programs .content ul {
   list-style: none;
   padding: 0;
 }
-.skills .content ul li {
+.skills .content ul li, .programs .content ul li {
   padding-bottom: 10px;
 }
-.skills .content ul i {
+.skills .content ul i, .programs .content ul i {
   font-size: 20px;
   padding-right: 4px;
   color: #94c045;
 }
-.skills .content p:last-child {
+.skills .content p:last-child, .programs .content p:last-child {
   margin-bottom: 0;
 }
-.skills .progress {
+.skills .progress, .programs .progress {
   height: 60px;
   display: block;
   background: none;
   border-radius: 0;
 }
-.skills .progress .skill {
+.skills .progress .skill, .programs .progress .skill {
   padding: 0;
   margin: 0 0 6px 0;
   text-transform: uppercase;
@@ -1067,14 +1125,14 @@ section {
   font-family: "Poppins", sans-serif;
   color: #3c4133;
 }
-.skills .progress .skill .val {
+.skills .progress .skill .val, .programs .progress .skill .val {
   float: right;
   font-style: normal;
 }
-.skills .progress-bar-wrap {
+.skills .progress-bar-wrap, .programs .progress-bar-wrap {
   background: #e1e4dc;
 }
-.skills .progress-bar {
+.skills .progress-bar, .programs .progress-bar {
   width: 1px;
   height: 10px;
   transition: 0.9s;

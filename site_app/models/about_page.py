@@ -177,7 +177,8 @@ class AboutPage(Page):
 
         StreamFieldPanel('carousel_slides'),
       
-
+        #// ================= values rows ==========================
+        StreamFieldPanel('values_rows'),
         # // =============== call to action section ======================
         FieldPanel('call_to_action'),
         FieldPanel ('cta_title', classname="full"),

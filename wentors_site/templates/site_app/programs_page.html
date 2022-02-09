@@ -1,0 +1,174 @@
+{% extends "site_base.html" %}
+
+{% load wagtailcore_tags %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailembeds_tags %}
+
+{% block body_class %}template-programspage {% endblock %}
+
+{% block content %}
+
+{% for block in page.top_header %}
+    {% if block.block_type == "header" %}
+        {% image block.value.header_image original as img %}
+        <section id="hero" style="background-image: url(' {{ img.url }} '); background-position: top; ">
+            <div class="hero-container" data-aos="fade-up">
+                
+                {% if block.value.h1_text %}
+                    <h1> {{block.value.h1_text}} </h1>
+                {% else %}
+                  <h1> Programs </h1>
+                {% endif %}
+
+                
+                {% if block.value.h2_text %}
+                <h2> {{ block.value.h2_text }} </h2>
+                 {% endif %}
+                
+
+            </div>
+        </section><!-- End Hero -->        
+    {% endif %}
+{% endfor %}
+
+<main id="main">
+  
+    <!-- ======= Our Skills Section ======= -->
+  <section id="programs" class="programs section-bg">
+    
+    <div class="program-bg"> 
+          <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+              <h2>Cohorts</h2>
+              <div class="main-description-text">
+              
+                {% if not page.programs_description_top == "" %}
+                  {{ page.programs_description_top|richtext }}
+                {% else %}
+                Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate.
+                Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas. Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate.
+                Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate.
+                Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas. 
+              
+                {% endif %}
+              </div>
+                <a class="btn-action" href="#"> click</a>
+            </div>
+
+            <div class="row breakdown ">
+
+              <div class="col-12 program-breakdown-title text-center " data-aos="fade-top"> 
+                          <span class="title gradient-underline">
+                              We Discover!!
+                          </span>
+              </div>
+              
+              <div class="col-lg-6 " data-aos="fade-right">
+                {% if page.courses_image %}  
+                        {% image page.courses_image original as img %}
+                        <img src=" {{ img.url}} " class="img-fluid" alt="">
+
+                    {% else %}        
+                    <img src=" {% static 'img/skills-img.jpg' %} " class="img-fluid" alt="">
+                    {% endif %}
+              </div>
+
+              <div class="col-lg-6  pt-4 pt-lg-0 content" data-aos="fade-left">           
+                  <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+                      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+                      sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                <p>
+                <b> Objective</b>: To unearth opportunities within the chosen field of technology, define 
+                career trajectory and identify knowledge gaps and growth areas  
+
+                </p> 
+                <p>
+                  <b> Audience</b> : Fresh Graduates, Women in early stages of their career, women seeking to
+                  switch industries. 
+              </p>
+
+              </div>
+
+            </div>
+
+            <div class="row breakdown ">
+
+              <div class="col-12 program-breakdown-title text-center " data-aos="fade-top"> 
+                        <span class="title gradient-underline">
+                            We Accelerate!!
+                        </span>
+              </div>
+
+              <div class="col-lg-6  order-lg-last" data-aos="fade-right">
+                  {% if page.courses_image %}  
+                    {% image page.courses_image original as img %}
+                    <img src=" {{ img.url}} " class="img-fluid" alt="">
+    
+                  {% else %}        
+                    <img src=" {% static 'img/about.jpg' %} " class="img-fluid" alt="">
+                  {% endif %}
+              </div>
+
+
+              <div class="col-lg-6  pt-4 pt-lg-0 content" data-aos="fade-left">           
+                  <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                      aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+                      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+                      sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                <p>
+                <b> Objective</b>: To unearth opportunities within the chosen field of technology, define 
+                career trajectory and identify knowledge gaps and growth areas  
+
+                </p> 
+                <p>
+                  <b> Audience</b> : Fresh Graduates, Women in early stages of their career, women seeking to
+                  switch industries. 
+              </p>
+
+              </div>            
+
+            </div>        
+
+          </div>
+    </div>
+
+
+    <div class="program-bg"> 
+          <div class="container">
+
+            <div class="section-title" data-aos="fade-up">
+              <h2>Membership</h2>
+              <div class="main-description-text">
+              
+                {% if not page.programs_description_top == "" %}
+                  {{ page.programs_description_top|richtext }}
+                {% else %}
+                Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate.
+                Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas. Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate.
+                Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate.
+                Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas. 
+              
+                {% endif %}
+              </div>
+                <a class="btn-action" href="#"> click</a>
+            </div>
+
+          </div>
+    </div>  
+  </section>
+  <!-- // Programs Section -->
+
+</main>
+
+
+
+{% endblock %}
