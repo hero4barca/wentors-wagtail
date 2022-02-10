@@ -27,21 +27,21 @@ pipelines:
                 HEROKU_APP_NAME: $HEROKU_STAGING_APP_NAME
                 ZIP_FILE: wentors_site_staging.tar.gz
     
-    # master:
-    #   - step:
-    #       name: Build
-    #       script:
-    #         - git archive --format=tar.gz master -o wentors_site_prod.tar.gz
-    #       artifacts:
-    #         - wentors_site_prod.tar.gz            
-    #   - step:
-    #       name: Deploy to production
-    #       deployment: production
-    #       caches:
-    #         - pip
-    #       script:
-    #         - pipe: atlassian/heroku-deploy:0.1.1
-    #           variables:
-    #             HEROKU_API_KEY: $HEROKU_API_KEY
-    #             HEROKU_APP_NAME: $HEROKU_PRODUCTION_APP_NAME
-    #             ZIP_FILE: wentors_site_prod.tar.gz
+    master:
+      - step:
+          name: Build
+          script:
+            - git archive --format=tar.gz master -o wentors_site_prod.tar.gz
+          artifacts:
+            - wentors_site_prod.tar.gz            
+      - step:
+          name: Deploy to production
+          deployment: production
+          caches:
+            - pip
+          script:
+            - pipe: atlassian/heroku-deploy:0.1.1
+              variables:
+                HEROKU_API_KEY: $HEROKU_API_KEY
+                HEROKU_APP_NAME: $HEROKU_PRODUCTION_APP_NAME
+                ZIP_FILE: wentors_site_prod.tar.gz
