@@ -52,7 +52,35 @@
               </div>
 
                 {% if program.program_breakdown|length > 0 %}
+
                   {% for sub in program.program_breakdown %}
+                    <!-- bootstrap card -->
+                    <div class="card text-center program-breakdown-card mx-auto">
+                      <div class="card-header">
+                        {{sub.sub_title}} Cohort
+                      </div>
+                      {% if sub.img %} 
+                            <div class="card-img-top-div mx-auto"> 
+                                {% image sub.img original as img %}
+                                  <img src=" {{ img.url }} " class="card-img-top mx-auto img-fluid" alt="cohort image">
+                                
+                              </div>
+                      {% endif %}
+
+                      <div class="card-body">
+                         <h5 class="card-title"> {{ sub.sub_title}} </h5> 
+                        <div class="card-text">
+                          {{sub.text|richtext }}
+
+                        </div>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                      </div>
+                      <!-- <div class="card-footer text-muted">
+                        2 days ago
+                      </div> -->
+                    </div>              
+                    <!-- //card-->
+                    {% comment %}
                     <div class="row breakdown ">
 
                       <div class="col-12 program-breakdown-title text-center " data-aos="fade-top"> 
@@ -76,6 +104,7 @@
                       </div> 
 
                     </div>        
+                    {% endcomment %}
 
                   {% endfor %}
                 {% endif%}
