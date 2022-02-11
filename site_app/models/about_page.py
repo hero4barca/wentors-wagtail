@@ -109,6 +109,9 @@ class AboutPage(Page):
     expertise_top_text = RichTextField(blank=True)
     expertise_right_title = RichTextField(blank=True)
     expertise_right_text = RichTextField(blank=True)
+    expertise_cta_text = models.CharField(max_length=250, default="Click")
+    expertise_cta_link = models.CharField(max_length=250, default="#")
+
 
     class SkillProgressBlock(blocks.StructBlock):
         skill = blocks.CharBlock(default="skill")
@@ -196,6 +199,8 @@ class AboutPage(Page):
         FieldPanel('expertise_top_text', classname="full"),
         FieldPanel('expertise_right_title', classname="full"),
         FieldPanel('expertise_right_text', classname="full"),
+        FieldPanel('expertise_cta_text'),
+        FieldPanel('expertise_cta_link'),
 
         FieldPanel('expertise_progress_bars'),
         StreamFieldPanel('skills_and_progress'),

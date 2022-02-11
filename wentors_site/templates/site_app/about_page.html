@@ -136,7 +136,7 @@
                     <div class="card" style="background-image: url('{{card_img.url}} ');">
         
                     {% else %}
-                    <div class="card" style="background-image: url('{% static "img/features-1.jpg " %}');">
+                    <div class="card" style="background-image: url('{% static "img/features-1.jpg" %}');">
         
                     {% endif %}
                       <div class="card-body">
@@ -229,6 +229,11 @@
                 {% endfor %}
 
               </div>
+          {% endif %}
+
+          <!-- button, only if like is set -->
+          {% if not page.expertise_cta_link == "#"  %}
+              <a class="btn-action" href="{{ page.expertise_cta_link }}"> {{ page.expertise_cta_text}}</a>
           {% endif %}
 
         </div>
