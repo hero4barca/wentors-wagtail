@@ -5,6 +5,8 @@
 #deecc7
 --------------------------------------------------------------*/
 /* Program page #FAF9F6*/
+
+/* Responsive display for program breakdown*/
 @media (max-width: 575.98px) {
   .program-breakdown-card{
     width: 95%;
@@ -48,9 +50,7 @@
   }
  }
 
-.card-header{
-  /* background-color: #cccccc; */
-}
+/* //responsive handling end */
 .program-breakdown-card .card-title{
   font-weight: 500;
   font-size: 23px;

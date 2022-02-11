@@ -75,36 +75,10 @@
                         </div>
                         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                       </div>
-                      <!-- <div class="card-footer text-muted">
-                        2 days ago
-                      </div> -->
+                      
                     </div>              
                     <!-- //card-->
-                    {% comment %}
-                    <div class="row breakdown ">
-
-                      <div class="col-12 program-breakdown-title text-center " data-aos="fade-top"> 
-                        <span class="title gradient-underline">
-                            {{sub.sub_title}}
-                        </span>
-                      </div>
-
-                      <div class="col-lg-6 {% cycle '' 'order-lg-last' %} " data-aos="fade-right">
-                          {% if sub.img %}  
-                                {% image sub.img original as img %}
-                                <img src=" {{ img.url}} " class="img-fluid" alt="">
-        
-                            {% else %}        
-                            <img src=" {% static 'img/skills-img.jpg' %} " class="img-fluid" alt="">
-                            {% endif %}
-                      </div>
-
-                      <div class="col-lg-6  pt-4 pt-lg-0 content" data-aos="fade-left">        
-                        {{sub.text|richtext }}
-                      </div> 
-
-                    </div>        
-                    {% endcomment %}
+                    
 
                   {% endfor %}
                 {% endif%}
