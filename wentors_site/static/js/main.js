@@ -185,13 +185,22 @@
         spaceBetween: 60
       },
       640: {
+        slidesPerView: 3,
+        spaceBetween: 80
+      },
+      768: {
         slidesPerView: 4,
         spaceBetween: 80
       },
+      
       992: {
-        slidesPerView: 6,
-        spaceBetween: 120
-      }
+        slidesPerView: 5,
+        spaceBetween: 90
+      },
+      1200: {
+        slidesPerView: 5,
+        spaceBetween: 100
+      },
     }
   });
 
