@@ -43,7 +43,9 @@
             {% elif page.video_thumbnail_img %}
 
                 <div class=" col-lg-6 about-img-box align-self-baseline position-relative">
-                    {% image page.video_thumbnail_img original %}
+                    {% image page.video_thumbnail_img original as img %}
+                    <img src=" {{ img.url }} " class="img-fluid" alt="">
+
                 </div>
                  
             {% else%}
