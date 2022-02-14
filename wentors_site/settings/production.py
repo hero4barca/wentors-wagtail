@@ -20,6 +20,9 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+# redirect all non secure requests to https
+SECURE_SSL_REDIRECT = True
+
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
