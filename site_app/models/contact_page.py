@@ -10,7 +10,7 @@ from wagtail.images.blocks import ImageChooserBlock
 
 class ContactPage(Page):
     
-    top_text = RichTextField( default="We would love the heard form you. Reach us via email or any of our social media handles displayed below" )
+    contact_text = RichTextField( default="We would love the heard form you. Reach us via email or any of our social media handles displayed below" )
 
     class ContactInfoBlock(blocks.StructBlock):
 
@@ -43,6 +43,6 @@ class ContactPage(Page):
 
     content_panels = Page.content_panels + [
 
-            FieldPanel('top_text', classname="full"),
+            FieldPanel('contact_text', classname="full"),
             StreamFieldPanel('contact_info'),
         ]
