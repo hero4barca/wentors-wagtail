@@ -852,6 +852,16 @@ section {
   font-family: "Poppins", sans-serif;
   color: #646c55;
 }
+
+.section-title h3 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: -2px; 
+  padding-bottom: 0;
+  font-family: "Poppins", sans-serif;
+  color: #646c55;
+}
+
 .section-title p {
   margin-bottom: 0;
 }
@@ -896,6 +906,10 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
+
+.clients-slider.swiper{
+  margin-bottom: 40px;
+}
 .about .container {
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   padding-bottom: 15px;

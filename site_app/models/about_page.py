@@ -128,25 +128,42 @@ class AboutPage(Page):
                     null=True,
                         )
 
+    # section for sponsors and partners
 
-
-    # Section: Sponsor and partners
-    snp_section = BooleanField(default=True, help_text="enable/disable Sponsors and Partners section")
-    snp_top_text = RichTextField(blank=True, help_text="Text for top of sponsors/partners section")
-
+    # struct logo image and website link 
     class SnpLogoStruct(blocks.StructBlock):
        website_link = blocks.CharBlock( default="#", help_text="link to partner/sponsor website")
        logo_img = ImageChooserBlock()
 
+    
+    #  Sponsors
+    sponsors_section = BooleanField(default=True, help_text="Enable/disable Sponsors section")
+    sponsors_top_text = RichTextField(blank=True, help_text="Text for top of sponsors section")
    
-    snp_details = StreamField([
-                ('logos', blocks.ListBlock( SnpLogoStruct() ) )
+    sponsors_details = StreamField([
+                ('sponsors_logos', blocks.ListBlock( SnpLogoStruct() ) )
                         ],
                         null=True,
                         block_counts={
-                                'logos': { 'max_num': 1}, 
+                                'sponsors_logos': { 'max_num': 1}, 
                                     },
-                        help_text="logos of partners and sponsors"     )
+                        help_text="logos of sponsors"     )
+
+    
+    #  Partners
+    partners_section = BooleanField(default=True, help_text="enable/disable Partners section")
+    partners_top_text = RichTextField(blank=True, help_text="Text for top of partners section")
+   
+    partners_details = StreamField([
+                ('partners_logos', blocks.ListBlock( SnpLogoStruct() ) )
+                        ],
+                        null=True,
+                        block_counts={
+                                'partners_logos': { 'max_num': 1}, 
+                                    },
+                        help_text="logos of partners" )
+
+
 
 
     # Section: Team members
@@ -208,9 +225,13 @@ class AboutPage(Page):
 
         # // ================ Partners and Sponsors ===================
 
-        FieldPanel('snp_section'),
-        FieldPanel('snp_top_text', classname="full"),
-        StreamFieldPanel('snp_details'),
+        FieldPanel('sponsors_section'),
+        FieldPanel('sponsors_top_text', classname="full"),
+        StreamFieldPanel('sponsors_details'),
+
+        FieldPanel('partners_section'),
+        FieldPanel('partners_top_text', classname="full"),
+        StreamFieldPanel('partners_details'),
 
         
         # // ===================== Team ===========================
