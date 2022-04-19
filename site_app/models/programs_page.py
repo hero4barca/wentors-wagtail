@@ -1,4 +1,3 @@
-from typing_extensions import Required
 from django.db import models
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.core import blocks
