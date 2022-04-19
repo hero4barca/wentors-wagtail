@@ -27,12 +27,13 @@ class JobsPage(Page):
     
     job_partners = StreamField(
 
-                    [  ( 'jobs_partners', JobsPartnerBlock() ) ], 
+                    [  ( 'jobs_partners', blocks.ListBlock( JobsPartnerBlock() )  ) ], 
                     null=True, blank=True,
                     block_counts={ 'jobs_partners': 
                                         {'min_num': 1},
                                  },
                     help_text = "job partner details"
+                    
                     )
    
     # about_facilitator = StreamField([

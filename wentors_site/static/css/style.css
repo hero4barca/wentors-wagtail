@@ -34,6 +34,10 @@
   margin-bottom: 15px !important;
   /* border: 1px; */
 }
+
+.jobs-card .btn-action:hover{
+  color: #94c045;
+}
 /* end Jobs page */
 
 /* Program page #FAF9F6*/

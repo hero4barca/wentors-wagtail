@@ -31,22 +31,36 @@
                      {{ page.jobs_partners_descriptrion|richtext }}
 
             </div>
+            
+            {% for block in page.job_partners %}
+                {% if block.block_type == "jobs_partners" %}
+                    {% for partner in block.value %}
 
-            <div class="card text-center mt-4 jobs-card">
-                
-                <div class="card-body">
-                    <div class="card-img-div mx-auto ">
-                            <img src="{% static 'img/PTF_logo_edit.png' %}" class="img-fluid " alt="">
-                    </div>
+                    
+                        <div class="card text-center mt-4 jobs-card">
+                            
+                            <div class="card-body">
+                                <div class="card-img-div mx-auto ">
+                                    {% image partner.job_partner_logo original as partner_logo %}
+                                        <img src="{{partner_logo.url}}" class="img-fluid " alt="">
+                                </div>
 
 
-                  <h5 class="card-title">power to fly </h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-                       eaque et quasi architecto beatae vitae dicta sunt explicabo. 
-                      </p>
-                  <button href="" class="btn btn-action">Apply</button>
-                </div>
-            </div> 
+                            <h5 class="card-title"> Apply with {{partner.job_partner_name}} </h5>
+                            <p class="card-text">
+                                {{partner.job_partner_description|richtext}}
+                                </p>
+                            <button href="{{partner.job_partner_link}}" class="btn btn-action">Apply</button>
+                            </div>
+                        
+                        </div>
+
+
+                    {% endfor %}
+
+
+                {% endif %}
+            {% endfor %}
            
                        
       </div>
