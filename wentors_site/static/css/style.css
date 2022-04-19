@@ -4,6 +4,38 @@
 #d4e5b4
 #deecc7
 --------------------------------------------------------------*/
+/* Jobs page #FAF9F6*/
+.jobs-card{
+  width: 83%;
+  border: none;
+
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 3px;
+  margin: 0 10px 40px 10px;
+  background: #fff;
+  box-shadow: 0 2px 29px 0 rgb(68 88 144 / 12%);
+  transition: all 0.3s ease-in-out;
+}
+
+.jobs-card .card-title{
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  /* color: #111; */
+  margin-top: 18px;
+  text-transform: capitalize;
+}
+
+.jobs-card .card-img-div{
+  display: block;
+  width: fit-content;
+  margin-bottom: 15px !important;
+  /* border: 1px; */
+}
+/* end Jobs page */
+
 /* Program page #FAF9F6*/
 
 /* Responsive display for program breakdown*/
