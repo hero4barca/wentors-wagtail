@@ -1,0 +1,94 @@
+{% extends "site_base.html" %}
+
+{% load wagtailcore_tags %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailembeds_tags %}
+
+{% block body_class %}template-jobspage {% endblock %}
+
+
+
+
+{% block content %}
+    
+
+<main id="main">
+
+    <!-- ======= Our Course details section ======= -->
+  <section id="skills" class="skills section-bg">
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2> Jobs Board </h2>
+        
+      </div>
+
+      <div class="row justify-content-center">
+         
+
+            <div class="col-lg-10 pt-4 pt-lg-0 content " data-aos="fade-left">
+                    The description here
+            </div>
+
+            <div class="col-lg-10 pt-4  course-pay" data-aos="fade-right">
+                <h4> Price: {{page.course_price}} </h4>
+                <a class="btn-action" href=" {{page.course_payment_link}} "> Pay Now</a> <br/> 
+                <span class="bank-transfer-link" >pay by bank transfer? <a target="_blank" href="/bank-details"> see details </a></span>
+
+            </div>
+
+            {% if not page.overview_and_benefits == "" %}
+                <div class="col-lg-10 pt-4 " data-aos="fade-left">
+                    {{ page.overview_and_benefits|richtext }}
+                </div>
+            {% endif %}
+
+            {% if not page.detailed_curriculum == "" %}
+                <div class="col-lg-10 pt-4 courses-content-collapsible" data-aos="fade-left"> 
+                    <button type="button" class="collapsible">Show detailed curriculum</button>
+                    <div class="collapse-content">
+                        {{page.detailed_curriculum|richtext }}
+                    </div>
+                </div>
+            {% endif %}
+
+             {% if page.about_facilitator and not page.about_facilitator == "" %}  
+             <div  class="col-lg-10 pt-4 about-facilitator" data-aos="fade-up">
+
+                {% for block in page.about_facilitator %}
+                    {% if block.block_type == "facilitator" %}
+                       <h3> {{block.value.heading }} </h3>
+
+                        <div class="bio-img-div"> 
+                            {% if block.value.images|length == 2 %}
+
+                                {% for facilitator_img in block.value.images %}
+                                        {% image facilitator_img width-432  height-432 as img  %}
+                                        <img src=" {{ img.url }} " class="img-fluid bio-img" alt="">
+                                {% endfor %}
+                            {% else %}
+                                {% for facilitator_img in block.value.images %}
+                                    {% image facilitator_img width-506  height-506 as img  %}
+                                    <img src=" {{ img.url }} " class="img-fluid bio-img" alt="">
+                                {% endfor %}
+                            {% endif %}   
+                        </div>                        
+
+                         <div>
+                             {{block.value.paragraph|richtext}}
+                         </div>
+                    {% endif %}
+                {% endfor %}
+             </div>
+             {% endif %}
+      </div>
+
+    </div>
+  </section><!--// Course details -->
+
+</main>
+
+
+
+{% endblock %}
