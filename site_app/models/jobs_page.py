@@ -8,3 +8,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.blocks.field_block import RichTextBlock
 
 from .custom_blocks import ButtonBlock
+
+class JobsPage(Page):
+
+    pass
