@@ -37,7 +37,7 @@
                     {% for partner in block.value %}
 
                     
-                        <div class="card text-center mt-4 jobs-card">
+                        <div class="card text-center mt-4 jobs-card" data-aos="fade-up">
                             
                             <div class="card-body">
                                 <div class="card-img-div mx-auto ">
@@ -50,7 +50,7 @@
                             <p class="card-text">
                                 {{partner.job_partner_description|richtext}}
                                 </p>
-                            <button href="{{partner.job_partner_link}}" class="btn btn-action">Apply</button>
+                            <a href="{{partner.job_partner_link}}" class="btn btn-action" target="_">Apply</a>
                             </div>
                         
                         </div>
