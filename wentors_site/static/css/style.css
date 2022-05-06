@@ -6,8 +6,14 @@
 --------------------------------------------------------------*/
 /* Jobs page #FAF9F6*/
 
+.justify-content-center .jobs-top-desc{
+  padding-left: 1px !important;
+  padding-right: 1px !important;
+
+}
+
 .jobs-card{
-  width: 83%;
+  width: 75%;
   border: none;
 
   padding: 30px;
@@ -36,7 +42,7 @@
   /* border: 1px; */
 }
 
-.jobs-card .btn-action:hover{
+.jobs-card a:hover{
   color: #94c045;
 }
 /* end Jobs page */
