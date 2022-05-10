@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>
+            {% block title %}
+                {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% wagtail_site as current_site %}
+                {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+        <link type="image/x-icon" href=" {% static 'img/favicon.ico' %} " rel="icon">
+        
+        <style>
+            html, body {
+                height: 100%;
+                }
+
+            iframe {
+                border-style: none;                
+            }
+        </style>
 
     </head>
 
     <body>
-        <iframe title="PowerToFly Jobs" width="100%" height="500px" 
+        <iframe  title="PowerToFly Jobs" width="100%" height="100%" 
        src="{{page.iframe_link}}" ></iframe>
     </body>
 </html>
