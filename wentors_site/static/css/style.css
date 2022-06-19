@@ -1,7 +1,11 @@
 /*--------------------------------------------------------------
 # Wentors template style
 --------------------------------------------------------------*/
-
+.container>.section-title,
+.container>.sponsors>.section-title,
+.container>.text-center h3{
+  padding-top: 30px;
+}
 /*-----------------
 # Jobs page
 -----------------*/
@@ -436,14 +440,9 @@ section.programs{
 /*-------------
 # About
 --------------*/
- .features{
-  padding-top: 60px;
-}
-
 
 .team {
   background: #f9fbf4; /*   background: #fff;  */
-  padding-top: 60px;
 }
 
 
@@ -1193,11 +1192,8 @@ section {
 # Cta
 --------------------------------------------------------------*/
 .cta {
-  /**background: #86b03c , 6852a3 405043 ;
-  footer: #50404D;
-  from wentors menu-active: 84716b */
+  /**background: #86b03c , 6852a3 405043 ;*/ 
   background: #84716B;
-  padding: 50px 0;
 }
 .cta h3 {
   color: #fff;
@@ -1299,9 +1295,7 @@ section {
 /*--------------------------------------------------------------
 # Skills, programs, 
 --------------------------------------------------------------*/
-.skills, .programs {
-  padding-top: 60px;
-}
+
 .skills .content h3, .programs .content h3 {
   font-weight: 700;
   font-size: 26px;
@@ -1356,7 +1350,7 @@ section {
 # Our Clients
 --------------------------------------------------------------*/
 .clients {
-  padding-top: 60px;
+  /* padding-top: 60px; */
 }
 .clients .swiper-slide img {
   opacity: 0.5;
