@@ -444,14 +444,57 @@
 
       <div class="section-title">
         <h2>Testimonials</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-      </div>
+
+        {% if not page.testimony_top_text == "" %}
+        {{ page.testimony_top_text|richtext}}
+        {% else %}
+        Magnam dolores commodi suscipit. 
+        Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit.
+        Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+
+      {% endif %}     
+     </div>
 
       <div class="row">
+        {% comment %}
+        {% endcomment %}
 
-        <div class="col-lg-6">
+
+        {% for block in page.testimony_cards %}
+          {% if block.block_type == 'testimonials' %}
+
+            {% for info in block.value %}
+            <div class="col-lg-6">
+              {% if forloop.counter == 1 %}
+                <div class="testimonial-item">
+              {% elif forloop.counter == 2 %}
+                <div class="testimonial-item mt-4 mt-lg-0">
+              {% else %}
+                <div class="testimonial-item mt-4 ">
+              {% endif %}
+
+
+
+                {% image info.photo original as photo_image %}
+                <img src="{{ photo_image.url }}"  class="testimonial-img" alt="">
+                <h3> {{ info.name }}</h3>
+                <h4>{{info.current_position }} </h4>
+
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  {{ info.testimony}}
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+
+              </div>
+            </div>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+        
+        <!-- <div class="col-lg-6">
           <div class="testimonial-item">
-            <img src="{% static 'img/testimonials/testimonials-1.jpg' %}"  class="testimonial-img" alt="">
+            <img src="{% static  'img/testimonials/testimonials-1.jpg' %}" class="testimonial-img" alt="">
             <h3>Saul Goodman</h3>
             <h4>Ceo &amp; Founder</h4>
             <p>
@@ -464,7 +507,7 @@
 
         <div class="col-lg-6">
           <div class="testimonial-item mt-4 mt-lg-0">
-            <img src="{% static 'img/testimonials/testimonials-2.jpg' %}"  class="testimonial-img" alt="">
+            <img src="{% static  'img/testimonials/testimonials-2.jpg' %}" class="testimonial-img" alt="">
             <h3>Sara Wilsson</h3>
             <h4>Designer</h4>
             <p>
@@ -477,7 +520,7 @@
 
         <div class="col-lg-6">
           <div class="testimonial-item mt-4">
-            <img src="{% static 'img/testimonials/testimonials-3.jpg' %}"  class="testimonial-img" alt="">
+            <img src="{% static  'img/testimonials/testimonials-3.jpg' %}" class="testimonial-img" alt="">
             <h3>Jena Karlis</h3>
             <h4>Store Owner</h4>
             <p>
@@ -490,7 +533,7 @@
 
         <div class="col-lg-6">
           <div class="testimonial-item mt-4">
-            <img src="{% static 'img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="">
+            <img src="{% static  'img/testimonials/testimonials-4.jpg' %}" class="testimonial-img" alt="">
             <h3>Matt Brandon</h3>
             <h4>Freelancer</h4>
             <p>
@@ -503,7 +546,7 @@
 
         <div class="col-lg-6">
           <div class="testimonial-item mt-4">
-            <img src="{% static 'img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt="">
+            <img src="{% static  'img/testimonials/testimonials-5.jpg' %}" class="testimonial-img" alt="">
             <h3>John Larson</h3>
             <h4>Entrepreneur</h4>
             <p>
@@ -516,7 +559,7 @@
 
         <div class="col-lg-6">
           <div class="testimonial-item mt-4">
-            <img src="{% static 'img/testimonials/testimonials-6.jpg' %}" class="testimonial-img" alt="">
+            <img src="{% static  'img/testimonials/testimonials-6.jpg' %}" class="testimonial-img" alt="">
             <h3>Emily Harison</h3>
             <h4>Store Owner</h4>
             <p>
@@ -525,7 +568,8 @@
               <i class="bx bxs-quote-alt-right quote-icon-right"></i>
             </p>
           </div>
-        </div>
+        </div> -->
+
 
       </div>
 

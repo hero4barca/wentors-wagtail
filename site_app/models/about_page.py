@@ -1,3 +1,5 @@
+from email.policy import default
+from trace import Trace
 from django.db import models
 from django.db.models.fields import BooleanField
 from wagtail.core.blocks.base import Block
@@ -190,7 +192,27 @@ class AboutPage(Page):
                         help_text="Team members pics and bios"            )
         
 
+    #section: Testimonials
 
+    class TestimonialCardBlock( blocks.StructBlock):
+        name = blocks.CharBlock(default="Firstname Lastname")
+        current_position = blocks.CharBlock(default="Job description")
+        photo = ImageChooserBlock(required=False)
+        testimony = blocks.TextBlock(default="The testimony provided by user. One paragraph only (roughly 35 words)")
+        
+
+    testimony_top_text = RichTextField(blank=True)
+    testimony_cards = StreamField([
+                ('testimonials',blocks.ListBlock( TestimonialCardBlock() ) )
+                ],
+                null=True,
+                block_counts= {
+                    'testimonials': {'max_num':6, 'min_num':1},
+                    },
+                help_text= "Testimonies from former wentees")
+
+    
+    
     content_panels = Page.content_panels + [
 
         #// slider section
@@ -238,7 +260,14 @@ class AboutPage(Page):
         FieldPanel('team_top_text'),
         StreamFieldPanel('team_members'),
 
+            
+
+        # // ===================== Testimonials ===========================
+        FieldPanel('testimony_top_text'),
+        StreamFieldPanel('testimony_cards'),
+
             ]
+
 
 
 
