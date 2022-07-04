@@ -200,7 +200,7 @@ class AboutPage(Page):
         photo = ImageChooserBlock(required=False)
         testimony = blocks.TextBlock(default="The testimony provided by user. One paragraph only (roughly 35 words)")
         
-
+    testimony_display = models.BooleanField(default=False)
     testimony_top_text = RichTextField(blank=True)
     testimony_cards = StreamField([
                 ('testimonials',blocks.ListBlock( TestimonialCardBlock() ) )
@@ -263,6 +263,7 @@ class AboutPage(Page):
             
 
         # // ===================== Testimonials ===========================
+        FieldPanel('testimony_display'),
         FieldPanel('testimony_top_text'),
         StreamFieldPanel('testimony_cards'),
 
