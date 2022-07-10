@@ -40,7 +40,7 @@
     {% for block in page.programs_list %}
       {% if block.block_type == "programs" %}
         {% for program in block.value %}
-          <div class="program-bg"> 
+          <div class="program-bg" id="{{program.title}}"> 
             <div class="container">
               <div class="section-title" >
                   <h2> {{ program.title }} </h2>
