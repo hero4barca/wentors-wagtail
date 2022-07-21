@@ -30,43 +30,47 @@
     <section id="contact" class="contact">
         <div class="container">
           
-          <div class="links" data-aos="fade-up">
-            
-              {% for block in page.contact_info %}
-                {% if block.block_type == "contacts" %}
-                 {% for contact in  block.value %}
-                    <div class="link">
-                      <span>
-                        {% image contact.img original as img %}
-                        <img src=" {{img.url}} "/>
-                      </span>
-                      <span>
-                        {% if contact.type == "email" %}
-                          <a href="mailto:{{contact.address_or_link}}" target="_blank">
-                            
-                            {{contact.address_or_link}}
-                            
-                          </a>
+          <div class="row pt-4">
 
-                        {% else %}
-                          <a href="{{contact.address_or_link}}" target="_blank">
-                            {% if contact.handle %}
-                            {{ contact.handle}}
-                            {% else %}
-                            {{contact.address_or_link}}
-                            {% endif %}
-                          </a>
-
-                        {% endif %}
+            {% for block in page.contact_info %}
+                  {% if block.block_type == "contacts" %}
+                  {% for contact in  block.value %}
+                  <div class="col-lg-3 col-md-6">
+                    <div class="info-box  mb-4 ">
                         
-                      </span>
+                          {% image contact.img original as img %}
+                          <img src=" {{img.url}} " height="40" width="40">
+
+                          <h3>Wentors</h3>
+                        
+                        <p>
+                          {% if contact.type == "email" %}
+                            <a href="mailto:{{contact.address_or_link}}" target="_blank">
+                              
+                              {{contact.address_or_link}}
+                              
+                            </a>
+
+                          {% else %}
+                            <a href="{{contact.address_or_link}}" target="_blank">
+                              {% if contact.handle %}
+                              {{ contact.handle}}
+                              {% else %}
+                              {{contact.address_or_link}}
+                              {% endif %}
+                            </a>
+
+                          {% endif %}
+                          
+                          </p>
+                      </div>
                     </div>
-                 {% endfor %}
-                {% endif %}
-              {% endfor%}
-              
-             
-            </div>
+                  {% endfor %}
+                  {% endif %}
+                {% endfor%}
+           
+          </div>
+
         </div>
       </section><!-- End Contact Section -->
   </main><!-- End #main -->
