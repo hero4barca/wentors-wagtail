@@ -34,6 +34,10 @@ class ProgramsPage(Page):
         description_text = RichTextBlock(blank=True, help_text="provide detailed course description here")
         button = ButtonBlock()
         program_breakdown = blocks.ListBlock( ProgramSubBlock(), required=False )
+        program_features_table = blocks.BooleanBlock(default=False,
+                                                      required=False, 
+                                                        help_text="does this program have a comparison table to display?")
+
 
     programs_list = StreamField([
                 ('programs', blocks.ListBlock( ProgramDetailsBlock(), min_num=1 ) )
@@ -42,7 +46,7 @@ class ProgramsPage(Page):
                         'programs': { 'max_num': 1}, 
                             },
                 #null=True,
-                help_text=" list various programs and provide details")
+                help_text="list various programs and provide details")
 
     
     

@@ -145,9 +145,8 @@ section.programs{
 .programs .program-bg {
    background-color: #f1f1f1;
    margin-top: 30px !important;
-    margin-bottom: 50px;
-  
-    padding: 20px 0px 20px 0px;
+   margin-bottom: 50px;  
+  padding: 20px 0px 20px 0px;
   
 }
 
@@ -171,6 +170,100 @@ section.programs{
   
 }
 
+.table{
+  table-layout: fixed;
+  min-width: 434px;
+      
+}
+
+
+.table .feature{
+  width: 60%;
+}
+.table .check{
+  width: 20%;
+}
+
+@media (min-width: 576px) { 
+  .table .feature{
+    width: 50%;
+  }
+  .table .check{
+    width: 25%;
+  }
+}
+
+@media (max-width: 480px) 
+{ 
+  .table.table-features-tick,
+  .table.subscription-price-table {
+    /* width: 448px !important; */
+    width: 100%;
+    overflow-x: auto !important;
+  }
+
+  .features-table-container{
+    /* width: auto; */
+    
+  }
+
+}
+
+
+.table td+td,  .table th+th {
+  text-align: center;
+  
+}
+
+.features-table-container {
+  background: #f5f5ff;
+  /* min-width: 434px; */
+  overflow-x: auto !important;
+  
+}
+
+.table .sep {
+  background : #e1e1ff;
+  font-weight: 600;
+}
+
+.table .bg-purple {
+  border-top:3px solid #94c045;
+}
+.table .bg-blue {
+  border-top:3px solid #50404D;
+}
+
+.table .tick {
+  font-size: 18px;
+  color: #2CA01C;
+}
+
+td,th { border:1px solid #DDD; padding:10px; empty-cells:show; 
+    text-align:left;
+  }
+
+  .subscription-price-table {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .table .month {
+    background: #94c045;
+    color: white;
+    font-weight: 600;
+  }
+
+  .table .quarter {
+    background: #61535e;
+    color: white;
+    font-weight: 600;}
+
+  .table .year {
+    background: #220117;
+    color: white;
+    font-weight: 600;
+  }
 
 /*-----------------
 # Gradient underline
@@ -2486,3 +2579,5 @@ section {
   font-size: 13px;
   color: #fff;
 }
+
+
