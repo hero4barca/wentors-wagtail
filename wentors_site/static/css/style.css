@@ -202,11 +202,7 @@ section.programs{
     overflow-x: auto !important;
   }
 
-  .features-table-container{
-    /* width: auto; */
-    
-  }
-
+  
 }
 
 
@@ -264,28 +260,6 @@ td,th { border:1px solid #DDD; padding:10px; empty-cells:show;
     color: white;
     font-weight: 600;
   }
-
-/*-----------------
-# Gradient underline
------------------*/
-.gradient-underline {
-  position: relative;
-  text-decoration: none;
-}
-
-.gradient-underline::after {
-  background: #BDD213;
-  background: linear-gradient(to right, #7152a2 0%, #BDD213 50%, #7152a2 100%);  
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
-  /* margin-bottom: 5px ; */
-}
-/* End*/
-
 
 /*-----------
 # about video: responsive
