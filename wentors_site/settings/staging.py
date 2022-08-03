@@ -73,16 +73,24 @@ CACHES = {
         }
     },
     'renditions': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        'LOCATION':  os.environ['MEMCACHIER_SERVERS'],
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
         'TIMEOUT': 600,
         'OPTIONS': {
-            'MAX_ENTRIES': 1000,
-            'binary': True,
-            'username': os.environ['MEMCACHIER_USERNAME'],
-            'password': os.environ['MEMCACHIER_PASSWORD']
+            'MAX_ENTRIES': 1000
         }
     }
+    # 'renditions': {
+    #     'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+    #     'LOCATION':  os.environ['MEMCACHIER_SERVERS'],
+    #     'TIMEOUT': 600,
+    #     'OPTIONS': {
+    #         'MAX_ENTRIES': 1000,
+    #         'binary': True,
+    #         'username': os.environ['MEMCACHIER_USERNAME'],
+    #         'password': os.environ['MEMCACHIER_PASSWORD']
+    #     }
+    # }
 }
 
 # activate django-heroku
