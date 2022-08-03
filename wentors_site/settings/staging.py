@@ -73,7 +73,7 @@ CACHES = {
         }
     },
     'renditions': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION':  os.environ['MEMCACHIER_SERVERS'],
         'TIMEOUT': 600,
         'OPTIONS': {
