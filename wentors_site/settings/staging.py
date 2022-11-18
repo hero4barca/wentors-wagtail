@@ -63,28 +63,30 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
 DEFAULT_FILE_STORAGE = 'wentors_site.settings.aws_file_storage.MediaStorage'
 
-# chaching setting for performance
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': os.environ.get('REDIS_URL'),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
-    },
-  
-    'renditions': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        'LOCATION':  os.environ['MEMCACHIER_SERVERS'],
-        'TIMEOUT': 600,
-        'OPTIONS': {
-            #'MAX_ENTRIES': 1000,
-            'binary': True,
-            'username': os.environ['MEMCACHIER_USERNAME'],
-            'password': os.environ['MEMCACHIER_PASSWORD']
-        }
-    }
-}
+### chaching setting for performance
+
+# default cache
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': os.environ.get('REDIS_URL'),
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#         }
+#     },
+#   # rendition for cacheing images
+#     'renditions': {
+#         'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+#         'LOCATION':  os.environ['MEMCACHIER_SERVERS'],
+#         'TIMEOUT': 600,
+#         'OPTIONS': {
+#             # 'MAX_ENTRIES': 1000,
+#             'binary': True,
+#             'username': os.environ['MEMCACHIER_USERNAME'],
+#             'password': os.environ['MEMCACHIER_PASSWORD']
+#         }
+#     }
+# }
 
 # activate django-heroku
 django_heroku.settings(locals())
