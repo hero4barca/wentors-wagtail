@@ -49,4 +49,4 @@ USER wagtail
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear
 
-CMD ["gunicorn", "--bind", ":8000",  "project.wsgi"]
+CMD ["gunicorn", "--bind", ":8000",  "wentors_site.wsgi"]
