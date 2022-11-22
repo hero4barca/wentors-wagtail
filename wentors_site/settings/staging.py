@@ -2,7 +2,6 @@ from .base import *
 
 
 import dj_database_url # postgre db_url
-import django_heroku # heroku deployment
 
 
 # turn debug to false in production
@@ -91,6 +90,3 @@ DEFAULT_FILE_STORAGE = 'wentors_site.settings.aws_file_storage.MediaStorage'
 #         }
 #     }
 # }
-
-# activate django-heroku
-# django_heroku.settings(locals())
