@@ -93,4 +93,4 @@ DEFAULT_FILE_STORAGE = 'wentors_site.settings.aws_file_storage.MediaStorage'
 # }
 
 # activate django-heroku
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
