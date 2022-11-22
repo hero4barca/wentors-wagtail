@@ -45,7 +45,8 @@ DATABASES['default'] = dj_database_url.parse( os.environ.get("DATABASE_URL"),
 # See https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'wentors_site.settings.static_storage.WhiteNoiseStaticFilesStorage'
 
 #======= config for AmazonS3 storage -> media files upload======
         
