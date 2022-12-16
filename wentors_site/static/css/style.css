@@ -6,6 +6,93 @@
 .container>.text-center h3{
   padding-top: 30px;
 }
+
+/*-----------------
+# Landing page
+-----------------*/
+.row.faq-item{
+  width: 80%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 10px 0 !important;
+}
+#landing-desc{
+  padding-bottom: 20px;
+}
+#landing-desc .content p,
+#landing-desc .content li{
+  color: #545454 !important;
+  line-height: 24px !important;
+  font-size: 15px !important;
+}
+.landing-page-title.section-title,
+.landing-page-title.section-title h2{
+padding-bottom: 0px !important;
+margin-bottom: 0px !important;
+}
+.facts-list{
+  margin-left: 1.9em;
+}
+.facts-list li{
+  /* list-style-position: inside; */
+  text-indent: -1em;
+}
+
+.featured {
+  position: relative;
+  z-index: 2;
+  padding-top: 40px ;
+  padding-bottom: 40px ;
+}
+
+.featured .icon-box {
+  padding: 40px 30px;
+  box-shadow: 0px 2px 15px rgb(0 0 0 / 15%);
+  border-radius: 10px;
+  background: #fff;
+  transition: all ease-in-out 0.3s;
+  height: 100%;
+}
+.featured .icon-box:hover {
+  background: #50404D;
+  }
+.featured .icon-box i {
+  color: #94c045;
+  font-size: 42px;
+  margin-bottom: 15px;
+  display: block;
+  line-height: 0;
+}
+.featured .icon-box h3 {
+  color: #545454;
+  transition: 0.3s;
+  font-size: 20px;
+  font-weight: 600;
+}
+.featured .icon-box p {
+  color: #545454;
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.featured .icon-box p span {
+  font-weight: 600;
+}
+.featured .icon-box:hover p,
+.featured .icon-box:hover h3,
+.featured .icon-box:hover i {
+  color: #fff;
+}
+
+section.faq{
+  padding-top: 20px !important;
+}
+
+section.faq .section-title {
+  padding-top: 20px !important;
+  padding-bottom: 0 !important;
+}
 /*-----------------
 # Jobs page
 -----------------*/
