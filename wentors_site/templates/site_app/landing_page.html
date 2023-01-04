@@ -14,7 +14,7 @@
             {% if block.block_type == "header" %}
                 {% image block.value.header_image original as img %}
                 <section id="hero" style="background-image: url(' {{ img.url }} '); background-position: top; ">
-                    <div class="hero-container" data-aos="fade-up">
+                    <div class="hero-container dark-overlay" data-aos="fade-up">
                         
                         {% if block.value.h1_text %}
                             <h1> {{ block.value.h1_text }} </h1>
