@@ -100,17 +100,23 @@
       <div class="container">
 
         <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Join a Cohort</a></h4>
-              <p>Become a wentor or wentee on one of cohorts to connect with and create lasting
-                relationships with women in technology for career growth.
-              </p>
-            </div>
-          </div>
+          {% for block in page.work_process_rows %}
+            {% if block.block_type == "rows"  %}
+                {% for row in block.value %}
+                  <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="icon-box">
+                      <div class="icon"><i class="bx {{ row.icon_class }}"></i></div>
+                      <h4><a href="">{{ row.title }}</a></h4>
+                      <p>
+                         {{ row.text|richtext}}
+                      </p>
+                    </div>
+                  </div>
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-file"></i></div>
               <h4><a href="">Join our events platform</a></h4>
@@ -118,9 +124,9 @@
                 technology with varying levels of experience
               </p>
             </div>
-          </div>
+          </div> -->
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-tachometer"></i></div>
               <h4><a href="">Sponsor or partner with us</a></h4>
@@ -128,16 +134,81 @@
                 to delivery value to the tech eco system
               </p>
             </div>
-          </div>
+          </div> -->
 
         </div>
 
       </div>
     </section><!-- End Services Section -->
 
+    
+  <!-- ======= Testimonials Section ======= -->
+  {% if page.testimony_display %}
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Testimonials</h2>
+
+        {% if not page.testimony_top_text == "" %}
+        {{ page.testimony_top_text|richtext}}
+        {% else %}
+        Magnam dolores commodi suscipit. 
+        Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit.
+        Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
+
+      {% endif %}     
+    </div>
+
+      <div class="row">
+        {% comment %}
+        {% endcomment %}
+
+
+        {% for block in page.testimony_cards %}
+          {% if block.block_type == 'testimonials' %}
+
+            {% for info in block.value %}
+            <div class="col-lg-6">
+              {% if forloop.counter == 1 %}
+                <div class="testimonial-item">
+              {% elif forloop.counter == 2 %}
+                <div class="testimonial-item mt-4 mt-lg-0">
+              {% else %}
+                <div class="testimonial-item mt-4 ">
+              {% endif %}
+
+
+
+                {% image info.photo original as photo_image %}
+                <img src="{{ photo_image.url }}"  class="testimonial-img" alt="">
+                <h3> {{ info.name }}</h3>
+                <h4>{{info.current_position }} </h4>
+
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  {{ info.testimony}}
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+
+              </div>
+            </div>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+    
+      </div>
+
+    </div>
+  </section>
+{% endif %}
+<!-- End Testimonials Section -->
+
+
 
     <!-- ======= Work Process Section ======= -->
-     <section id="work-process" class="work-process">
+
+     <!-- <section id="work-process" class="work-process">
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
@@ -223,7 +294,9 @@
         
 
       </div>
-    </section><!-- End Work Process Section -->
+    </section> -->
+    
+    <!-- End Work Process Section -->
 
 
   </main><!-- End #main -->

@@ -563,8 +563,6 @@ td,th { border:1px solid #DDD; padding:10px; empty-cells:show;
 
 }
 
-
-
 @media only screen and (max-device-width: 768px) {
   .contact-us-image {
     background-position: center;
@@ -783,7 +781,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #main {
   /* =========== margin top remove : 70px ==================*/
-  /* margin-top: 10px;  */
+  margin-top: 70px; 
   z-index: 3;
   position: relative;
 }
@@ -1107,7 +1105,7 @@ h1, h2, h3, h4, h5, h6 {
   /*background: url("../img/hero-bg.jpg") top center; */
   background-size: cover;
   position: relative;
-  /* /* margin-bottom: -140px; ****top space* */
+  margin-bottom: -140px; 
   z-index: 1;
 }
 #hero:before {

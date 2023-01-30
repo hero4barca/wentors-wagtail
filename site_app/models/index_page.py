@@ -54,6 +54,7 @@ class IndexPage (Page):
 
     class RowBlock(blocks.StructBlock):
         title = blocks.CharBlock(default="Title Here")
+        icon_class = blocks.CharBlock(default="bx-file")
         text = RichTextBlock(blank=True)
         img = ImageChooserBlock(required=False)
         button = ButtonBlock()
@@ -68,7 +69,25 @@ class IndexPage (Page):
                         help_text="defines rows of paragraphs and images for home page"                  
     )
 
-    
+
+    #section: Testimonials
+
+    class TestimonialCardBlock( blocks.StructBlock):
+        name = blocks.CharBlock(default="Firstname Lastname")
+        current_position = blocks.CharBlock(default="Job description")
+        photo = ImageChooserBlock(required=False)
+        testimony = blocks.TextBlock(default="The testimony provided by user. One paragraph only (roughly 35 words)")
+        
+    testimony_display = models.BooleanField(default=False)
+    testimony_top_text = RichTextField(blank=True)
+    testimony_cards = StreamField([
+                ('testimonials',blocks.ListBlock( TestimonialCardBlock() ) )
+                ],
+                null=True,
+                block_counts= {
+                    'testimonials': {'max_num':6, 'min_num':1},
+                    },
+                help_text= "Testimonies from former wentees") 
 
     
     content_panels = Page.content_panels + [
@@ -89,5 +108,10 @@ class IndexPage (Page):
 
     # // =========== work process============ 
         StreamFieldPanel('work_process_rows'),
+
+    # // ===================== Testimonials ===========================
+        FieldPanel('testimony_display'),
+        FieldPanel('testimony_top_text'),
+        StreamFieldPanel('testimony_cards'),
        
     ]
