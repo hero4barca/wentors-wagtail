@@ -695,7 +695,7 @@ td,th { border:1px solid #DDD; padding:10px; empty-cells:show;
   height: 100%;
   width: 100%;
   /* background: #fbe2dd; */
-  background:  #968c94;
+  background: #c9dfa2;  /* #968c94; */
   border-radius: 5px;
   transition: all 0.3s ease-out 0s;
   transform: translateZ(-1px);
@@ -705,7 +705,7 @@ td,th { border:1px solid #DDD; padding:10px; empty-cells:show;
   margin: 0 auto;
   width: 64px;
   height: 64px;
-  background: #61535e;
+  background: #94c045; /* #61535e;*/
   border-radius: 5px;
   transition: all 0.3s ease-out 0s;
   display: flex;
@@ -782,7 +782,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #main {
-  margin-top: 10px; /** 70 here too    **/
+  /* =========== margin top remove : 70px ==================*/
+  /* margin-top: 10px;  */
   z-index: 3;
   position: relative;
 }
