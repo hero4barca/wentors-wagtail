@@ -11,22 +11,7 @@ from wagtail.core.blocks.field_block import RichTextBlock
 from .custom_blocks import ButtonBlock, ProgramSubBlock, CohortTypesBlock
 
 class ProgramsPage(Page):
-    
-    class HeaderTopBlock(blocks.StructBlock):
-
-        header_image = ImageChooserBlock(required=True)
-        h1_text = blocks.CharBlock(required=False)
-        h2_text = blocks.CharBlock(required=False)
-
-    top_header = StreamField([
-        ('header', HeaderTopBlock())
-            ],
-            null=False,
-            block_counts={
-                            'header': { 'max_num': 1, 'min_num':1 }, 
-                                    })
-
-    
+       
 
     class CohortsBlock(blocks.StructBlock):
         cohorts_description = RichTextBlock(blank=True, help_text="Description for cohorts")
