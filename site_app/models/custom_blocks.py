@@ -7,10 +7,6 @@ class CohortTypesBlock(blocks.StructBlock):
         title = blocks.CharBlock(default="cohort name", help_text="sub-title" )
         text = RichTextBlock(help_text="description")
 
-class ProgramSubBlock(blocks.StructBlock):
-        sub_title = blocks.CharBlock(default="Program sub-title", help_text="sub-title" )
-        text = RichTextBlock(help_text="description of specified sub-title or breakdown")
-        img = ImageChooserBlock(required=False, help_text="descriptive image/campaign image")
 
 class ButtonBlock(blocks.StructBlock):
         text = blocks.CharBlock(default="Click")

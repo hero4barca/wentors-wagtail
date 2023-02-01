@@ -793,6 +793,10 @@ button.collapsible:focus{
   background-color: #fff ;
 }
 
+section.home-tiles{
+  padding-bottom: 10px !important;
+}
+
 /*=========================   theme sytles  ===========================*/
 body {
   font-family: "Open Sans", sans-serif;
@@ -823,6 +827,7 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
+
 .testimonials .testimonials-carousel, .testimonials .testimonials-slider {
   overflow: hidden;
 }
