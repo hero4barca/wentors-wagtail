@@ -88,6 +88,14 @@ margin-bottom: 0px !important;
   color: #fff;
 }
 
+.featured .program-sponsors {
+  margin-top: 50px;
+}
+
+.featured .program-sponsors h5{
+  font-weight: 600;
+}
+
 section.faq{
   padding-top: 20px !important;
 }
