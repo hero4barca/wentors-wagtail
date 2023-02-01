@@ -89,52 +89,34 @@
 
   <section id="" class="programs section-bg">
 
-    {% for block in page.programs_list %}
-      {% if block.block_type == "programs" %}
-        {% for program in block.value %}
+    {% for block in page.membership_info %}
+      {% if block.block_type == "membership" %}
           <div class="program-bg" id="{{program.title}}"> 
             <div class="container">
-              <div class="section-title" >
-                  <h2> {{ program.title }} </h2>
-                  <div class="main-description-text">                                
-                      {{ program.description_text|richtext}}
-                    
-                  </div>
-                    <a class="btn-action" href="{{program.button.link }}"> {{ program.button.text}}</a>
+              <div class="row pb-4">
+
+                <div class="col-lg-6">
+                  {% if block.value.image %}
+                    {% image block.value.image original as img %}
+                    <img src=" {{ img.url }} " class="card-img-top mx-auto img-fluid" alt="cohort image">
+                   {% else %}
+                  <img src="{% static 'img/skills-img.jpg' %} " class="img-fluid" alt="">
+                  {% endif %}
+                </div>
+      
+                <div class="col-lg-6 pt-4 pt-lg-0 content">
+                  <h3> Members Portal</h3>
+                  
+                  <p>
+                    {{ block.value.description|richtext}}
+                  </p>
+      
+                  <a class="btn-action" href=" {{block.value.button.link}} "> {{ block.value.button.text }}</a> <br/> 
+                </div>
+
               </div>
-
-                {% if program.program_breakdown|length > 0 %}
-
-                  {% for sub in program.program_breakdown %}
-                    <!-- bootstrap card -->
-                    <div class="card text-center program-breakdown-card mx-auto" data-aos="fade-up">
-                      <div class="card-header">
-                        {{sub.sub_title}} Cohort
-                      </div>
-                      {% if sub.img %} 
-                            <div class="card-img-top-div mx-auto"> 
-                                {% image sub.img original as img %}
-                                  <img src=" {{ img.url }} " class="card-img-top mx-auto img-fluid" alt="cohort image">
-                                
-                              </div>
-                      {% endif %}
-
-                      <div class="card-body">
-                         <h5 class="card-title"> {{ sub.sub_title}} </h5> 
-                        <div class="card-text">
-                          {{sub.text|richtext }}
-
-                        </div>
-                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                      </div>
-                      
-                    </div>              
-                    <!-- //card-->                   
-
-                  {% endfor %}
-                {% endif%}
-
-                {% if program.program_features_table  %}
+              
+                {% if block.value.features_table  %}
                   <div class="features-table-container" >
 
                     <table class="table table-features-tick">
@@ -253,7 +235,6 @@
 
           </div>
 
-        {% endfor %}
       {% endif %}
     {% endfor %}
 

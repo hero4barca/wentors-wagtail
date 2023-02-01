@@ -10,8 +10,7 @@ from wagtail.core.blocks.field_block import RichTextBlock
 
 from .custom_blocks import ButtonBlock, ProgramSubBlock, CohortTypesBlock
 
-class ProgramsPage(Page):
-       
+class ProgramsPage(Page):       
 
     class CohortsBlock(blocks.StructBlock):
         cohorts_description = RichTextBlock(blank=True, help_text="Description for cohorts")
@@ -27,6 +26,25 @@ class ProgramsPage(Page):
                             },
                 null=True,
                 help_text="cohorts description and details")
+
+
+    class MembersDetailsBlock(blocks.StructBlock):
+        description = RichTextBlock(blank=True, help_text="Description of membership platform")
+        image = ImageChooserBlock(required=False)
+        button = ButtonBlock()
+        features_table = blocks.BooleanBlock(default=False,
+                                            required=False, 
+                                            help_text="does this program have a comparison table to display?")
+
+    
+    membership_info = StreamField([
+                ('membership', MembersDetailsBlock())
+                    ],
+                block_counts={
+                        'membership': { 'max_num': 1}, 
+                            },
+                null=True,
+                help_text="membership portal info")
 
 
     class ProgramDetailsBlock(blocks.StructBlock):
@@ -48,20 +66,13 @@ class ProgramsPage(Page):
                 #null=True,
                 help_text="list various programs and provide details")
 
-    
-    
-
-    #@TODO remove programs_top_description text, replace with structed content area.
-    
+       
     
     
     content_panels = Page.content_panels + [   
         
-        
-        StreamFieldPanel('top_header'),
         StreamFieldPanel('programs_list'),        
         StreamFieldPanel('cohorts'),
-
-
+        StreamFieldPanel('membership_info'),
 
     ]
