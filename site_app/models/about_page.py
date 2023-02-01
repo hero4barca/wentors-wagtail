@@ -15,7 +15,7 @@ from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
 # project imports here
-from .custom_blocks import ButtonBlock, CarouselSlideBlock
+from .custom_blocks import ButtonBlock, CarouselSlideBlock, SnpLogoStruct
 
 
 class AboutPage(Page):
@@ -131,13 +131,7 @@ class AboutPage(Page):
                         )
 
     # section for sponsors and partners
-
-    # struct logo image and website link 
-    class SnpLogoStruct(blocks.StructBlock):
-       website_link = blocks.CharBlock( default="#", help_text="link to partner/sponsor website")
-       logo_img = ImageChooserBlock()
-
-    
+      
     #  Sponsors
     sponsors_section = BooleanField(default=True, help_text="Enable/disable Sponsors section")
     sponsors_top_text = RichTextField(blank=True, help_text="Text for top of sponsors section")

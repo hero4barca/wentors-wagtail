@@ -3,6 +3,10 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.core.blocks.struct_block import StructBlock
 from wagtail.core.blocks.field_block import RichTextBlock
 
+# struct logo image and website link 
+class SnpLogoStruct(blocks.StructBlock):
+       website_link = blocks.CharBlock( default="#", help_text="link to partner/sponsor website")
+       logo_img = ImageChooserBlock()
 
 class ProgramSubBlock(blocks.StructBlock):
         sub_title = blocks.CharBlock(default="Program sub-title", help_text="sub-title" )
