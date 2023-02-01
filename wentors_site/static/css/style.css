@@ -233,8 +233,8 @@ section.programs{
   padding-top: 30px;
 }
 .programs .program-bg {
-   background-color: #f1f1f1;
-   margin-top: 30px !important;
+   /* background-color: #f1f1f1; */
+   margin-top: 10px !important;
    margin-bottom: 50px;  
   padding: 20px 0px 20px 0px;
   
@@ -402,6 +402,20 @@ td,th { border:1px solid #DDD; padding:10px; empty-cells:show;
   width: 140px;
   text-align: center;
   font-stretch: condensed;
+  
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 10px;
+  border: 2px solid #c9dfa2;
+  text-transform: uppercase;
+  color: #fff ;/*#fff;*/
+  background-color: #94c045 ;
 }
 
 .btn-action {
@@ -448,15 +462,15 @@ td,th { border:1px solid #DDD; padding:10px; empty-cells:show;
 }
 
 .courses-content-collapsible{
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 
 /* *start collapaseable 
  Style the button that is used to open and close the collapsible content */
 .collapsible {
-  background-color: #ccc; /* #eee*/
-  color:#444444;
+  background-color: #61535e ; /* #ccc 61535e #eee*/
+  color:#fff; /** #444444  */
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -468,29 +482,35 @@ td,th { border:1px solid #DDD; padding:10px; empty-cells:show;
   border-radius: 4px; 
 }
 
+button.collapsible:focus{
+  outline: none;
+}
+
 /* Add a background color to the button if it is clicked on (i.e. .active class with JS),
  and when you move the mouse over it (hover) */
 .collapse-active, .collapsible:hover {
-  background-color: rgb(196, 188, 188);
+  /* background-color: rgb(196, 188, 188); */
 }
 
 /**add icon */
 .collapsible:after {
   content: '\02795'; /* Unicode character for "plus" sign (+) */
-  font-size: 13px;
-  color: #444444;
+  font-size: 15px;
+  color: #fff;
   float: right;
   margin-left: 5px;
 }
 
 .collapse-active:after {
   content: "\2796"; /* Unicode character for "minus" sign (-) */
+  color: #fff;
+
 }
 /* Style the collapsible content. Note: hidden by default */
 .collapse-content {
-  padding: 0 18px;
+  padding: 0px 18px;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: #f9fbf4;
   border-top-left-radius: 3px;
   border-bottom-right-radius: 3px;
   font-size: 15px;
@@ -730,6 +750,12 @@ td,th { border:1px solid #DDD; padding:10px; empty-cells:show;
   font-family: "Raleway", sans-serif !important;
 }
 
+@media (max-width: 767.98px) { 
+  .home-tiles .icon-box h4 {    
+    font-size: 20px;
+ }
+}
+
 .home-tiles .icon-box p {
   line-height: 24px;
   font-size: 14px;
@@ -757,6 +783,14 @@ td,th { border:1px solid #DDD; padding:10px; empty-cells:show;
 .home-tiles .icon-box:hover .icon{
   background: #fff;
   color: #61535e;
+}
+
+.home-tiles .icon-box:hover .home-rows-btn{
+
+  border: 2px solid #968c94;
+  text-transform: uppercase;
+  color: #61535e ;/*#fff;*/
+  background-color: #fff ;
 }
 
 /*=========================   theme sytles  ===========================*/

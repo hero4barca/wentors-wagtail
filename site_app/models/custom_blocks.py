@@ -3,6 +3,9 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.core.blocks.struct_block import StructBlock
 from wagtail.core.blocks.field_block import RichTextBlock
 
+class CohortTypesBlock(blocks.StructBlock):
+        title = blocks.CharBlock(default="cohort name", help_text="sub-title" )
+        text = RichTextBlock(help_text="description")
 
 class ProgramSubBlock(blocks.StructBlock):
         sub_title = blocks.CharBlock(default="Program sub-title", help_text="sub-title" )

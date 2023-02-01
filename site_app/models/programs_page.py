@@ -8,7 +8,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.core.blocks.field_block import RichTextBlock
 
 
-from .custom_blocks import ButtonBlock, ProgramSubBlock
+from .custom_blocks import ButtonBlock, ProgramSubBlock, CohortTypesBlock
 
 class ProgramsPage(Page):
     
@@ -25,8 +25,23 @@ class ProgramsPage(Page):
             block_counts={
                             'header': { 'max_num': 1, 'min_num':1 }, 
                                     })
+
     
+
+    class CohortsBlock(blocks.StructBlock):
+        cohorts_description = RichTextBlock(blank=True, help_text="Description for cohorts")
+        cohorts_image = ImageChooserBlock(required=False)
+        button = ButtonBlock()
+        cohorts_list = blocks.ListBlock( CohortTypesBlock(), required=False )
     
+    cohorts = StreamField([
+                ('cohorts', blocks.ListBlock( CohortsBlock(), min_num=1 ) )
+                    ],
+                block_counts={
+                        'cohorts': { 'max_num': 1}, 
+                            },
+                null=True,
+                help_text="cohorts description and details")
 
 
     class ProgramDetailsBlock(blocks.StructBlock):
@@ -59,7 +74,9 @@ class ProgramsPage(Page):
         
         
         StreamFieldPanel('top_header'),
-        StreamFieldPanel('programs_list'),
+        StreamFieldPanel('programs_list'),        
+        StreamFieldPanel('cohorts'),
+
 
 
     ]

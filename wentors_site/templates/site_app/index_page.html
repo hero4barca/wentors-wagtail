@@ -103,38 +103,23 @@
           {% for block in page.work_process_rows %}
             {% if block.block_type == "rows"  %}
                 {% for row in block.value %}
-                  <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                  <div class="col-lg-4 col-md-6 d-flex align-items-stretch mb-2 mb-lg-0">
                     <div class="icon-box">
                       <div class="icon"><i class="bx {{ row.icon_class }}"></i></div>
                       <h4><a href="">{{ row.title }}</a></h4>
                       <p>
                          {{ row.text|richtext}}
                       </p>
+                        {% if row.button  %}
+                        <a href="{{ row.button.link }}" class=" home-rows-btn">{{ row.button.text }}</a>
+                        {% endif %}
                     </div>
                   </div>
                   {% endfor %}
                 {% endif %}
               {% endfor %}
 
-          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Join our events platform</a></h4>
-              <p>We organize and host regular career building and development events for women in 
-                technology with varying levels of experience
-              </p>
-            </div>
-          </div> -->
-
-          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Sponsor or partner with us</a></h4>
-              <p>We are constantly collaborating with various coporate entities and tech communities 
-                to delivery value to the tech eco system
-              </p>
-            </div>
-          </div> -->
+          
 
         </div>
 

@@ -7,35 +7,87 @@
 
 {% block body_class %}template-programspage {% endblock %}
 
+{% block js_onload %}collapse(){% endblock %}
+
 {% block content %}
 
-{% for block in page.top_header %}
-    {% if block.block_type == "header" %}
-        {% image block.value.header_image original as img %}
-        <section id="hero" style="background-image: url(' {{ img.url }} '); background-position: top; ">
-            <div class="hero-container" data-aos="fade-up">
-                
-                {% if block.value.h1_text %}
-                    <h1> {{block.value.h1_text}} </h1>
-                {% else %}
-                  <h1> Programs </h1>
-                {% endif %}
-
-                
-                {% if block.value.h2_text %}
-                <h2> {{ block.value.h2_text }} </h2>
-                 {% endif %}
-                
-
-            </div>
-        </section><!-- End Hero -->        
-    {% endif %}
-{% endfor %}
 
 <main id="main">
+  <!-- ======= Breadcrumbs ======= -->
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="breadcrumb-hero purple-top">
+      <div class="container">
+        <div class="breadcrumb-hero">
+          <h2>Programs</h2>
+          <p class="contact-top-text">
+            
+          </p>
+        </div>
+      </div>
+    </div>
   
     <!-- ======= Our Skills Section ======= -->
-  <section id="programs" class="programs section-bg">
+    <section id="programs" class="programs">
+      <div class="container">
+        {% for block in page.cohorts %}
+      {% if block.block_type == "cohorts" %}
+        {% for info in block.value %}
+        
+        <div class="row">
+          
+          <div class="col-lg-6">
+            {% if info.cohorts_image %}
+              {% image info.cohorts_image original as img %}
+              <img src=" {{ img.url }} " class="card-img-top mx-auto img-fluid" alt="cohort image">
+             {% else %}
+            <img src="{% static 'img/skills-img.jpg' %} " class="img-fluid" alt="">
+            {% endif %}
+          </div>
+
+          <div class="col-lg-6 pt-4 pt-lg-0 content">
+            <h3> Cohorts</h3>
+            
+            <p>
+              {{ info.cohorts_description|richtext}}
+            </p>
+
+            <ul>
+              {% for  type in info.cohorts_list %}
+              <li><i class="bi bi-check-circle"></i> {{ type.title }}</li>
+              {% endfor %}
+              
+            </ul>
+          </div>
+
+          {% for  type in info.cohorts_list %}
+
+          {% if forloop.counter == 1 %}
+          <div class="col-lg-12 pt-4 pb-2 courses-content-collapsible w-100 " data-aos="fade-top"> 
+          {% else %}
+          <div class="col-lg-12 pt-2 pb-2 courses-content-collapsible w-100 " data-aos="fade-top"> 
+          {% endif%}
+          
+          <button type="button" class="collapsible">{{ type.title }}</button>
+              
+            <div class="collapse-content">
+              {{ type.text|richtext }}
+            </div>
+          </div>
+          {% endfor %}
+          
+
+
+        </div>
+        {% endfor %} 
+        {% endif %} 
+        {% endfor %}
+      
+      </div>
+
+    </section><!-- End About Section -->
+
+
+  <section id="" class="programs section-bg">
 
     {% for block in page.programs_list %}
       {% if block.block_type == "programs" %}
@@ -84,23 +136,6 @@
 
                 {% if program.program_features_table  %}
                   <div class="features-table-container" >
-
-                    <!-- <table class="table subscription-price-table">
-                      <tr>
-                        <td>
-                          Premium 
-                        <td class="month"> 
-                          $15/Month
-                        </td>
-                        <td class="quarter">
-                          $40/Quarter
-                        </td>
-                        <td class="year">
-                          $150/Year
-                        </td>
-                      </tr>
-                    </table> -->
-
 
                     <table class="table table-features-tick">
                         <colgroup>
@@ -229,4 +264,32 @@
 
 
 
+{% endblock %}
+{% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+    <script>
+      function collapse() {
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                this.classList.toggle("collapse-active");
+                var content = this.nextElementSibling;     
+                if (content.style.maxHeight){
+                    content.style.maxHeight = null;
+                    content.style.paddingTop = null;
+                    content.style.paddingBottom = null;
+
+                } else {
+                    var contentHeight = content.scrollHeight + 25;
+                    content.style.maxHeight = contentHeight + "px";
+                    content.style.paddingTop = "15px";
+                    content.style.paddingBottom = "10px";
+                }
+                });
+            }
+            }
+    </script>
+        
 {% endblock %}
