@@ -19,7 +19,7 @@ class ProgramsPage(Page):
         cohorts_list = blocks.ListBlock( CohortTypesBlock(), required=False )
     
     cohorts = StreamField([
-                ('cohorts', blocks.ListBlock( CohortsBlock(), min_num=1 ) )
+                ('cohorts', blocks.ListBlock( CohortsBlock(), min_num=1, max_num=1 ) )
                     ],
                 block_counts={
                         'cohorts': { 'max_num': 1}, 

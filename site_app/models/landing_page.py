@@ -6,6 +6,7 @@ from wagtail.core.fields import RichTextField, StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 
+from .custom_blocks import SnpLogoStruct
 
 class LandingPage(Page):
 
@@ -41,6 +42,15 @@ class LandingPage(Page):
         help_text="descriptive image"
     )
 
+    sponsors_details = StreamField([
+                ('sponsors_logos', blocks.ListBlock( SnpLogoStruct() ) )
+                        ],
+                        null=True,
+                        block_counts={
+                                'sponsors_logos': { 'max_num': 1}, 
+                                    },
+                        help_text="logos of sponsors"  )
+
 
 
     content_panels = Page.content_panels + [
@@ -49,5 +59,6 @@ class LandingPage(Page):
                 FieldPanel('landing_page_title'),
                 FieldPanel('main_description'),
                 ImageChooserPanel('description_image'),
+                StreamFieldPanel('sponsors_details'),
                 
                 ]

@@ -7,6 +7,10 @@ class CohortTypesBlock(blocks.StructBlock):
         title = blocks.CharBlock(default="cohort name", help_text="sub-title" )
         text = RichTextBlock(help_text="description")
 
+# struct logo image and website link 
+class SnpLogoStruct(blocks.StructBlock):
+       website_link = blocks.CharBlock( default="#", help_text="link to partner/sponsor website")
+       logo_img = ImageChooserBlock()
 
 class ButtonBlock(blocks.StructBlock):
         text = blocks.CharBlock(default="Click")
