@@ -17,10 +17,7 @@
           <div class="container">
             <div class="breadcrumb-hero">
               <h2>Contact</h2>
-              <p class="contact-top-text">
-                
-                {{ page.contact_text|richtext }}
-              </p>
+              
             </div>
           </div>
         </div>
@@ -28,15 +25,19 @@
   
           <!-- ======= Contact Section   ======= -->
     <section id="contact" class="contact">
-        <div class="container">
+        <div class="container ">
           
           <div class="row pt-4">
-
-            {% for block in page.contact_info %}
-                  {% if block.block_type == "contacts" %}
-                  {% for contact in  block.value %}
-                  <div class="col-lg-3 col-md-6">
-                    <div class="info-box  mb-4 ">
+              <div class=" fw-bolder pl-4 pr-4 col-lg-12 d-flex align-items-center justify-content-center mb-4">
+                <p class="contact-top-text">                
+                  {{ page.contact_text|richtext }}
+                </p>
+              </div>
+              {% for block in page.contact_info %}
+                    {% if block.block_type == "contacts" %}
+                    {% for contact in  block.value %}
+                    <div class="col-lg-3 col-md-6">
+                      <div class="info-box  mb-4 ">
                         
                           {% image contact.img original as img %}
                           <img src=" {{img.url}} " height="40" width="40">
@@ -68,6 +69,14 @@
                   {% endfor %}
                   {% endif %}
                 {% endfor%}
+              <!-- </div>
+              <div class="col-lg-6">
+                <p class="contact-top-text">
+                
+                  {{ page.contact_text|richtext }}
+                </p>
+
+              </div> -->
            
           </div>
 
