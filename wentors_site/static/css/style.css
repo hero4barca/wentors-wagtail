@@ -738,12 +738,12 @@ button.collapsible:focus{
   font-size: 28px;
 }
 
-.home-tiles .icon-box h4 a {
-  /* color: #444444; */
+/* .home-tiles .icon-box h4 a {
   color: #545454;
-}
+} */
 
 .home-tiles .icon-box h4 {
+  color: #545454;
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 24px;
@@ -767,7 +767,7 @@ button.collapsible:focus{
   border-color: #61535e;
 }
 
-.home-tiles .icon-box:hover h4 a,
+.home-tiles .icon-box:hover h4 ,
 .home-tiles .icon-box:hover p {
   color: #fff ;
 }
@@ -1327,7 +1327,7 @@ section {
   line-height: 24px;
   display: block;
   font-weight: 700;
-  color: #646c55;
+  color: #61535e;
   margin-left: 60px;
 }
 .about .count-box p {
@@ -1336,7 +1336,7 @@ section {
   font-family: "Raleway", sans-serif;
   font-weight: 600;
   font-size: 14px;
-  color: #646c55;
+  color: #61535e;
 }
 .about .count-box a {
   font-weight: 600;

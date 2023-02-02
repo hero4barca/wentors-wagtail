@@ -19,22 +19,6 @@ from .custom_blocks import ButtonBlock, CarouselSlideBlock
 
 
 class AboutPage(Page):
-
-    # ========= Header Carousel ===============  
-
-        
-    carousel_slides = StreamField([
-        ('slides', blocks.ListBlock( CarouselSlideBlock(), min_num=1 ) )
-            ],
-            null=True,
-            block_counts={
-                    'slides': { 'max_num': 1}, 
-                            },
-            help_text="for top header image carousel"
-            )
-
-    # //=====Header carousel end=======
-
     
     # // ATI : About Tiles with Icons
     # // first row
@@ -194,10 +178,6 @@ class AboutPage(Page):
     
     
     content_panels = Page.content_panels + [
-
-        #// slider section
-
-        StreamFieldPanel('carousel_slides'),
       
         #// ================= values rows ==========================
         StreamFieldPanel('values_rows'),
