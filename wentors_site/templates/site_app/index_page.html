@@ -78,7 +78,7 @@
             </p> -->
             <ul>
               <li><i class="bx bx-check-square"></i> Free mentorship program for women in technology worldwide.</li>
-              <li><i class="bx bx-check-square"></i> A vibrant community of 5000+ women in tech across four continents.</li>
+              <li><i class="bx bx-check-square"></i> A vibrant community of 5000+ women in tech across five continents.</li>
               <li><i class="bx bx-check-square"></i> Mentored 700+ women in technology globally within our first year </li>
                 <li><i class="bx bx-check-square"></i> 3000+ careers participants trained and educated in industry relevant soft skils </li>
               <li><i class="bx bx-check-square"></i> Aiming to impact 8,000,000+ women worldwide by 2030 to change the narratives for women in tech </li>
@@ -188,100 +188,6 @@
   </section>
 {% endif %}
 <!-- End Testimonials Section -->
-
-
-
-    <!-- ======= Work Process Section ======= -->
-
-     <!-- <section id="work-process" class="work-process">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          
-          {% if page.mid_section_title %}
-          <h2> {{ page.mid_section_title}}</h2>
-          {% else %}
-           <h2> Title Here </h2>
-          {% endif %}
-
-          {% if page.mid_section_text %}
-           {{ page.mid_section_text|richtext }}
-          {% else %}
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-
-          {% endif %}                       
-
-        </div>
-
-
-        {% for block in page.work_process_rows %}
-            {% if block.block_type == "rows"  %}
-                {% for row in block.value %}
-                    <div class="row content">
-
-                      {% if forloop.counter == 1 or forloop.counter == 3 %}
-                        <div class="col-md-5" data-aos="fade-right">
-                      {% else %}
-                        <div class="col-md-5 order-1 order-md-2" data-aos="fade-left"> 
-                      {% endif %}
-            
-                          {% if row.img %}  
-                              {% image row.img original as  first_img %}
-                              <img src=" {{ first_img.url }} " class="img-fluid" alt=""> 
-            
-                          {% else %}        
-                        <img src=" {% static 'img/work-process-1.png' %} " class="img-fluid" alt=""> 
-                        {% endif %}
-            
-                      </div>
-
-                      {% if forloop.counter == 1  %} 
-                          <div class="col-md-7 pt-4" data-aos="fade-left">
-
-                      {% elif forloop.counter == 3 %}
-                          <div class="col-md-7 pt-5" data-aos="fade-left">
-                      
-                      {% else %}
-                          <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
-                      {% endif %}
-
-                        {% if row.title %}
-                          <h3> {{ row.title}} </h3>
-                        {% else %}
-                        <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                        {% endif %}
-            
-                        {% if row.text %}
-                          <div class="fst-italic"> 
-                            {{ row.text|richtext}}
-                            
-                          </div>
-                        {% else %}
-                            <p class="fst-italic">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                              magna aliqua.
-                            </p>
-                            <ul>
-                              <li><i class="bi bi-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                              <li><i class="bi bi-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                            </ul>
-                        {% endif %}
-                        
-                        {% if row.button  %}
-                        <a href="{{ row.button.link }}" class="btn-action home-rows-btn">{{ row.button.text }}</a>
-                        {% endif %}
-
-                      </div>
-                    </div> 
-                {% endfor %}
-            {% endif %}
-        {% endfor %}
-        
-
-      </div>
-    </section> -->
-    
-    <!-- End Work Process Section -->
 
 
   </main><!-- End #main -->
