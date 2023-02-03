@@ -74,7 +74,13 @@
                 </div>
                 
                 <div class="col-lg-11 pt-3 text-center">
-                    <a class="btn-action" href="https://bit.ly/IWD2023Mentorship "> apply now</a>
+                  {% for block in page.action_button %}
+                    {% if block.block_type == "button" %}
+                      <a class="btn-action" href="{{block.value.link }} "> {{block.value.text}}</a>
+
+                    {% endif %}
+                  {% endfor %}
+                    
 
                 </div>
 
